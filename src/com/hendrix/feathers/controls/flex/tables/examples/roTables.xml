@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Screen_Tables>
+
+  <Tables>
+    <Table id='0'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 1-Staging of cancer of the ovary(1988)</name>
+      <Record>
+        <field>1</field>
+        <field>Growth limited to the ovaries.</field>
+      </Record>
+      <Record>
+        <field>1a</field>
+        <field>Growth limited to one ovary; no ascites present containing malignant cells. No tumor on the external surface; capsule intact.</field>
+      </Record>
+      <Record>
+        <field>1b</field>
+        <field>Growth limited to both ovaries; no ascites present containing malignant cells. No tumor on the external surfaces; capsules intact.</field>
+      </Record>
+      <Record>
+        <field>1c*</field>
+        <field>Tumor either Stage 1a or 1b, but with tumor on surface of one or both ovaries, or with capsule ruptured, or with ascites present containing malignant cells, or with positive peritoneal washings.</field>
+      </Record>
+      <Record>
+        <field>2</field>
+        <field>Growth involving one or both ovaries with pelvic extension.</field>
+      </Record>
+      <Record>
+        <field>2a</field>
+        <field>Extension and/or metastases to the ureus and/or tubes.</field>
+      </Record>
+      <Record>
+        <field>2b</field>
+        <field>Extension to the other pelvic tissues.</field>
+      </Record>
+      <Record>
+        <field>2c*</field>
+        <field>Tumor either Stage 2a or 2b, but with tumor on surface on one or both ovaries, or with capsule(s) ruptured, or with ascites present containing malignant cells, or with positive peritoneal washings.</field>
+      </Record>
+      <Record>
+        <field>3</field>
+        <field>Tumor involving one or both ovaries with histologically confirmed peritoneal implants outside the pelvis and/or positive regional lymph nodes. Superficial liver metastases equals Stage 3. Tumor is limited to the true pelvis, but with histologically proven malignant extension to small bowel or omentum.</field>
+      </Record>
+      <Record>
+        <field>3a</field>
+        <field>Tumor grossly limited to the true pelvis, with the negative nodes, but with histologically confirmed microscopic seeding of abdominal peritoneal surface, or histologic proven extension to small bowel or masentery. </field>
+      </Record>
+      <Record>
+        <field>3b</field>
+        <field>Tumor of one or both ovaries with histologically confirmed implants, peritoneal metastasis of abdominal peritoneal surfaces, none exceeding 2 cm in diameter; nodes are negative.</field>
+      </Record>
+      <Record>
+        <field>3c</field>
+        <field>Peritoneal metastasis beyond the pelvis >2 cm in diameter and/or positive regional lymph nodes.</field>
+      </Record>
+      <Record>
+        <field>4</field>
+        <field>Growth involving one or both ovaries with distant metastases. If pleural effusion is present, there must be positive cytology to allot a case to Stage 4. Parenchymal liver metastasis equals Stage 4. </field>
+      </Record>
+      <Remark>*In order to evaluate the impact on prognosis of the different criteria for allotting cases to Stage 1c or 2c, it would be of value to know if rupture of the capsule was spontaneous, or caused by the surgeon; and if the source of malignant cells detected was peritoneal, or ascites.</Remark>
+    </Table>
+    
+    <Table id='1'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 2-Staging of Cervical  cancer(2008)</name>
+      <Record>
+        <field>1</field>
+        <field>The carcinoma is strictly confined to the cervix (extension to the cotpus would be disregarded)</field>
+      </Record>
+      <Record>
+        <field>1a</field>
+        <field><![CDATA[Invasive carcinoma which can be diagnosed only by microscopy, with deepest invasion <5 mm and largest extension <7 mm.]]></field>
+      </Record>
+      <Record>
+        <field>1a1</field>
+        <field><![CDATA[Measured stromal invasion of  <3.0 mm in depth and horizontal extension of <7.0 mm]]></field>
+      </Record>
+      <Record>
+        <field>1a2</field>
+        <field><![CDATA[Measured stromal invasion of  >3.0 mm and  not >5.0 mm with an extension of not >7.0 mm]]></field>
+      </Record>
+      <Record>
+        <field>1b</field>
+        <field>Clinically visible lesions limited to the cervix uteri or preclinical cancers greater than stage 1A*</field>
+      </Record>
+      <Record>
+        <field>1b1</field>
+        <field><![CDATA[Clinically visible lesion <4.0 cm in greatest dimension]]></field>
+      </Record>
+      <Record>
+        <field>1b2</field>
+        <field><![CDATA[Clinically visible lesion >4.0 cm in greatest dimension]]></field>
+      </Record>
+      <Record>
+        <field>2</field>
+        <field>Cervical Carcinoma invades beyond the uterus, but not the pelvic wall or to the lower third of the vagina</field>
+      </Record>
+      <Record>
+        <field>2a</field>
+        <field>Without parametrial invasion</field>
+      </Record>
+      <Record>
+        <field>2a1</field>
+        <field><![CDATA[Clinically visible lesion <4.0 cm in greatest dimension]]></field>
+      </Record>
+      <Record>
+        <field>2a2</field>
+        <field><![CDATA[Clinically visible lesion >4.0 cm in greatest dimension]]></field>
+      </Record>
+      <Record>
+        <field>2b</field>
+        <field>With obvious parametrial invasion</field>
+      </Record>
+      <Record>
+        <field>3</field>
+        <field>The tumor extends to the pelvic wall and/or involves lower third of the vagina and/or causes hydronephrosis or non-functioning kidney **</field>
+      </Record>
+      <Record>
+        <field>3a</field>
+        <field>Tumor involves lower third of the vagina , with no extension to the pelvic wall</field>
+      </Record>
+      <Record>
+        <field>3b</field>
+        <field>Extension to the pelvic wall and/or causes hydronephrosis or non-functioning kidney</field>
+      </Record>
+      <Record>
+        <field>4</field>
+        <field>The carcinoma has extended beyond the true pelvis or has involved (biopsy proven) the mucosa of the bladder or rectum. A bullous edema, as such, does not permit a case to be allotted to stage 4.</field>
+      </Record>
+      <Record>
+        <field>4a</field>
+        <field>Spread of the growth to adjacent organs</field>
+      </Record>
+      <Record>
+        <field>4b</field>
+        <field>Spread to distant organs</field>
+      </Record>
+      <Remark>*All macroscopically visible lesions - even with superficial invasion - are allotted to stage 1B carcinomas. Invasion is limited to a measured stromal invasion with a maximal depth of 5.00 mm and a horizontal extension of not >7.00 mm. Depth of invasion should not be >5.00 mm taken from the base of the epithelium of the original tissue, superficial or glandular. The depth of invasion should always be reported in mm,  even in those cases with �early (minimal) stromal invasion� (-1 mm). The involvement of vascular/lymphatic spaces should not change the stage allotment.</Remark>
+      <Remark>**On rectal examination, there is no cancer-free space between the tumor and the pelvic wall. All cases with hydronephrosis or non-functioning kidney are included, unless they are known to be due to another cause.</Remark>
+    </Table>
+    
+    <Table id='2'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 3-Staging of Endometrial cancer(2008)</name>
+      <Record>
+        <field>1</field>
+        <field>Tumor confined to the corpus uteri</field>
+      </Record>
+      <Record>
+        <field>1a</field>
+        <field>No or less than half myometrial invasion</field>
+      </Record>
+      <Record>
+        <field>1b</field>
+        <field>Invasion equal to or more than half of the myometrium</field>
+      </Record>
+      <Record>
+        <field>2</field>
+        <field>Tumor invades cervical stroma, but does not extend beyond the uterus **</field>
+      </Record>
+      <Record>
+        <field>3</field>
+        <field>Local and/or regional spread of the tumor</field>
+      </Record>
+      <Record>
+        <field>3a</field>
+        <field>Tumor invades the serosa of the corpus uteri and/or adnexas #</field>
+      </Record>
+      <Record>
+        <field>3b</field>
+        <field>Vaginal and/or parametrial involvement #</field>
+      </Record>
+      <Record>
+        <field>3c</field>
+        <field>Metastases to pelvic and/or para-aortic lymph nodes #</field>
+      </Record>
+      <Record>
+        <field>3c1</field>
+        <field>Positive pelvic nodes</field>
+      </Record>
+      <Record>
+        <field>3c2</field>
+        <field>Positive para-aortic lymph nodes with or without positive pelvic lymph nodes</field>
+      </Record>
+      <Record>
+        <field>3c2</field>
+        <field>Positive para-aortic lymph nodes with or without positive pelvic lymph nodes</field>
+      </Record>
+      <Record>
+        <field>4</field>
+        <field>Tumor invades bladder and/or bowel mucosa, and/or distant metastases</field>
+      </Record>
+      <Record>
+        <field>4a</field>
+        <field>Tumor invasion of bladder and/or bowel mucosa</field>
+      </Record>
+      <Record>
+        <field>4b</field>
+        <field>Distant metastases, including intra-abdominal metastases and/or inguinal lymph nodes</field>
+      </Record>
+    </Table>
+    
+    <Table id='3'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 4-Staging of Endometrial cancer(2008)</name>
+      <Record>
+        <field>1*</field>
+        <field>Tumor confined to the corpus uteri</field>
+      </Record>
+      <Record>
+        <field>1a*</field>
+        <field>No or less than half myometrial invasion</field>
+      </Record>
+      <Record>
+        <field>1b*</field>
+        <field>Invasion equal to or more than half of the myometrium</field>
+      </Record>
+      <Record>
+        <field>2*</field>
+        <field>Tumor invades cervical stroma, but does not extend beyond the uterus **</field>
+      </Record>
+      <Record>
+        <field>3*</field>
+        <field>Local and/or regional spread of the tumor</field>
+      </Record>
+      <Record>
+        <field>3a*</field>
+        <field>Tumor invades the serosa of the corpus uteri and/or adnexas #</field>
+      </Record>
+      <Record>
+        <field>3b*</field>
+        <field>Vaginal and/or parametrial involvement #</field>
+      </Record>
+      <Record>
+        <field>3c*</field>
+        <field>Metastases to pelvic and/or para-aortic lymph nodes #</field>
+      </Record>
+      <Record>
+        <field>3c1*</field>
+        <field>Positive pelvic nodes</field>
+      </Record>
+      <Record>
+        <field>3c2*</field>
+        <field>Positive para-aortic lymph nodes with or without positive pelvic lymph nodes</field>
+      </Record>
+      <Record>
+        <field>4*</field>
+        <field>Tumor invades bladder and/or bowel mucosa, and/or distant metastases</field>
+      </Record>
+      <Record>
+        <field>4a*</field>
+        <field>Tumor invasion of bladder and/or bowel mucosa</field>
+      </Record>
+      <Record>
+        <field>4b*</field>
+        <field>Distant metastases, including intra-abdominal metastases and/or inguinal lymph nodes</field>
+      </Record>
+    </Table>
+          
+    <Table id='4'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 5-Cancer of the fallopian tube(1991)</name>
+      <Record>
+        <field>0</field>
+        <field>Carcinoma in situ (limited to tubal mucosa)</field>
+      </Record>
+      <Record>
+        <field>1</field>
+        <field>Growth limited to the fallopian tube</field>
+      </Record>
+      <Record>
+        <field>1a</field>
+        <field>Growth limited to one tube,  with extension into the submucosa and/or muscularis , but not penetrating the serosal surface: no ascites</field>
+      </Record>
+      <Record>
+        <field>1b</field>
+        <field>Growth limited to both tubes,  with extension into the submucosa and/or muscularis , but not penetrating the serosal surface: no ascites</field>
+      </Record>
+      <Record>
+        <field>1c</field>
+        <field>Tumor either Stage 1A or 1B,  but with tumor extension through or onto the tubal serosa, or with ascites present containing malignant cells, or with positive peritoneal washings</field>
+      </Record>
+      <Record>
+        <field>2</field>
+        <field>Growth involving one or both Fallopian tubes with pelvic extension</field>
+      </Record>
+      <Record>
+        <field>2a</field>
+        <field>Extension and/or metastasis to the uterus and/or ovaries</field>
+      </Record>
+      <Record>
+        <field>2b</field>
+        <field>Extension to other pelvic tissues</field>
+      </Record>
+      <Record>
+        <field>2c</field>
+        <field>Tumor either Stage 2A or 2B and with ascites present containing malignant cells or with positive peritoneal washings</field>
+      </Record>
+      <Record>
+        <field>3</field>
+        <field>Tumor involves one or both Fallopian tubes, with peritoneal implants outside the pelvis and/or positive regional lymph nodes. Superficial liver metastasis equals Stage III. Tumor appears limited to the true pelvis, but with histologically-proven malignant extension to the small bowel or omentum.</field>
+      </Record>
+      <Record>
+        <field>3a</field>
+        <field>Tumor is grossly limited to the true pelvis, with negative nodes, but with histologically-confirmed microscopic seeding of abdominal peritoneal surfaces</field>
+      </Record>
+      <Record>
+        <field>3b</field>
+        <field>Tumor involving one or both tubes, with histologically-confirmed implants of abdominal peritoneal surface, none exceeding 2 cm in diameter. Lymph nodes are negative</field>
+      </Record>
+      <Record>
+        <field>3c</field>
+        <field>Abdominal implants >2 cm in diameter and/or positive retroperitoneal or inguinal nodes</field>
+      </Record>
+      <Record>
+        <field>4</field>
+        <field>Growth involving one or both Fallopian tubes with distant metastases. If pleural effusion is present, there must be positive cytology to be Stage 4. Parenchymal liver metastases equals Stage 4</field>
+      </Record>
+    </Table>
+    
+    <Table id='5'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 6-Staging of vulvar cancer(2008)</name>
+      <Record>
+        <field>1</field>
+        <field>Tumor confined to the vulva</field>
+      </Record>
+      <Record>
+        <field>1a</field>
+        <field><![CDATA[Lesions  x2 cm in size, confined to the vulva or perineum and with stromal invasion < 1.0 mm* no nodal metastasis.]]></field>
+      </Record>
+      <Record>
+        <field>1b</field>
+        <field>Lesions >2cm in size or with stromal invasion > 1.0 mm* confined to the vulva or perineum, with negative nodes.</field>
+      </Record>
+      <Record>
+        <field>2</field>
+        <field>Tumor of any size with extension to the adjacent perineal structures (1/3 lower urethra, 1/3 lower vagina , anus) with negative nodes.</field>
+      </Record>
+      <Record>
+        <field>3</field>
+        <field>Tumor of any size with or without extension to the adjacent perineal structures (1/3 lower urethra, 1/3 lower vagina , anus) with positive inguino femoral lymph nodes.</field>
+      </Record>
+      <Record>
+        <field>3a</field>
+        <field><![CDATA[(i) 1-2 lymph node metastasis(os) (<5 mm). or 
+(ii) with 1 lymph node metastasis (>5 mm)]]></field>
+      </Record>
+      <Record>
+        <field>3b</field>
+        <field><![CDATA[(i) 3 or more lymph node metastasis (<5 mm). or 
+(ii) with 2 or more lymph node metastasis (>5 mm)]]></field>
+        </Record>
+        <Record>
+          <field>3c</field>
+          <field>With positive nodes with extracapsular spread.</field>
+        </Record>
+        <Record>
+          <field>4</field>
+          <field>Tumor invades other regional (2/3 upper urethra , 2/3 upper vagina), or distant structures.</field>
+        </Record>
+        <Record>
+          <field>4a</field>
+          <field>Tumor invades any of the following:
+(i) upper urethral and/or vaginal mucosa, bladder mucosa, rectal mucosa, or fixed to the pelvic bone, or
+(ii) fixed or ulcerated inguino-femoral lymph nodes</field>
+        </Record>
+        <Record>
+          <field>4b</field>
+          <field>Any distant metastasis including pelvic lymph nodes</field>
+        </Record>
+        <Remark>*The depth of invasion is defined as the measurements of the tumor from the epithelial-stromal junction of the adjacent most superficial dermal papilla to the deepest point of invasion.</Remark>
+      </Table>
+            
+    <Table id='6'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 7-Staging of GTN(2000) (15)</name>
+      <Record>
+        <field>1</field>
+        <field>Disease confined to the uterus</field>
+      </Record>
+      <Record>
+        <field>2</field>
+        <field>GTN extends outside of the uterus, but is limited to the genital structures (adnexa, vagina, broad ligament)</field>
+      </Record>
+      <Record>
+        <field>3</field>
+        <field>GTN extends to the lungs, with or without known genital tract involvments</field>
+      </Record>
+      <Record>
+        <field>4</field>
+        <field>All other metastatic sites</field>
+      </Record>
+    </Table>
+    
+    <Table id='7'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='32' percentWidth='15'/>
+          <column fontSize='22' percentWidth='85'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 8-Staging of Uterine sarcomas(2008)</name>
+      <Record>
+        <field>(1)</field>
+        <field>Lelomyosarcomas and endometrial stromal sarcomas (ESS)*</field>
+      </Record>
+      <Record>
+        <field>1</field>
+        <field>Tumor limited to uterus</field>
+      </Record>
+      <Record>
+        <field>1a</field>
+        <field><![CDATA[<5 cm]]></field>
+    </Record>
+    <Record>
+      <field>1b</field>
+      <field><![CDATA[>5 cm]]></field>
+    </Record>
+    <Record>
+      <field>2</field>
+      <field>Tumor extends beyond uterus, within the pelvis</field>
+    </Record>
+    <Record>
+      <field>2a</field>
+      <field>adnexal involvement </field>
+    </Record>
+    <Record>
+      <field>2b</field>
+      <field>Involvement of the other pelvic tissues</field>
+    </Record>
+    <Record>
+      <field>3</field>
+      <field>Tumor invades abdominal tissues (not just protruding into the abdomen)</field>
+    </Record>
+    <Record>
+      <field>3a</field>
+      <field>One site</field>
+    </Record>
+    <Record>
+      <field>3b</field>
+      <field>> One site</field>
+    </Record>
+    <Record>
+      <field>3c</field>
+      <field>Metastasis to pelvic and/or para-aortic lymph nodes</field>
+    </Record>
+    <Record>
+      <field>4</field>
+      <field> </field>
+    </Record>
+    <Record>
+      <field>4a</field>
+      <field>Tumor invades bladder and/or rectum</field>
+    </Record>
+    <Record>
+      <field>4b</field>
+      <field>Distant metastasis</field>
+    </Record>
+    <Record>
+      <field>(2)</field>
+      <field>Adenosarcomas</field>
+    </Record>
+    <Record>
+      <field>1</field>
+      <field>Tumor limited to uterus</field>
+    </Record>
+    <Record>
+      <field>1a</field>
+      <field>Tumor limited to endometrium/endocervix with no myometrial invasion</field>
+    </Record>
+    <Record>
+      <field>1b</field>
+      <field>Less than or equal to half myometrial invasion</field>
+    </Record>
+    <Record>
+      <field>1c</field>
+      <field>More than half myometrial invasion</field>
+    </Record>
+    <Record>
+      <field>2</field>
+      <field>Tumor extends beyond the uterus, within the pelvis</field>
+    </Record>
+    <Record>
+      <field>2a</field>
+      <field>Adnexal involvement</field>
+    </Record>
+    <Record>
+      <field>2b</field>
+      <field>Involvement of other pelvic tissues</field>
+    </Record>
+    <Record>
+      <field>3</field>
+      <field>Tumor invades abdominal tissues (not just protruding into the abdomen).</field>
+    </Record>
+    <Record>
+      <field>3a</field>
+      <field>One site</field>
+    </Record>
+    <Record>
+      <field>3b</field>
+      <field>> One site</field>
+    </Record>
+    <Record>
+      <field>3c</field>
+      <field>Metastasis to pelvic and/or para-aortic lymph nodes</field>
+    </Record>
+    <Record>
+      <field>4</field>
+      <field> </field>
+    </Record>
+    <Record>
+      <field>4a</field>
+      <field>Tumor invades bladder and/or rectum</field>
+    </Record>
+    <Record>
+      <field>4b</field>
+      <field>distant metastasis</field>
+    </Record>
+    <Record>
+      <field>(3)</field>
+      <field>Carcinosarcomas - Carcinosarcomas should be staged as carcinomas of the endometrium</field>
+    </Record>
+  </Table>
+
+    <Table id='table7Addition'>
+      <properties>
+        <columnsProperties>
+          <column fontSize='19' percentWidth='30'/>
+          <column fontSize='19' percentWidth='15'/>
+          <column fontSize='19' percentWidth='19'/>
+          <column fontSize='19' percentWidth='15'/>
+          <column fontSize='19' percentWidth='15'/>
+        </columnsProperties>
+      </properties>
+      <name>TABLE 7 Addition</name>
+      <Record>
+        <field>Scores</field>
+        <field>0</field>
+        <field>1</field>
+        <field>2</field>
+        <field>4</field>
+      </Record>
+      <Record>
+        <field>Age</field>
+        <field><![CDATA[<40]]></field>
+        <field><![CDATA[>=40]]></field>
+        <field>-</field>
+        <field>-</field>
+      </Record>
+      <Record>
+        <field>Antecedent pregnancy</field>
+        <field>mole</field>
+        <field>abortion</field>
+        <field>term</field>
+        <field>-</field>
+      </Record>
+      <Record>
+        <field>Interval months from index pregnancy</field>
+        <field><![CDATA[<4]]></field>
+        <field>4-6</field>
+        <field>7-12</field>
+        <field><![CDATA[>12]]></field>
+      </Record>
+      <Record>
+        <field>Pretreatment serum hCG (iu/l)</field>
+        <field><![CDATA[<10^3]]></field>
+        <field>10^3-10^4</field>
+        <field>10^4-10^5</field>
+        <field><![CDATA[>10^5]]></field>
+      </Record>
+      <Record>
+        <field>Latest tumor size (including uterus)</field>
+        <field><![CDATA[<3]]></field>
+        <field>3-4 cm</field>
+        <field><![CDATA[>=5]]></field>
+        <field>-</field>
+      </Record>
+      <Record>
+        <field>size of metastases</field>
+        <field>lung</field>
+        <field>spieen, kidney</field>
+        <field>gastro-intestinal</field>
+        <field>liver, brain</field>
+      </Record>
+      <Record>
+        <field>Number of metastases</field>
+        <field>-</field>
+        <field>1-4</field>
+        <field>5-8</field>
+        <field><![CDATA[>8]]></field>
+      </Record>
+      <Record>
+        <field>Previous failed chemotherapy</field>
+        <field>-</field>
+        <field>-</field>
+        <field>single drug</field>
+        <field>2 or more drugs</field>
+      </Record>
+    </Table>
+    
+  </Tables>
+  
+</Screen_Tables>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.hendrix.feathers.controls.core.VideoSpriteStage3D"/>
+    <classEntry path="com.hendrix.feathers.controls.core.mainWindow.interfaces.IMainWindow"/>
+    <classEntry path="com.hendrix.feathers.controls.core.mainWindow.ext.hamMainWindow.HamProperties"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.ZoomContainer"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.tables.core.roTableDataType.TableDataType"/>
+    <classEntry path="com.hendrix.feathers.controls.core.PopupWarning"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.BidiTextField"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexLabel"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.AnimatedControl"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexImage"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.BidiFactory"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.AudioNoteState"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.ActionBar"/>
+    <classEntry path="com.hendrix.feathers.controls.CompsFactory"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.BidiBitmapFont"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.dynTextInput.core.ExtStageTextTextEditor"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexTextInput"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexComp"/>
+    <classEntry path="com.hendrix.feathers.controls.core.BitmapLayersComposer"/>
+    <classEntry path="com.hendrix.feathers.controls.core.ExtScreenNavigator"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.VGroup"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.core.BidiClassTypes"/>
+    <classEntry path="com.hendrix.feathers.controls.core.TextServices"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.core.db.SResources"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.magnifyList.ItemRendererMagnify"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexButton"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.core.db.BidiClassDB"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.core.types.LevelRun"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.tables.core.roTableDataType.TablesDataType"/>
+    <classEntry path="com.hendrix.feathers.controls.widgets.ListUpdateWidget"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.interfaces.IFlexComp"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.PopupLoader"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.flexTabBar.FlexTabBarC"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.NumberPicker"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.dynTextInput.core.IExtTextEditor"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.tables.TableRecord"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexPageIndicator"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.dynTextInput.core.ExtTextFieldTextEditor"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.HGroup"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.AudioNote"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.PullDrawer"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.mrTLFSprite.TLFSprite"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.dynTextInput.DynamicTextInput"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.TLFLabel"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexQuad"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.interfaces.IId"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.tables.core.roTableDataType.ColumnProperties"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.magnifyList.MagnifyList"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.tables.core.roTableDataType.RecordDataType"/>
+    <classEntry path="com.hendrix.feathers.controls.core.mainWindow.ext.hamMainWindow.HamMainWindow"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.backups.OOTLFLabel"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.tables.Table"/>
+    <classEntry path="com.hendrix.feathers.controls.widgets.SimpleLoader"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.FlexList"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.flexTabBar.FlexTabBar"/>
+    <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.core.DirectionalOverrideStatus"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
