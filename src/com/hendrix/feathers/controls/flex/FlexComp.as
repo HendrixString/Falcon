@@ -57,6 +57,8 @@ package com.hendrix.feathers.controls.flex
     
     private var _id:                        String          = null;
     
+    protected var _backgroundSkin:					DisplayObject		=	null;
+
     /**
      * flex comp implementation. extend this class to use it.
      * <p>
@@ -76,6 +78,30 @@ package com.hendrix.feathers.controls.flex
       super();
     }
     
+    public function get backgroundSkin():DisplayObject { return _backgroundSkin; }
+    public function set backgroundSkin(value:DisplayObject):void
+    {
+      if(_backgroundSkin)
+        _backgroundSkin.removeFromParent();
+      
+      _backgroundSkin = value;
+      
+      if(isInitialized) {
+        addChildAt(_backgroundSkin, 0);
+        validateBackground();
+      }
+    }
+    
+    public function validateBackground():void
+    {
+      if(_backgroundSkin) {
+        _backgroundSkin.width 	= width;
+        _backgroundSkin.height 	= height;
+        if(_backgroundSkin is IFeathersControl)
+          (_backgroundSkin as IFeathersControl).validate();
+      }
+    }
+
     /**
      * @inheritDoc 
      */
@@ -358,6 +384,9 @@ package com.hendrix.feathers.controls.flex
         }
       }
       
+      if(_backgroundSkin)
+        addChildAt(_backgroundSkin, 0);
+
       addEventListener(FeathersEventType.CREATION_COMPLETE, onCreationComplete);
     }   
     

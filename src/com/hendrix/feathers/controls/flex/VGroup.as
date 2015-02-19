@@ -48,7 +48,7 @@ package com.hendrix.feathers.controls.flex
     private var _dataProvider:        Vector.<Object>         = null;
     
     // dops
-    private var _backgroundSkin:      DisplayObject           = null;
+    //private var _backgroundSkin:      DisplayObject           = null;
     
     // layout
     private var _relativeCalcObject:  DisplayObject           = null;
@@ -144,16 +144,6 @@ package com.hendrix.feathers.controls.flex
       super.removeChildren(beginIndex, endIndex, dispose);
     }
     
-    public function validateBackground():void
-    {
-      if(_backgroundSkin) {
-        _backgroundSkin.width   = width;
-        _backgroundSkin.height  = height;
-        if(_backgroundSkin is IFeathersControl)
-          (_backgroundSkin as IFeathersControl).validate();
-      }
-    }
-    
     override public function dispose():void
     {
       super.dispose();
@@ -237,8 +227,8 @@ package com.hendrix.feathers.controls.flex
       invalidate(INVALIDATION_FLAG_LAYOUT);
     }
     
-    public function get backgroundSkin():                         DisplayObject     { return _backgroundSkin; }
-    public function set backgroundSkin(value:DisplayObject):      void
+    override public function get backgroundSkin():                         DisplayObject     { return _backgroundSkin; }
+    override public function set backgroundSkin(value:DisplayObject):      void
     {
       if(_backgroundSkin)
         _backgroundSkin.removeFromParent(false);

@@ -80,8 +80,8 @@ package com.hendrix.feathers.controls.flex
     /**
      * the skin of the background 
      */
-    public function get backgroundSkin():                       DisplayObject { return _backgroundSkin; }
-    public function set backgroundSkin(value:DisplayObject):    void
+    override public function get backgroundSkin():                       DisplayObject { return _backgroundSkin; }
+    override public function set backgroundSkin(value:DisplayObject):    void
     {
       _backgroundSkin = value;
     }

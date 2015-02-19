@@ -47,12 +47,15 @@ package com.hendrix.feathers.controls.flex
     /**
      * scroll to item with specified index 
      */
-    public function scrollToItemWithIndex(index:uint):void
+    public function scrollToItemWithIndex(index:uint, animationDuration:Number = 0.1):void
     {
+      if(index < 0)
+        return;
+
       if(_listDataViewport == null || (_listDataViewport.numChildren == 0))
         return;
       
-      var ir: FeathersControl = _listDataViewport.getChildAt(index) as FeathersControl;
+      var ir: FeathersControl = _listDataViewport.getChildAt(0) as FeathersControl;
       
       if(ir == null)
         return;
@@ -60,9 +63,9 @@ package com.hendrix.feathers.controls.flex
       stopScrolling();
       
       if(isHorizontalLayout())
-        scrollToPosition(ir.x, verticalScrollPosition, 0.1);
+        scrollToPosition(ir.width*(index - 1), verticalScrollPosition, animationDuration);
       else if(isVerticalLayout())
-        scrollToPosition(horizontalScrollPosition, ir.y, 0.1);
+        scrollToPosition(horizontalScrollPosition, ir.height*(index - 1), animationDuration);
     }
     
     override public function dispose():void
@@ -200,12 +203,16 @@ package com.hendrix.feathers.controls.flex
     
     protected function scrollToClosestItem():void
     {
-      var scrollTo: Number  = Math.floor(computeClosestItemDistance());
+      var scrollTo: Number        = Math.floor(computeClosestItemDistance());
       
-      selectedIndex         = _currentClosestItemIndex; 
+      var index_changes:  Boolean = (selectedIndex != _currentClosestItemIndex); 
       
-      if(onSelectedIndex is Function)
-        onSelectedIndex(_currentClosestItemIndex);
+      if(index_changes) {
+        selectedIndex					    =	_currentClosestItemIndex;	
+        
+        if(onSelectedIndex is Function)
+          onSelectedIndex(_currentClosestItemIndex);
+      }
       
       if(scrollTo == Number.POSITIVE_INFINITY)
         return;
