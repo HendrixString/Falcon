@@ -4,6 +4,7 @@ package com.hendrix.feathers.controls
   import com.hendrix.feathers.controls.flex.FlexLabel;
   import com.hendrix.gfxManager.GfxManager;
   import com.hendrix.gfxManager.core.interfaces.IIdTexture;
+  import com.hendrix.starling.text.bidiTextField.BidiTextField;
   
   import flash.display.Bitmap;
   import flash.display.BitmapData;
@@ -35,6 +36,8 @@ package com.hendrix.feathers.controls
      */
     public function CompsFactory()
     {
+      // placed here in order to load the TextFieldLibarary
+      var btf:BidiTextField;
     }
     
     /**
