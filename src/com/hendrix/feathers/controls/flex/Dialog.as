@@ -64,8 +64,6 @@ package com.hendrix.feathers.controls.flex
     public function Dialog()
     {
       super();
-      
-      addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
     }
     
     /**
@@ -257,12 +255,19 @@ package com.hendrix.feathers.controls.flex
       _container.applyAlignment();
       
     }
-    
-    private function onAddedToStage(event:Event):void
-    {     
-      removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+
+    override protected function feathersControl_addedToStageHandler(event:Event):void
+    {
+      super.feathersControl_addedToStageHandler(event);
       
       Starling.current.nativeStage.addEventListener(KeyboardEvent.KEY_DOWN, keyPressed, false, int.MAX_VALUE);
+    }
+    
+    override protected function feathersControl_removedFromStageHandler(event:Event):void
+    {
+      super.feathersControl_removedFromStageHandler(event);
+      
+      Starling.current.nativeStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyPressed);
     }
     
     private function btn_onAction(event:Event):void
