@@ -32,7 +32,7 @@ package com.hendrix.feathers.controls.flex
    * @author Tomer Shalev
    * 
    */
-  public class PopupWarning extends FlexComp
+  public class WarningDialog extends FlexComp
   {
     static public var YES:    String    = "YES";
     static public var NO:     String    = "NO";
@@ -88,7 +88,7 @@ package com.hendrix.feathers.controls.flex
      * @author Tomer Shalev
      * 
      */
-    public function PopupWarning()
+    public function WarningDialog()
     {
       super();
       
