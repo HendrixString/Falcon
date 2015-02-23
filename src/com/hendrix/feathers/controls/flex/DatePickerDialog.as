@@ -1,16 +1,18 @@
 package com.hendrix.feathers.controls.flex
 {
-  import com.hendrix.feathers.controls.flex.datePicker.DatePicker;
   
   /**
-   * date picker dialog 
-   * @author user
-   * 
+   * Date picker dialog 
+   * @author Tomer Shalev
    */
   public class DatePickerDialog extends Dialog
   {
     private var _date_picker: DatePicker = null;
     
+    /**
+     * Date picker dialog 
+     * @author Tomer Shalev
+     */
     public function DatePickerDialog()
     {
       super();    

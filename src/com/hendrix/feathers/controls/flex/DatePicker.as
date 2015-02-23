@@ -1,7 +1,5 @@
-package com.hendrix.feathers.controls.flex.datePicker
+package com.hendrix.feathers.controls.flex
 {
-  import com.hendrix.feathers.controls.flex.FlexComp;
-  import com.hendrix.feathers.controls.flex.HGroup;
   import com.hendrix.feathers.controls.utils.SCalendarInfo;
   
   import feathers.data.ListCollection;
@@ -10,6 +8,7 @@ package com.hendrix.feathers.controls.flex.datePicker
   
   import starling.display.Quad;
   import starling.events.Event;
+  import com.hendrix.feathers.controls.flex.labelList.LabelList;
   
   /**
    * a Date Picker component, inspired by the Native Android version (pre Lolipop)<br>

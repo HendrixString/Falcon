@@ -1,4 +1,4 @@
-package com.hendrix.feathers.controls.flex.datePicker
+package com.hendrix.feathers.controls.flex.labelList
 {
   import com.hendrix.feathers.controls.CompsFactory;
   import com.hendrix.feathers.controls.flex.FlexLabel;

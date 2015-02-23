@@ -1,4 +1,4 @@
-package com.hendrix.feathers.controls.flex.datePicker
+package com.hendrix.feathers.controls.flex.labelList
 {   
   import com.hendrix.feathers.controls.flex.FlexQuad;
   import com.hendrix.feathers.controls.flex.SnapList;
@@ -9,21 +9,42 @@ package com.hendrix.feathers.controls.flex.datePicker
   import feathers.layout.HorizontalLayout;
   import feathers.layout.VerticalLayout;
   
+  /**
+   * a vertical snapping list of labels, good for time/date picking 
+   * @author Tomer Shalev
+   */
   public class LabelList extends SnapList
   {
     private var _quad_top:          FlexQuad  = null;
     private var _quad_bottom:       FlexQuad  = null;
+    private var _colorStrips:       uint      = 0x00A6E3;
     
     /**
      * the percent height of an item renderer 
      */
     private var _itemPercentHeight: uint      = 35;
     
+    /**
+     * a vertical snapping list of labels, good for time/date picking 
+     * @author Tomer Shalev
+     */
     public function LabelList()
     {
       super();
     }
     
+    /**
+     * the color of the strips 
+     */
+    public function get colorStrips():uint { return _colorStrips; }
+    public function set colorStrips(value:uint):void
+    {
+      _colorStrips = value;
+    }
+
+    /**
+     * the percent height of a single item 
+     */
     public function get itemPercentHeight():uint { return _itemPercentHeight;}
     public function set itemPercentHeight(value:uint):void
     {
@@ -61,9 +82,8 @@ package com.hendrix.feathers.controls.flex.datePicker
       
       var vLayout:  VerticalLayout          = new VerticalLayout();
       
-      vLayout.useVirtualLayout              = false;
       vLayout.manageVisibility              = true;
-      vLayout.hasVariableItemDimensions     = true;
+      vLayout.hasVariableItemDimensions     = false;
       vLayout.horizontalAlign               = HorizontalLayout.HORIZONTAL_ALIGN_CENTER;
       vLayout.useVirtualLayout              = true;
       
@@ -75,8 +95,8 @@ package com.hendrix.feathers.controls.flex.datePicker
       
       itemRendererFactory                   = factory;
       
-      _quad_bottom                          = new FlexQuad(0x00A6E3);
-      _quad_top                             = new FlexQuad(0x00A6E3);
+      _quad_bottom                          = new FlexQuad(_colorStrips);
+      _quad_top                             = new FlexQuad(_colorStrips);
       
       _quad_bottom.percentWidth             = 100;
       _quad_bottom.height                   = 2;

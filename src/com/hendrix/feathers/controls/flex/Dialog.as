@@ -83,7 +83,10 @@ package com.hendrix.feathers.controls.flex
       if(_dialogContent is IFlexComp) {
         (_dialogContent as IFlexComp).verticalCenter    = 0;
         (_dialogContent as IFlexComp).horizontalCenter  = 0;
-        (_dialogContent as IFlexComp).percentWidth      = 100;
+        
+        if(isNaN((_dialogContent as IFlexComp).percentWidth))
+          (_dialogContent as IFlexComp).percentWidth    = 100;
+        if(isNaN((_dialogContent as IFlexComp).percentHeight))
         (_dialogContent as IFlexComp).percentHeight     = 50;
       }
     }
