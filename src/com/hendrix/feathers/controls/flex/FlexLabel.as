@@ -5,6 +5,9 @@ package com.hendrix.feathers.controls.flex
   import flash.text.TextFormat;
   
   import feathers.controls.Label;
+  import feathers.core.FeathersControl;
+  import feathers.core.IFeathersControl;
+  import feathers.events.FeathersEventType;
   
   import starling.display.DisplayObject;
   import starling.display.Quad;
@@ -21,7 +24,7 @@ package com.hendrix.feathers.controls.flex
     /**
      * for debug purposes
      */
-    private var _bg:                        Quad          = null;//new Quad(1,1,0x00);//null;
+    private var _bg:                        Quad          ;//= new Quad(1,1,0x00);//null;
     
     private var _autoSizeFont:              Boolean       = true;
     private var _fitWidthToText:            Boolean       = true;
@@ -55,6 +58,8 @@ package com.hendrix.feathers.controls.flex
     
     private var _id:                        String        = null;     
     
+    private var _isSensitiveToParent:       Boolean         = false;
+
     /**
      * resizes font size according to width/height. right now only supports single line labels.<br>
      * give it height, then <code>validate()</code> and you will get a label with font size according to height and you
@@ -71,7 +76,7 @@ package com.hendrix.feathers.controls.flex
     {
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestor() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestor() as DisplayObject;
-      
+
       if(!parentHeightDop || !parentWidthDop)
         throw new Error("no parent or parent override found!!");
       
@@ -275,9 +280,32 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
+      if(_isSensitiveToParent) {
+        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestor() as DisplayObject;
+        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestor() as DisplayObject;
+        
+        if(parentHeightDop == parentWidthDop) {
+        }
+        else {
+          if(parentHeightDop)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+        
+        if(parentWidthDop)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        
+      }
+
       if(_bg)
         addChildAt(_bg, 0);
     }
+    
+    private function onParentResized():void
+    {
+      invalidate(INVALIDATION_FLAG_SIZE);
+    }
+    
+
     override protected function draw():void
     {
       var sizeInvalid:    Boolean = isInvalid(INVALIDATION_FLAG_SIZE);
@@ -288,16 +316,18 @@ package com.hendrix.feathers.controls.flex
         return;
       
       if(sizeInvalid) {
-        //if(parent is IFeathersControl)
-        //(parent as FeathersControl).invalidate(INVALIDATION_FLAG_LAYOUT);
+        //if(parent is FeathersControl)
+        //  (parent as FeathersControl).invalidate();
       }
-      
+
       layoutFlex();
       
       resetText();
       
       layoutPosition();     
     }
+    
+    private var _isFontInvalid:Boolean = true;
     
     private function resetText():void
     {
@@ -324,10 +354,12 @@ package com.hendrix.feathers.controls.flex
         
         // this will force the Label to compute it's area based on font size and text's bounds
         explicitWidth                       = width;
+        
         if(_fitWidthToText)
           explicitWidth                     = NaN;
         
-        explicitHeight                      = NaN;
+        if(height == 0)
+          explicitHeight                      = NaN;
       }
       
       super.draw();
@@ -342,7 +374,7 @@ package com.hendrix.feathers.controls.flex
     {
       var validParent:  DisplayObject = parent;
       
-      while(!validParent.height) {
+      while(validParent && !validParent.height) {
         validParent                   = validParent.parent;
       }
       

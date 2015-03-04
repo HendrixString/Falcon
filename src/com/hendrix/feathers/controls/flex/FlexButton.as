@@ -4,7 +4,7 @@ package com.hendrix.feathers.controls.flex
   
   import flash.text.TextFormat;
   
-  import feathers.controls.Button;
+  import feathers.controls.ToggleButton;
   
   import starling.display.DisplayObject;
   import starling.display.Image;
@@ -16,7 +16,7 @@ package com.hendrix.feathers.controls.flex
    * <li>use <code>this.iconPercentHeight</code>
    * @author Tomer Shalev
    */
-  public class FlexButton extends Button implements IFlexComp
+  public class FlexButton extends ToggleButton implements IFlexComp
   {
     // flex comp part
     private var _percentWidth:              Number        = NaN;

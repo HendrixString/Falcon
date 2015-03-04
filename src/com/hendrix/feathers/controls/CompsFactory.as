@@ -13,6 +13,7 @@ package com.hendrix.feathers.controls
   
   import feathers.controls.Button;
   import feathers.controls.Label;
+  import feathers.controls.ToggleButton;
   import feathers.display.Scale9Image;
   import feathers.textures.Scale9Textures;
   
@@ -93,9 +94,9 @@ package com.hendrix.feathers.controls
      */
     static public function newButton($downSkin:Object = null, $upSkin:Object = null, $handler:Function = null,
                                      $textFormat:* = null, $label:String  = null,  $isToggle:Boolean = false, 
-                                     $icon:Object = null, $flexButon:Boolean = false, $hAlign:String = Button.HORIZONTAL_ALIGN_RIGHT, embedFonts:Boolean = false): Button
+                                     $icon:Object = null, $flexButon:Boolean = false, $hAlign:String = Button.HORIZONTAL_ALIGN_RIGHT, embedFonts:Boolean = false): ToggleButton
     {
-      var button: Button                          = $flexButon ? new FlexButton() : new Button();
+      var button: ToggleButton                    = $flexButon ? new FlexButton() : new ToggleButton();
       
       if($upSkin is Quad)
         button.upSkin = $upSkin as DisplayObject;
@@ -116,13 +117,15 @@ package com.hendrix.feathers.controls
         button.downSkin                             = newImage($downSkin);
       else if($downSkin is DisplayObject)
         button.downSkin                             = $downSkin as DisplayObject;
-      
+
       if($isToggle) {
         button.isToggle                           = $isToggle;
         
         button.selectedUpSkin                     = button.downSkin;
         button.selectedDownSkin                   = button.upSkin;
         button.selectedHoverSkin                  = button.downSkin;
+        
+        button.stateToSkinFunction
       }
       
       if($textFormat is TextFormat)
@@ -195,9 +198,10 @@ package com.hendrix.feathers.controls
     static public function newLabel($txt:String = "", $tf:Object = null, $wordWrap:Boolean  = false, $embedFonts:Boolean  = false, $align:String = TextAlign.RIGHT, $flexLabel:Boolean = false):  Label
     {
       var lbl:  Label                               = $flexLabel ? new FlexLabel() : new Label();
-      
+
       lbl.text                                      = $txt;
-      if ($tf) {
+      
+      if ($tf) { 
         lbl.textRendererProperties.textFormat       = $tf;
         lbl.textRendererProperties.textFormat.align = $align;
       }

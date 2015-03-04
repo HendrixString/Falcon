@@ -5,9 +5,7 @@ package com.hendrix.feathers.controls.core
   import feathers.controls.ScreenNavigator;
   import feathers.controls.ScreenNavigatorItem;
   import feathers.motion.transitions.ScreenSlidingStackTransitionManager;
-  
-  import starling.display.DisplayObject;
-  
+    
   /**
    * extended ScreenNavigator that supports a history stack
    * @author Tomer
@@ -24,14 +22,6 @@ package com.hendrix.feathers.controls.core
     
     private var _onTransitionComplete:Function = null;
     
-    override protected function transitionComplete(): void
-    {
-      super.transitionComplete();
-      
-      if(_onTransitionComplete is Function)
-        _onTransitionComplete();
-    }
-    
     public function ExtScreenNavigator()
     {
       super();
@@ -44,6 +34,30 @@ package com.hendrix.feathers.controls.core
       
       _screenIdHistory  = new Vector.<String>();
     }
+
+    override protected function transitionComplete(cancelTransition:Boolean = false): void
+    {      
+      super.transitionComplete(cancelTransition);
+      
+      if(_onTransitionComplete is Function)
+        _onTransitionComplete();
+    }
+ 
+    /*
+    override protected function feathersControl_addedToStageHandler(event:Event):void
+    {
+      super.feathersControl_addedToStageHandler(event);
+      
+      addEventListener(FeathersEventType.TRANSITION_COMPLETE, transitionComplete);
+    }
+    
+    override protected function feathersControl_removedFromStageHandler(event:Event):void
+    {
+      super.feathersControl_removedFromStageHandler(event);
+
+      removeEventListener(FeathersEventType.TRANSITION_COMPLETE, transitionComplete);
+    }
+    */    
     
     public function addScreenWithDetails(screen: Object, $id: String, props: Object = null, events: Object = null): ScreenNavigatorItem
     {
@@ -65,7 +79,7 @@ package com.hendrix.feathers.controls.core
       _screensDic[item] = id;
     }
     
-    override public function removeScreen(id: String): void
+    override public function removeScreen(id: String): ScreenNavigatorItem
     {
       var item: ScreenNavigatorItem = _screens[id];
       var ix: int = _screensVec.indexOf(item);
@@ -75,7 +89,7 @@ package com.hendrix.feathers.controls.core
       
       delete _screensDic[item];
       
-      super.removeScreen(id);
+      return super.removeScreen(id);
     }
     
     override public function removeAllScreens(): void
@@ -94,12 +108,7 @@ package com.hendrix.feathers.controls.core
     
     /**
      * 
-     */
-    override public function showScreen(id:String):DisplayObject
-    {
-      return super.showScreen(id);
-    }
-    
+     */    
     public function pushScreen($id:String, recordHistory:Boolean = true):void
     {
       if(recordHistory)

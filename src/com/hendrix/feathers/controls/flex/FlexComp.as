@@ -53,7 +53,7 @@ package com.hendrix.feathers.controls.flex
     private var _horizontalAlign:           String          = null;
     private var _verticalAlign:             String          = null;
     
-    private var _isSensitiveToParent:       Boolean         = false;
+    private var _isSensitiveToParent:       Boolean         = true;
     
     private var _id:                        String          = null;
     
@@ -182,7 +182,8 @@ package com.hendrix.feathers.controls.flex
       
       //width = w;
       //height = h
-      var a:Boolean = setSizeInternal(w, h, false);
+      if(width != w || height!=h)
+        var a:Boolean = setSizeInternal(w, h, false);
       trace();//
     }   
     
@@ -376,12 +377,16 @@ package com.hendrix.feathers.controls.flex
         var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
         var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
         
-        if(parentHeightDop == parentWidthDop)
-          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        else {
-          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-          parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        if(parentHeightDop == parentWidthDop) {
         }
+        else {
+          if(parentHeightDop)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+        
+        if(parentWidthDop)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+
       }
       
       if(_backgroundSkin)

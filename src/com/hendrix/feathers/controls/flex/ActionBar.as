@@ -402,11 +402,16 @@ package com.hendrix.feathers.controls.flex
        */
       if(this.isInvalid(INVALIDATION_FLAG_LEFT_ITEMS) || isInvalid(INVALIDATION_FLAG_SIZE)) 
       {
+        if(id == "tesss") {
+          trace();
+        }
+        
         combinedWidth             = 0;
         
         for(ix = 0; ix < _itemsLeft.length; ix++) {
           if(_itemsLeft[ix] is FeathersControl) {
             //if(_itemsLeft[ix].isInvalid())
+            //_itemsLeft[ix].invalidate();
             _itemsLeft[ix].validate();
             _itemsLeft[ix].name
           }
@@ -419,7 +424,13 @@ package com.hendrix.feathers.controls.flex
           
           combinedWidth          += _itemsLeft[ix].width + _gap;
         }
+        
         combinedWidth            -= _gap;
+        
+        if(id == "tesss") {
+          _itemsLeft[1].height;
+        }
+
         
         // we counted one gap too many
         
