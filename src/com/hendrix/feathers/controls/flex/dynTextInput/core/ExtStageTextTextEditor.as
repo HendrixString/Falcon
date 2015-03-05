@@ -37,10 +37,11 @@ package com.hendrix.feathers.controls.flex.dynTextInput.core
     public function getSnapShotBitmapData():BitmapData
     {
       validate();
-      refreshSnapshot();
+      
+      drawViewportToBitmapdata()
+      
       return _textSnapshotBitmapData;
-    }
-    
+    }    
     
     /** 
      * get the TextField for measurement purposes
@@ -55,6 +56,7 @@ package com.hendrix.feathers.controls.flex.dynTextInput.core
     {
       return stageText;
     }
+    
     /**
      * overriden to fix the bug of refreshing the bitmapData of the text snapshot when focus is out
      */
@@ -72,62 +74,57 @@ package com.hendrix.feathers.controls.flex.dynTextInput.core
       this.invalidate(INVALIDATION_FLAG_SIZE);
       this.dispatchEventWith(FeathersEventType.FOCUS_OUT);
     }
-    
-    protected static const HELPER_MATRIX:Matrix = new Matrix();
-    
-    /**
-     * had to override because in the new feathers build he ommited bitmapdata saving.
-     * i had to change <code>HELPER_MATRIX</code> from <code>private</code> to <code>protected</code> in <code>StageTextTextEditor</code> Class.
-     */
-    override protected function refreshSnapshot():void
+
+    private function drawViewportToBitmapdata():void
     {
-      //super.refreshSnapshot()
-      const viewPort:Rectangle = this.stageText.viewPort;
+      //StageText's stage property cannot be null when we call
+      //drawViewPortToBitmapData()
+      if(this.stage && !this.stageText.stage)
+      {
+        this.stageText.stage = Starling.current.nativeStage;
+      }
+      if(!this.stageText.stage)
+      {
+        //we need to keep a flag active so that the snapshot will be
+        //refreshed after the text editor is added to the stage
+        this.invalidate(INVALIDATION_FLAG_DATA);
+        return;
+      }
+      var viewPort:Rectangle = this.stageText.viewPort;
       if(viewPort.width == 0 || viewPort.height == 0)
       {
         return;
       }
-      
+      var nativeScaleFactor:Number = 1;
+      if(Starling.current.supportHighResolutions)
+      {
+        nativeScaleFactor = Starling.current.nativeStage.contentsScaleFactor;
+      }
       //StageText sucks because it requires that the BitmapData's width
       //and height exactly match its view port width and height.
-      var bitmapData:BitmapData = new BitmapData(viewPort.width, viewPort.height, true, 0x00ff00ff);
-      this.stageText.drawViewPortToBitmapData(bitmapData);
-      
-      var newTexture:Texture;
-      if(!this.textSnapshot || this._needsNewTexture)
+      //(may be doubled on Retina Mac) 
+      try
       {
-        newTexture = Texture.fromBitmapData(bitmapData, false, false, Starling.contentScaleFactor);
-        newTexture.root.onRestore = texture_onRestore;
-      }
-      if(!this.textSnapshot)
+        var bitmapData:BitmapData = new BitmapData(viewPort.width * nativeScaleFactor, viewPort.height * nativeScaleFactor, true, 0x00ff00ff);
+        this.stageText.drawViewPortToBitmapData(bitmapData);
+      } 
+      catch(error:Error) 
       {
-        this.textSnapshot = new Image(newTexture);
-        this.addChild(this.textSnapshot);
+        //drawing stage text to the bitmap data at double size may fail
+        //on runtime versions less than 15, so fall back to using a
+        //snapshot that is half size. it's not ideal, but better than
+        //nothing.
+        bitmapData.dispose();
+        bitmapData = new BitmapData(viewPort.width, viewPort.height, true, 0x00ff00ff);
+        this.stageText.drawViewPortToBitmapData(bitmapData);
       }
-      else
-      {
-        if(this._needsNewTexture)
-        {
-          this.textSnapshot.texture.dispose();
-          this.textSnapshot.texture = newTexture;
-          this.textSnapshot.readjustSize();
-        }
-        else
-        {
-          //this is faster, if we haven't resized the bitmapdata
-          const existingTexture:Texture = this.textSnapshot.texture;
-          existingTexture.root.uploadBitmapData(bitmapData);
-        }
-      }
-      this.getTransformationMatrix(this.stage, HELPER_MATRIX);
-      this.textSnapshot.scaleX = 1 / matrixToScaleX(HELPER_MATRIX);
-      this.textSnapshot.scaleY = 1 / matrixToScaleY(HELPER_MATRIX);
+
+      if(_textSnapshotBitmapData)
+        _textSnapshotBitmapData.dispose();
       
       _textSnapshotBitmapData = bitmapData;
-      //bitmapData.dispose();
-      this.textSnapshot.visible = !this._stageTextHasFocus;
-      this._needsNewTexture = false;
     }
+    
     
   }
 }

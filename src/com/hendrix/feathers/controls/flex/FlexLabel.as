@@ -359,7 +359,7 @@ package com.hendrix.feathers.controls.flex
           explicitWidth                     = NaN;
         
         if(height == 0)
-          explicitHeight                      = NaN;
+          explicitHeight                    = NaN;
       }
       
       super.draw();
@@ -388,7 +388,7 @@ package com.hendrix.feathers.controls.flex
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestor() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestor() as DisplayObject;
       
-      var fixY:Number = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
+      var fixY:Number                     = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
       
       var w:  Number                      = actualWidth;
       var h:  Number                      = actualHeight;

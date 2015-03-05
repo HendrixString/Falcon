@@ -2,8 +2,10 @@ package com.hendrix.feathers.controls.flex
 {
   import feathers.controls.PageIndicator;
   import feathers.core.FeathersControl;
+  import feathers.events.FeathersEventType;
   
   import starling.display.DisplayObject;
+  import starling.events.Event;
   
   /**
    * <p>a small extension for <code>PageIndicator</code> enabling the <code>gap</code> to be determined automatically with a max limit.
@@ -24,6 +26,11 @@ package com.hendrix.feathers.controls.flex
     private var _typicalSymbol:     DisplayObject;
     private var _arTypicalSymbol:   Number        = 1;
     
+    private var _relativeCalcWidthParent:   DisplayObject   = null;
+    private var _relativeCalcHeightParent:  DisplayObject   = null;
+
+    private var _isSensitiveToParent:       Boolean         = true;
+
     /**
      * <p>a small extension for <code>PageIndicator</code> enabling the <code>gap</code> to be determined automatically with a max limit.
      * Extended only because <code>selectedSymbol</code> is protected.</p> 
@@ -61,7 +68,12 @@ package com.hendrix.feathers.controls.flex
      * <li>use <code>maxGap</code> for determining the max Gap between symbols</li>
      */
     public function get maxGap():                           Number        { return _maxGap;           }
-    public function set maxGap(value:Number):               void          { _maxGap = value;          }
+    public function set maxGap(value:Number):               void          
+    { 
+      _maxGap = value;
+      
+      invalidate();
+    }
     
     /**
      * use this to set a typical symbol, this will be used to calculate a correct and effective
@@ -95,6 +107,22 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
+      if(_isSensitiveToParent) {
+        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+
+        if(parentHeightDop == parentWidthDop) {
+        }
+        else {
+          if(parentHeightDop)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+        
+        if(parentWidthDop)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        
+      }
+
       direction                   = PageIndicator.DIRECTION_HORIZONTAL;
     }
     
@@ -115,6 +143,25 @@ package com.hendrix.feathers.controls.flex
       gap = selectedSymbol ? Math.min((width - pageCount*selectedSymbol.width) / pageCount, _maxGap) : 0;
     }
     
+    private function onParentResized():void
+    {
+      invalidate(INVALIDATION_FLAG_SIZE);
+    }
+
+    private function getValidAncestorHeight():DisplayObject
+    {
+      var validParent:  DisplayObject = parent;
+      
+      return validParent;
+    }
+    
+    private function getValidAncestorWidth():DisplayObject
+    {
+      var validParent:  DisplayObject = parent;
+      
+      return validParent;
+    }
+   
   }
   
 }

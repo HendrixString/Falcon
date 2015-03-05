@@ -640,7 +640,6 @@ package com.hendrix.feathers.controls.flex.audioNote
       {
         _lblTime.bottomPercentHeight = 10;
         _lblTime.percentHeight = 33;
-        _lblTime.invalidate();
         _lblTime.validate();
         
         _doBackground.width = width;
