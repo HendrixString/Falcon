@@ -45,6 +45,8 @@ package com.hendrix.feathers.controls.flex
      * <li>getSelectedMonth()
      * <li>getSelectedYear()
      * <li>getSelectedDate()</code>
+     * <li>use <code>this.date=somedate</code> to set a new base date
+     * 
      * @author Tomer Shalev
      */
     public function DatePicker()
@@ -57,7 +59,7 @@ package com.hendrix.feathers.controls.flex
     }
     
     /**
-     * set a new date 
+     * set a new date, otherwise current date will be used
      * 
      * @param value the date
      */
@@ -202,7 +204,7 @@ package com.hendrix.feathers.controls.flex
     
     private function list_days_onCreationComplete(event:Event):void
     {
-      _list_days.scrollToItemWithIndex(_date.day + 1, 0.1);
+      _list_days.scrollToItemWithIndex(_date.date, 0.1);
       
     }
     
@@ -214,7 +216,6 @@ package com.hendrix.feathers.controls.flex
     
     private function list_years_onCreationComplete(event:Event):void
     {
-      //_date.fullYear
       _list_years.scrollToItemWithIndex(COUNT_YEARS_BEFORE + 1, 0.1);
     }
     

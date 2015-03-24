@@ -15,10 +15,22 @@ package com.hendrix.feathers.controls.flex
      */
     public function TimePickerDialog()
     {
-      super();    
+      super();  
+      
+      _time_picker                  = new TimePicker();
     }
     
-    public function get date_picker(): TimePicker
+    /**
+     * set the date for this dialog, otherwise current date will be used 
+     * 
+     * @param date the date
+     */
+    public function set date(date:Date):void
+    {
+      _time_picker.date = date;
+    }
+
+    public function get time_picker(): TimePicker
     {
       return _time_picker;
     }
@@ -32,7 +44,6 @@ package com.hendrix.feathers.controls.flex
     
     override protected function initialize():void
     {
-      _time_picker                  = new TimePicker();
       
       _time_picker.verticalCenter   = 0;
       _time_picker.percentHeight    = 50;

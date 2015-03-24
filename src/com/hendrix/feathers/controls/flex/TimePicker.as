@@ -1,7 +1,5 @@
 package com.hendrix.feathers.controls.flex
-{
-  
-  import com.hendrix.feathers.controls.CompsFactory;
+{  
   import com.hendrix.feathers.controls.flex.labelList.LabelList;
   
   import flash.text.TextFormat;
@@ -20,6 +18,8 @@ package com.hendrix.feathers.controls.flex
    * <li>getSelectedMonth()
    * <li>getSelectedYear()
    * <li>getSelectedDate()</code>
+   * <li>use <code>this.date=somedate</code> to set a new base date
+   * </code>
    * @author Tomer Shalev
    */
   public class TimePicker extends FlexComp
