@@ -48,6 +48,21 @@ package com.hendrix.feathers.controls.flex
     }
     
     /**
+     * set a new date 
+     * 
+     * @param value the date
+     */
+    public function set date(value:Date):void
+    {
+      _date = value;
+      
+      if(isCreated) {
+        listHours_onCreationComplete(null);
+        listMinutes_onCreationComplete(null);
+      }
+    }
+
+    /**
      * selected hour [0..23] 
      */
     public function getSelectedHour():uint
@@ -96,7 +111,7 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
-      _date                                 = new Date();
+      _date                                 = (_date==null) ? new Date() : _date;
       
       var tf_value: TextFormat              = new TextFormat(null, 3, 0x00A6E3);
       tf_value.align                        = "center";

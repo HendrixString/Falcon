@@ -1,5 +1,6 @@
 package com.hendrix.feathers.controls.flex
 {
+  import com.hendrix.feathers.controls.flex.labelList.LabelList;
   import com.hendrix.feathers.controls.utils.SCalendarInfo;
   
   import feathers.data.ListCollection;
@@ -8,7 +9,6 @@ package com.hendrix.feathers.controls.flex
   
   import starling.display.Quad;
   import starling.events.Event;
-  import com.hendrix.feathers.controls.flex.labelList.LabelList;
   
   /**
    * a Date Picker component, inspired by the Native Android version (pre Lolipop)<br>
@@ -54,6 +54,22 @@ package com.hendrix.feathers.controls.flex
       super.percentHeight           = 25;
       super.percentWidth            = 100;
       
+    }
+    
+    /**
+     * set a new date 
+     * 
+     * @param value the date
+     */
+    public function set date(value:Date):void
+    {
+      _date = value;
+      
+      if(isCreated) {
+        list_days_onCreationComplete(null);
+        list_months_onCreationComplete(null);
+        list_years_onCreationComplete(null);
+      }
     }
     
     /**
@@ -113,7 +129,7 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
-      _date                         = new Date();
+      _date                         = (_date==null) ? new Date() : _date;
       
       _list_months                  = new LabelList();
       _list_months.percentHeight    = 100;
@@ -121,19 +137,21 @@ package com.hendrix.feathers.controls.flex
       _list_months.dataProvider     = compileMonthsDataProvider();
       _list_months.selectedIndex    = 1;
       _list_months.onSelectedIndex  = list_months_onSelectedIndex;
+      _list_months.addEventListener(FeathersEventType.CREATION_COMPLETE, list_months_onCreationComplete);
       
       _list_years                   = new LabelList();
       _list_years.percentHeight     = 100;
       _list_years.percentWidth      = 25;
       _list_years.dataProvider      = compileYearsDataProvider();
-      _list_years.addEventListener(FeathersEventType.CREATION_COMPLETE, listYears_onCreationComplete);
-      
+      _list_years.addEventListener(FeathersEventType.CREATION_COMPLETE, list_years_onCreationComplete);
+
       _list_days                    = new LabelList();
       _list_days.percentHeight      = 100;
       _list_days.percentWidth       = 25;
       _list_days.dataProvider       = compileDaysDataProvider();
       _list_days.selectedIndex      = 1;
-      
+      _list_days.addEventListener(FeathersEventType.CREATION_COMPLETE, list_days_onCreationComplete);
+
       _hGrp                         = new HGroup();
       _hGrp.percentWidth            = 100;
       _hGrp.percentHeight           = 100;
@@ -182,8 +200,21 @@ package com.hendrix.feathers.controls.flex
       
     }
     
-    private function listYears_onCreationComplete(event:Event):void
+    private function list_days_onCreationComplete(event:Event):void
     {
+      _list_days.scrollToItemWithIndex(_date.day + 1, 0.1);
+      
+    }
+    
+    private function list_months_onCreationComplete(event:Event):void
+    {
+      _list_months.scrollToItemWithIndex(_date.month + 1, 0.1);
+      
+    }
+    
+    private function list_years_onCreationComplete(event:Event):void
+    {
+      //_date.fullYear
       _list_years.scrollToItemWithIndex(COUNT_YEARS_BEFORE + 1, 0.1);
     }
     
