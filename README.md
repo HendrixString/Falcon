@@ -5,7 +5,7 @@
 ## How to use
 simply fork or download the project, you can also download the binary itself and link it
 to your project, or import to your IDE of choice such as `Flash Builder 4.7`. We support
-`Starling 1.5` and `Feathers 2` and at least version 15 of `Adobe AIR SDK` is recommended.
+`Starling 1.6` and `Feathers 2` and at least version 15 of `Adobe AIR SDK` is recommended.
 
 ## Features
 - flexible ui components will save you tons of code for layout purposes.
