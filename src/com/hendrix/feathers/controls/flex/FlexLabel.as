@@ -5,8 +5,6 @@ package com.hendrix.feathers.controls.flex
   import flash.text.TextFormat;
   
   import feathers.controls.Label;
-  import feathers.core.FeathersControl;
-  import feathers.core.IFeathersControl;
   import feathers.events.FeathersEventType;
   
   import starling.display.DisplayObject;

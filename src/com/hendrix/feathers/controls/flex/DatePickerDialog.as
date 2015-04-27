@@ -34,9 +34,7 @@ package com.hendrix.feathers.controls.flex
     {
       return _date_picker;
     }
-    
-    
-    
+        
     override public function dispose():void
     {
       super.dispose();
