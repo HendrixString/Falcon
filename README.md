@@ -187,7 +187,8 @@ public function startSplash(flashSpriteParent:flash.display.DisplayObjectContain
   * `AudioNote` an audio recording component
   * `BitmapLayersComposer` flash based image composer, works with a data provider with
 layout options. great for dynamic splash screens
-  * `BidiTextField` Bidirectional Text field for bitmap fonts. based on another repository i have published
+  * `BidiTextField` Bidirectional Text field with *bitmap fonts*. based on another repository i have published
+  * `TLFLabel` Bidirectional Image text label based on `Adobe TLF`.
 
 - a set of widgets
   * `ListUpdateWidget` - a widget that hooks to a list to augment it with pull to refresh feature. 
