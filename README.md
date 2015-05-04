@@ -209,5 +209,15 @@ layout options. great for dynamic splash screens
 " target="_blank"><img src="http://img.youtube.com/vi/MCp_mLN_W94/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
-### Contact
-[tomer.shalev@gmail.com](tomer.shalev@gmail.com)
+### Dependencies
+* [`Starling-Framework`](https://github.com/Gamua/Starling-Framework)
+* [`Feathers`](https://github.com/joshtynjala/feathers)
+
+### Terms
+* completely free source code. [Apache License, Version 2.0.](http://www.apache.org/licenses/LICENSE-2.0)
+* if you like it -> star or share it with others
+
+### Contact Author
+* [tomer.shalev@gmail.com](tomer.shalev@gmail.com)
+* [Google+ TomershalevMan](https://plus.google.com/+TomershalevMan/about)
+* [Facebook - HendrixString](https://www.facebook.com/HendrixString)
