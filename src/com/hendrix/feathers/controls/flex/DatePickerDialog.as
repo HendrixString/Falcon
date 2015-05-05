@@ -3,6 +3,7 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * Date picker dialog 
+   * 
    * @author Tomer Shalev
    */
   public class DatePickerDialog extends Dialog

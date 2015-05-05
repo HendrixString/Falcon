@@ -409,6 +409,7 @@ package com.hendrix.feathers.controls.flex
           (parent as FeathersControl).invalidate(INVALIDATION_FLAG_LAYOUT);
       }
       
+      validateBackground();
     }
     
     private function onCreationComplete(evt:Event):void
