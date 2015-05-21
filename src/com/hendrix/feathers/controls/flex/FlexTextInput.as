@@ -1,6 +1,7 @@
 package com.hendrix.feathers.controls.flex
 {
   import com.hendrix.feathers.controls.flex.dynTextInput.core.ExtStageTextTextEditor;
+  import com.hendrix.feathers.controls.flex.interfaces.IFlexComp;
   
   import flash.text.TextFormatAlign;
   
@@ -20,7 +21,7 @@ package com.hendrix.feathers.controls.flex
    * <li>use <code>this.textAlign</code>
    * @author Tomer Shalev
    */
-  public class FlexTextInput extends TextInput
+  public class FlexTextInput extends TextInput implements IFlexComp
   {
     private var _initialHeight:             Number                  = NaN;
     /**
@@ -53,9 +54,18 @@ package com.hendrix.feathers.controls.flex
     private var _left:                      Number                  = NaN;
     private var _right:                     Number                  = NaN;
     
+    private var _topPercentHeight:          Number                  = NaN;
+    private var _bottomPercentHeight:       Number                  = NaN;
+    private var _leftPercentWidth:          Number                  = NaN;
+    private var _rightPercentWidth:         Number                  = NaN;
+
     private var _horizontalCenter:          Number                  = NaN;
     private var _verticalCenter:            Number                  = NaN;
     
+    private var _isSensitiveToParent:       Boolean         = true;
+    
+    private var _id:                        String          = null;
+
     private var _relativeCalcWidthParent:   DisplayObject           = null;
     private var _relativeCalcHeightParent:  DisplayObject           = null;
     
@@ -188,7 +198,7 @@ package com.hendrix.feathers.controls.flex
      */
     public function get relativeCalcWidthParent():              DisplayObject 
     { 
-      return (_relativeCalcWidthParent && _relativeCalcWidthParent.width) ? _relativeCalcWidthParent : getValidAncestor();  
+      return (_relativeCalcWidthParent && _relativeCalcWidthParent.width) ? _relativeCalcWidthParent : getValidAncestorWidth();  
     }
     public function set relativeCalcWidthParent(value:DisplayObject): void
     {
@@ -198,7 +208,7 @@ package com.hendrix.feathers.controls.flex
     
     public function get relativeCalcHeightParent():             DisplayObject 
     { 
-      return (_relativeCalcHeightParent && _relativeCalcHeightParent.height) ? _relativeCalcHeightParent : getValidAncestor();  
+      return (_relativeCalcHeightParent && _relativeCalcHeightParent.height) ? _relativeCalcHeightParent : getValidAncestorHeight();  
     }
     public function set relativeCalcHeightParent(value:DisplayObject):  void
     {
@@ -206,7 +216,48 @@ package com.hendrix.feathers.controls.flex
       this.invalidate(INVALIDATION_FLAG_SIZE);
     }
     
+    public function get topPercentHeight():Number { return _topPercentHeight; }
+    public function set topPercentHeight(value:Number):void
+    {
+      _topPercentHeight = value;
+      this.invalidate(INVALIDATION_FLAG_LAYOUT);
+    }
+    
+    public function get bottomPercentHeight():Number  { return _bottomPercentHeight;  }
+    public function set bottomPercentHeight(value:Number):void
+    {
+      _bottomPercentHeight = value;
+      this.invalidate(INVALIDATION_FLAG_LAYOUT);
+    }
+    
+    public function get leftPercentWidth():Number { return _leftPercentWidth; }
+    public function set leftPercentWidth(value:Number):void
+    {
+      _leftPercentWidth = value;
+      this.invalidate(INVALIDATION_FLAG_LAYOUT);
+    }
+    
+    public function get rightPercentWidth():Number  { return _rightPercentWidth;  }
+    public function set rightPercentWidth(value:Number):void
+    {
+      _rightPercentWidth = value;
+      this.invalidate(INVALIDATION_FLAG_LAYOUT);
+    }
+
     public function get horizontalCenter():                     Number  { return _horizontalCenter; }
+    
+    public function get horizontalAlign():String
+    {
+      // TODO Auto Generated method stub
+      return null;
+    }
+    
+    public function set horizontalAlign(value:String):void
+    {
+      // TODO Auto Generated method stub
+      
+    }
+    
     public function set horizontalCenter(value:Number):         void
     {
       _horizontalCenter = value;
@@ -220,6 +271,25 @@ package com.hendrix.feathers.controls.flex
       this.invalidate(INVALIDATION_FLAG_LAYOUT);
     }
     
+    public function get isSensitiveToParent():Boolean
+    {
+      return _isSensitiveToParent;
+    }
+    
+    public function set isSensitiveToParent(value:Boolean):void
+    {
+      _isSensitiveToParent = value;
+      
+      if(isCreated)
+        internal_parent_observer();
+    }
+    
+    public function get id():String { return _id; }
+    public function set id(value:String):void
+    {
+      _id = value;
+    }
+
     public function get textCurrent():String
     {
       return super.text;
@@ -263,6 +333,70 @@ package com.hendrix.feathers.controls.flex
       }
     }
     
+    public function applyAlignment():void { }
+
+    public function layoutFlex():void
+    {
+      var parentWidthDop:   DisplayObject = relativeCalcWidthParent as DisplayObject;
+      var parentHeightDop:  DisplayObject = relativeCalcHeightParent as DisplayObject;
+      
+      var fixY:Number = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
+      
+      if(!parentHeightDop || !parentWidthDop)
+        throw new Error("no parent or parent override found!!");
+      
+      if(parentWidthDop is IFeathersControl)
+        if(!(parentWidthDop as IFeathersControl).isCreated)
+          (parentWidthDop as IFeathersControl).validate();
+      
+      if(parentHeightDop is IFeathersControl)
+        if(!(parentHeightDop as IFeathersControl).isCreated)
+          (parentHeightDop as IFeathersControl).validate();
+      
+      
+      var w:  Number                      = actualWidth;
+      var h:  Number                      = actualHeight;
+      
+      if(!isNaN(_percentWidth))
+        w                                 = _percentWidth * parentWidthDop.width;
+      
+      if(!isNaN(_percentHeight))
+        h                                 = _percentHeight * parentHeightDop.height;
+      
+      if(!isNaN(_horizontalCenter))
+        x                                 = _horizontalCenter + (parentWidthDop.width - w)*0.5;
+      
+      if(!isNaN(_verticalCenter))
+        y                                 = _verticalCenter + fixY + (parentHeightDop.height - h)*0.5;
+      
+      if(!isNaN(_bottomPercentHeight))
+        y                                 = fixY + parentHeightDop.height - ( h + _bottomPercentHeight * parentHeightDop.height);
+      
+      if(!isNaN(_topPercentHeight))
+        y                                 = fixY + parentHeightDop.height*_topPercentHeight;
+      
+      if(!isNaN(_leftPercentWidth))
+        x                                 = parentWidthDop.width*_leftPercentWidth;
+      
+      if(!isNaN(_rightPercentWidth))
+        x                                 = parentWidthDop.width - (w + parentWidthDop.width*_rightPercentWidth);
+      
+      if(!isNaN(_bottom))
+        y                                 = fixY + parentHeightDop.height - ( h + _bottom);
+      
+      if(!isNaN(_top))
+        y                                 = fixY + _top;
+      
+      if(!isNaN(_left))
+        x                                 = _left;
+      
+      if(!isNaN(_right))
+        x                                 = parentWidthDop.width - (w + _right);
+      
+      width                               = w;
+      height                              = h;      
+    }
+
     override protected function initialize():void
     {
       super.initialize();
@@ -271,6 +405,8 @@ package com.hendrix.feathers.controls.flex
       
       textInitialIgnore = _textInitialIgnore;     
       //addEventListener(FeathersEventType.CREATION_COMPLETE, onCreationComplete);
+      
+      internal_parent_observer();
     }
     
     override protected function draw():void
@@ -287,7 +423,7 @@ package com.hendrix.feathers.controls.flex
       if(_multiLine && parent is IFeathersControl)
         (parent as FeathersControl).invalidate(INVALIDATION_FLAG_LAYOUT);
       
-      layout();
+      layoutFlex();
       
       width
       height
@@ -300,63 +436,51 @@ package com.hendrix.feathers.controls.flex
       super.draw();
     }
     
+    protected function internal_parent_observer():void {
+      if(_isSensitiveToParent) {
+        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+        
+        if(parentHeightDop == parentWidthDop) {
+        }
+        else {
+          if(parentHeightDop)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+        
+        if(parentWidthDop)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+      }
+      
+    }
+
     private function onCreationComplete(event:Event):void
     {
       onChange(null);     
     }
     
-    private function getValidAncestor():DisplayObject
+    private function getValidAncestorHeight():DisplayObject
     {
       var validParent:  DisplayObject = parent;
       
-      while(!validParent.height) {
+      while(validParent && !validParent.height) {
         validParent                   = validParent.parent;
       }
       
       return validParent;
     }
     
-    private function layout():void
+    private function getValidAncestorWidth():DisplayObject
     {
-      var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestor() as DisplayObject;
-      var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestor() as DisplayObject;
+      var validParent:  DisplayObject = parent;
       
-      if(!parentHeightDop || !parentWidthDop)
-        throw new Error("no parent or parent override found!!");
+      while(validParent && !validParent.width) {
+        validParent                   = validParent.parent;
+      }
       
-      var w:  Number                      = actualWidth;
-      var h:  Number                      = actualHeight;
-      
-      var fixY:Number                     = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
-      
-      if(!isNaN(_percentWidth))
-        w                                 = _percentWidth * parentWidthDop.width;
-      
-      if(!isNaN(_percentHeight))
-        h                                 = _percentHeight * parentHeightDop.height;
-      
-      if(!isNaN(_horizontalCenter))
-        x                                 = _horizontalCenter + (parentWidthDop.width - w)*0.5;
-      
-      if(!isNaN(_verticalCenter))
-        y                                 = _verticalCenter + fixY + (parentHeightDop.height - h)*0.5;
-      
-      if(!isNaN(_bottom))
-        y                                 = parentHeightDop.height - ( h + _bottom);
-      
-      if(!isNaN(_top))
-        y                                 = _top;
-      
-      if(!isNaN(_left))
-        x                                 = _left;
-      
-      if(!isNaN(_right))
-        x                                 = parentWidthDop.width - (w + _right);
-      
-      width                               = w;
-      height                              = h;      
+      return validParent;
     }
-    
+        
     private function instStageTextEditor():ExtStageTextTextEditor
     {
       var textRenderer: ExtStageTextTextEditor  = new ExtStageTextTextEditor();
@@ -392,6 +516,11 @@ package com.hendrix.feathers.controls.flex
         super.text = "";
     }
     
+    private function onParentResized():void
+    {
+      invalidate(INVALIDATION_FLAG_SIZE);
+    }
+
     private function onChange(event:Event):void
     {
       super.displayAsPassword = _pendingDisplayAsPassowrd;

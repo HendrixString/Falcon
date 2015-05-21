@@ -51,7 +51,7 @@ package com.hendrix.feathers.controls.flex
     private var _relativeCalcObject:  DisplayObject           = null;
     private var _verticalAlign:       String                  = HorizontalLayout.HORIZONTAL_ALIGN_CENTER;
     private var _horizontalAlign:     String                  = HorizontalLayout.HORIZONTAL_ALIGN_CENTER;
-    private var _padding:             Number                  = 0;
+    private var _padding:             Number                  = NaN;
     private var _paddingTop:          Number                  = NaN;
     private var _paddingLeft:         Number                  = NaN;
     private var _gap:                 Number                  = NaN;
@@ -246,16 +246,17 @@ package com.hendrix.feathers.controls.flex
       var calcGap:  Number                          = isNaN(_gap) ?  isNaN(_gapPercentWidth) ? 0 : _relativeCalcObject.width * _gapPercentWidth : _gap;
       
       if(isNaN(_paddingTop))
-        _paddingTop = calcGap;
+        _paddingTop                                 = calcGap;
       
       if(isNaN(_paddingLeft))
-        _paddingLeft  = 0;
+        _paddingLeft                                = 0;
       
       var posx:     Number                          = _paddingLeft;
       
       var doRef:    DisplayObject                   = null;
       
-      var correct:uint = 0;
+      var correct:uint                              = 0;
+      
       if(_backgroundSkin)
         correct                                     = 1;
       
@@ -267,7 +268,7 @@ package com.hendrix.feathers.controls.flex
         {
           if(_dataProvider) {
             calcW                                   = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)   ? doRef.width   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width : (_dataProvider[ix].percentWidth/100)*_dataProvider[ix].relativeCalcParent.width;
-            calcH                                   = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height)   ? doRef.height : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
+            calcH                                   = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height) ? doRef.height  : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
             
             if(calcW)
               doRef.width                           = calcW;
