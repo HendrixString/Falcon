@@ -16,7 +16,10 @@ package com.hendrix.feathers.controls.flex
    * <li><code>getSelectedDay()
    * <li>getSelectedMonth()
    * <li>getSelectedYear()
-   * <li>getSelectedDate()</code>
+   * <li>getSelectedDate()
+   * <li>this.COUNT_YEARS_BEFORE, this.COUNT_YEARS_AFTER, to control how many years are displayed before and after this year
+   * <li>getSelectedDate()
+   * </code>
    * @author Tomer Shalev
    */
   public class DatePicker extends FlexComp
@@ -24,11 +27,11 @@ package com.hendrix.feathers.controls.flex
     /**
      * years to diaplay in list before current year 
      */
-    static private const COUNT_YEARS_BEFORE:  uint = 5;
+    public var COUNT_YEARS_BEFORE:  uint = 5;
     /**
      * years to diaplay in list after current year 
      */
-    static private const COUNT_YEARS_AFTER:   uint = 25;
+    public var COUNT_YEARS_AFTER:   uint = 25;
     
     private var _list_months: LabelList = null;
     private var _list_days:   LabelList = null;

@@ -15,6 +15,7 @@ package com.hendrix.feathers.controls.flex
    * give it height, then <code>validate()</code> and you will get a label with font size according to height and you
    * will get new height and width.<br>
    * in the future will be extended to support multiline like the algorithm implemented in DynTextInput
+   * 
    * @author Tomer Shalev
    */
   public class FlexLabel extends Label implements IFlexComp

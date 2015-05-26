@@ -215,6 +215,7 @@ package com.hendrix.feathers.controls.flex
     
     /**
      *  percent width of the content relative to the component width 
+     * DEPRACATED:: use percentWidth instead
      */
     public function get contentPercentWidth():                      Number        { return _contentPercentWidth;  }
     public function set contentPercentWidth(value:Number):          void

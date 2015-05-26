@@ -98,7 +98,7 @@ package com.hendrix.feathers.controls.flex
     public function show():void
     {
       _quadBgDark.alpha = 0;
-      
+
       Starling.juggler.remove(_tweenFade);
       
       _tweenFade.reset(_quadBgDark, 0.35, Transitions.EASE_OUT);

@@ -5,7 +5,7 @@
 ## How to use
 simply fork or download the project, you can also download the binary itself and link it
 to your project, or import to your IDE of choice such as `Flash Builder 4.7`. We support
-`Starling 1.5` and `Feathers 2` and at least version 15 of `Adobe AIR SDK` is recommended.
+`Starling 1.6` and `Feathers 2` and at least version 15 of `Adobe AIR SDK` is recommended.
 
 ## Features
 - flexible ui components will save you tons of code for layout purposes.
@@ -187,7 +187,8 @@ public function startSplash(flashSpriteParent:flash.display.DisplayObjectContain
   * `AudioNote` an audio recording component
   * `BitmapLayersComposer` flash based image composer, works with a data provider with
 layout options. great for dynamic splash screens
-  * `BidiTextField` Bidirectional Text field for bitmap fonts. based on another repository i have published
+  * `BidiTextField` Bidirectional Text field with *bitmap fonts*. based on another repository i have published
+  * `TLFLabel` Bidirectional Image text label based on `Adobe TLF`.
 
 - a set of widgets
   * `ListUpdateWidget` - a widget that hooks to a list to augment it with pull to refresh feature. 
@@ -208,3 +209,15 @@ layout options. great for dynamic splash screens
 " target="_blank"><img src="http://img.youtube.com/vi/MCp_mLN_W94/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
+### Dependencies
+* [`Starling-Framework`](https://github.com/Gamua/Starling-Framework)
+* [`Feathers`](https://github.com/joshtynjala/feathers)
+
+### Terms
+* completely free source code. [Apache License, Version 2.0.](http://www.apache.org/licenses/LICENSE-2.0)
+* if you like it -> star or share it with others
+
+### Contact Author
+* [tomer.shalev@gmail.com](tomer.shalev@gmail.com)
+* [Google+ TomershalevMan](https://plus.google.com/+TomershalevMan/about)
+* [Facebook - HendrixString](https://www.facebook.com/HendrixString)

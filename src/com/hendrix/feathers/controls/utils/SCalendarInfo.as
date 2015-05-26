@@ -55,7 +55,18 @@ package com.hendrix.feathers.controls.utils
      */
     static public function dateDeltaSeconds(date:Date):uint
     {
-      var sec:  uint = (date.time - (new Date()).time) / 1000;
+      var sec:  uint = (date.time - (new Date()).time) / SECOND;
+      return sec;
+    }
+    
+    /**
+     * the delta in seconds between now and a given date 
+     * @param date - a future Date object
+     */
+    static public function dateDeltaYears(date:Date):Number
+    {
+      var sec:  Number = Math.abs(date.time - (new Date()).time) / YEAR;
+      
       return sec;
     }
     

@@ -1,5 +1,7 @@
 package com.hendrix.feathers.controls
 {
+  import com.hendrix.collection.SetData.Set;
+  import com.hendrix.collection.idCollection.IdCollection;
   import com.hendrix.feathers.controls.flex.FlexButton;
   import com.hendrix.feathers.controls.flex.FlexLabel;
   import com.hendrix.gfxManager.GfxManager;
@@ -39,6 +41,8 @@ package com.hendrix.feathers.controls
     {
       // placed here in order to load the TextFieldLibarary
       var btf:BidiTextField;
+      var coll:IdCollection;
+      var col2:Set;
     }
     
     /**
@@ -123,9 +127,7 @@ package com.hendrix.feathers.controls
         
         button.selectedUpSkin                     = button.downSkin;
         button.selectedDownSkin                   = button.upSkin;
-        button.selectedHoverSkin                  = button.downSkin;
-        
-        button.stateToSkinFunction
+        button.selectedHoverSkin                  = button.downSkin;        
       }
       
       if($textFormat is TextFormat)

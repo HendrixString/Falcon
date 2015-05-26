@@ -24,6 +24,7 @@ package com.hendrix.feathers.controls.flex
    * <li>use <code>this.textOK, this.textCANCEL, this.textHEADLINE</code> to alter the text.
    * <li>use <code>this.textCANCEL</code> to put a DisplayObject as the content of the dialog.
    * <li>use <code>this.tf_buttons, tf_headline</code> to control textFormat of buttons and headline respectively.
+   * <li>use <code>this.embeddedFonts</code> to specify that the fonts are embedded or not.
    * <li>use <code>this.onAction</code> callback to listen to OK/CANCEL, callback will return ACTION_OK/ACTION_CANCEL respectively.
    * <li>use <code>this.show()/close()</code> to show/close the dialog.
    * @author Tomer Shalev 
@@ -40,6 +41,7 @@ package com.hendrix.feathers.controls.flex
     
     private var _tf_buttons:    TextFormat      = null;
     private var _tf_headline:   TextFormat      = null;
+    private var _embeddedFonts: Boolean         = true;
     
     private var _textOK:        String          = "ok";
     private var _textCANCEL:    String          = "cancel";
@@ -58,6 +60,7 @@ package com.hendrix.feathers.controls.flex
      * <li>use <code>this.tf_buttons, tf_headline</code> to control textFormat of buttons and headline respectively.
      * <li>use <code>this.onAction</code> callback to listen to OK/CANCEL, callback will return ACTION_OK/ACTION_CANCEL respectively.
      * <li>use <code>this.show()/close()</code> to show/close the dialog.
+     * 
      * @author Tomer Shalev 
      * 
      */
@@ -66,6 +69,16 @@ package com.hendrix.feathers.controls.flex
       super();
     }
     
+    public function get embeddedFonts():Boolean
+    {
+      return _embeddedFonts;
+    }
+    
+    public function set embeddedFonts(value:Boolean):void
+    {
+      _embeddedFonts = value;
+    }
+
     /**
      * main content of the dialog 
      */
@@ -170,9 +183,9 @@ package com.hendrix.feathers.controls.flex
       _container                            = new FlexComp();
       _quad_bg                              = new FlexQuad(0x00);
       
-      var lbl_headline:   FlexLabel         = CompsFactory.newLabel(_textHEADLINE, _tf_headline, false, true, TextAlign.CENTER, true) as FlexLabel;
-      var btn_ok:         FlexButton        = CompsFactory.newButton(0x7DD9FF, null, btn_onAction, _tf_buttons, _textOK, false, null, true, "center", true) as FlexButton;
-      var btn_cancel:     FlexButton        = CompsFactory.newButton(0x7DD9FF, null, btn_onAction, _tf_buttons, _textCANCEL, false, null, true, "center", true) as FlexButton;
+      var lbl_headline:   FlexLabel         = CompsFactory.newLabel(_textHEADLINE, _tf_headline, false, _embeddedFonts, TextAlign.CENTER, true) as FlexLabel;
+      var btn_ok:         FlexButton        = CompsFactory.newButton(0x7DD9FF, null, btn_onAction, _tf_buttons, _textOK, false, null, true, "center", _embeddedFonts) as FlexButton;
+      var btn_cancel:     FlexButton        = CompsFactory.newButton(0x7DD9FF, null, btn_onAction, _tf_buttons, _textCANCEL, false, null, true, "center", _embeddedFonts) as FlexButton;
       
       btn_ok.id                             = ACTION_OK;
       btn_cancel.id                         = ACTION_CANCEL;

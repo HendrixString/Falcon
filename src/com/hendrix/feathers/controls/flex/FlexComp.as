@@ -361,6 +361,9 @@ package com.hendrix.feathers.controls.flex
     public function set isSensitiveToParent(value:Boolean):void
     {
       _isSensitiveToParent = value;
+      
+      if(isCreated)
+        internal_parent_observer();
     }
     
     public function get id():String { return _id; }
@@ -373,21 +376,7 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
-      if(_isSensitiveToParent) {
-        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
-        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
-        
-        if(parentHeightDop == parentWidthDop) {
-        }
-        else {
-          if(parentHeightDop)
-            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        }
-        
-        if(parentWidthDop)
-          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-
-      }
+      internal_parent_observer();
       
       if(_backgroundSkin)
         addChildAt(_backgroundSkin, 0);
@@ -409,6 +398,24 @@ package com.hendrix.feathers.controls.flex
           (parent as FeathersControl).invalidate(INVALIDATION_FLAG_LAYOUT);
       }
       
+      validateBackground();
+    }
+    
+    protected function internal_parent_observer():void {
+      if(_isSensitiveToParent) {
+        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+        
+        if(parentHeightDop == parentWidthDop) {
+        }
+        else {
+          if(parentHeightDop)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+        
+        if(parentWidthDop)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+      }
     }
     
     private function onCreationComplete(evt:Event):void
