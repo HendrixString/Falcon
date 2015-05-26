@@ -1,8 +1,19 @@
 package com.hendrix.feathers.controls.flex
 {
+  import com.hendrix.feathers.controls.utils.SColors;
+  
+  import flash.text.TextFormat;
   
   /**
    * Time picker dialog 
+   * 
+   * a Dialog control <br>
+   * <li>use <code>this.textOK, this.textCANCEL, this.textHEADLINE</code> to alter the text.
+   * <li>use <code>this.textCANCEL</code> to put a DisplayObject as the content of the dialog.
+   * <li>use <code>this.tf_buttons, tf_headline</code> to control textFormat of buttons and headline respectively.
+   * <li>use <code>this.onAction</code> callback to listen to OK/CANCEL, callback will return ACTION_OK/ACTION_CANCEL respectively.
+   * <li>use <code>this.show()/close()</code> to show/close the dialog.
+   * 
    * @author Tomer Shalev
    */
   public class TimePickerDialog extends Dialog
@@ -18,6 +29,13 @@ package com.hendrix.feathers.controls.flex
       super();  
       
       _time_picker                  = new TimePicker();
+      
+      textOK                        = "ok";
+      textCANCEL                    = "cancel";
+      textHEADLINE                  = "Time";
+
+      tf_buttons                    = new TextFormat("arial", null, SColors.BLUE_LIGHT);
+      tf_headline                   = new TextFormat("arial", null, SColors.BLUE_LIGHT);
     }
     
     /**

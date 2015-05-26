@@ -113,7 +113,7 @@ package com.hendrix.feathers.controls.core
     {
       if(recordHistory)
         _screenIdHistory.push(activeScreenID);
-      
+
       showScreen($id);
     }
     
@@ -138,7 +138,7 @@ package com.hendrix.feathers.controls.core
     
     public function getScreenNavigatorItemById($id:String):ScreenNavigatorItem
     {
-      return _screensVec(getScreenIndexById($id));
+      return _screensVec[getScreenIndexById($id)];
     }
     
     /**
