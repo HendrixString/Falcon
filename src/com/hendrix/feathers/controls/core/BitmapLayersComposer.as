@@ -63,6 +63,9 @@ package com.hendrix.feathers.controls.core
     private var _frameRect:                   Rectangle               = null;
     private var _latestCapture:               BitmapData              = null;
     
+    private var _hasLoaded:                   Boolean                 = false;
+    private var _disposeOnRemove:             Boolean                 = true;
+    
     /**
      * a Flash Display Object composer of layers, Flex Style with a dataprovider<br>
      * can be used easily as a SplashScreen
@@ -98,8 +101,15 @@ package com.hendrix.feathers.controls.core
       addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
     }
     
+    public function get disposeOnRemove():Boolean { return _disposeOnRemove; }
+    public function set disposeOnRemove(value:Boolean):void
+    {
+      _disposeOnRemove = value;
+    }
+
     /**
      * remove from display list 
+     * and dispose
      * 
      */
     public function remove():void
@@ -113,6 +123,17 @@ package com.hendrix.feathers.controls.core
       
       _timerDelay.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
       _timerDelay.start();
+    }
+    
+    /**
+     * remove from display list 
+     * and dispose
+     * 
+     */
+    public function removeNoDispose():void
+    {
+      if(_parent)
+        _parent.removeChild(this);
     }
     
     /**
@@ -192,7 +213,7 @@ package com.hendrix.feathers.controls.core
     {
       _parent.addChild(this);
     }
-    
+        
     protected function onAddedToStage(event:Event):void
     {
       _frameRect          = new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight);
@@ -202,7 +223,8 @@ package com.hendrix.feathers.controls.core
         _frameRect.height = _parent.height;
       }
       
-      loadSources();
+      if(!_hasLoaded)
+        loadSources();
     }   
     
     protected function onTimerComplete(event:TimerEvent = null):void
@@ -213,7 +235,8 @@ package com.hendrix.feathers.controls.core
       if(_parent)
         _parent.removeChild(this);
       
-      dispose();
+      if(_disposeOnRemove)
+        dispose();
       
       //_parent.stage.setAspectRatio(StageAspectRatio.ANY);
     }
@@ -266,8 +289,10 @@ package com.hendrix.feathers.controls.core
       {
         _bmSources[ix]                        = new Bitmap(bitmaps[ix].bmp);
       }
+
+      layout();
       
-      layout();   
+      _hasLoaded = true;
     }
     
     private function layout(id:String = null):void

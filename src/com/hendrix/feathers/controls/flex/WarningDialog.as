@@ -71,6 +71,11 @@ package com.hendrix.feathers.controls.flex
      */
     private var _textNo:      String;   
     
+    private var _dialogPercentWidth:Number = NaN;
+    private var _dialogPercentHeight:Number = NaN;
+    private var _fontSizePercent:Number = NaN;
+    
+
     /**
      * a warning popup comp, supports:<br>
      * <li>one/two action buttons
@@ -145,6 +150,36 @@ package com.hendrix.feathers.controls.flex
       _textHeadline = value;
     }
     
+    public function get fontSizePercent():Number { return _fontSizePercent; }
+    public function set fontSizePercent(value:Number):void
+    {
+      _fontSizePercent = value;
+    }
+    
+    private var _colorBg:uint = 0x00;
+    
+    public function get colorBg():uint { return _colorBg; }
+    public function set colorBg(value:uint):void
+    {
+      _colorBg = value;
+      
+      if(_quadBgDark) {
+        _quadBgDark.color = _colorBg;
+      }
+    }
+    
+    public function get dialogPercentWidth():Number { return _dialogPercentWidth; }
+    public function set dialogPercentWidth(value:Number):void
+    {
+      _dialogPercentWidth = value;
+    }
+    
+    public function get dialogPercentHeight():Number { return _dialogPercentHeight; }
+    public function set dialogPercentHeight(value:Number):void
+    {
+      _dialogPercentHeight = value;
+    }
+
     override public function set visible(value:Boolean):void
     {
       if(value == true)
@@ -188,9 +223,9 @@ package com.hendrix.feathers.controls.flex
       _lblWarning                               = CompsFactory.newLabel(_textWarning, tf_lbl, true, true, TextAlign.CENTER); 
       
       _quadBg                                   = new Quad(1, 1, 0xffffff);
-      _quadBgDark                               = new Quad(1, 1, 0x00);
+      _quadBgDark                               = new Quad(1, 1, _colorBg);
       
-      _quadBgDark.alpha                         = 0.7;
+      _quadBgDark.alpha                         = 0.4;
       
       _quadStrip0                               = new Quad(1, 1, 0xEF7F3C); // 0x7DD9FF
       _quadStrip1                               = new Quad(1, 1, 0xD1D1D1);
@@ -207,7 +242,7 @@ package com.hendrix.feathers.controls.flex
       addChild(_quadStrip1);
       addChild(_quadStrip2);
     }
-    
+        
     override protected function draw():void
     {
       super.draw();
@@ -219,12 +254,12 @@ package com.hendrix.feathers.controls.flex
       
       var padding:      Number                  = height  * 0.01;
       
-      _quadBg.width                             = width * 0.95;
+      _quadBg.width                             = isNaN(_dialogPercentWidth) ? width * 0.95 : width * _dialogPercentWidth / 100;
       _quadBg.x                                 = (width - _quadBg.width) * 0.5;
       _quadBg.y                                 = (height - _quadBg.height) * 0.5;
       
       _lblWarning.width                         = _quadBg.width*0.95;
-      _lblWarning.textRendererProperties.textFormat.size = width * 0.05;
+      _lblWarning.textRendererProperties.textFormat.size = isNaN(_fontSizePercent) ? width * 0.05 : height * _fontSizePercent / 100;
       _lblWarning.validate();
       _lblWarning.height                       *= 2;
       _lblWarning.x                             = _quadBg.x + (_quadBg.width - _lblWarning.width) * 0.5;
@@ -245,7 +280,7 @@ package com.hendrix.feathers.controls.flex
       
       var tf: TextFormat                        = _btnNo.defaultLabelProperties.textFormat;
       
-      tf.size                                   = width * 0.06;
+      tf.size                                   = isNaN(_fontSizePercent) ? width * 0.06 : height * _fontSizePercent / 100;
       
       _btnNo.defaultLabelProperties.textFormat  = null;
       _btnNo.defaultLabelProperties.textFormat  = tf;
@@ -289,7 +324,7 @@ package com.hendrix.feathers.controls.flex
       {
         var tf_lbl:   TextFormat                = new TextFormat("arial11", 22, 0x3C3C3C);
         _lblHeadLine                            = CompsFactory.newLabel(_textHeadline, tf_lbl, false, true, TextAlign.CENTER); 
-        _lblHeadLine.textRendererProperties.textFormat.size = width * 0.05;
+        _lblHeadLine.textRendererProperties.textFormat.size = isNaN(_fontSizePercent) ? width * 0.05 : height * _fontSizePercent / 100;;
         
         addChild(_lblHeadLine);
         
