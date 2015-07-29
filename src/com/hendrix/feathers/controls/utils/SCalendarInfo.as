@@ -60,7 +60,7 @@ package com.hendrix.feathers.controls.utils
     }
     
     /**
-     * the delta in seconds between now and a given date 
+     * the delta in years between now and a given date 
      * @param date - a future Date object
      */
     static public function dateDeltaYears(date:Date):Number
@@ -128,6 +128,7 @@ package com.hendrix.feathers.controls.utils
     
     /**
      * my own implementation for date arithmatic
+     * 
      * @param _dateAnchor the base Date
      * @param days the days to add/subtract
      * 
