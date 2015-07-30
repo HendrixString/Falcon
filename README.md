@@ -189,6 +189,9 @@ public function startSplash(flashSpriteParent:flash.display.DisplayObjectContain
 layout options. great for dynamic splash screens
   * `BidiTextField` Bidirectional Text field with *bitmap fonts*. based on another repository i have published
   * `TLFLabel` Bidirectional Image text label based on `Adobe TLF`.
+  * `HitButton` a flex button with a definable Polygon hit area.
+  * `DragHitButton` a draggable button with ability to register objects for drop on and events.
+  * `MovieClipButton` a flex button with `MovieClip` skin and sound and events.
 
 - a set of widgets
   * `ListUpdateWidget` - a widget that hooks to a list to augment it with pull to refresh feature. 

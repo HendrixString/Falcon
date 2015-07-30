@@ -58,6 +58,7 @@
     <classEntry path="com.hendrix.feathers.controls.flex.flexTabBar.FlexTabBar"/>
     <classEntry path="com.hendrix.feathers.controls.textService.BidiTextField.bidi.core.DirectionalOverrideStatus"/>
     <classEntry path="com.hendrix.feathers.controls.utils.SAppUtils"/>
+    <classEntry path="com.hendrix.feathers.controls.flex.MovieClipButton"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
