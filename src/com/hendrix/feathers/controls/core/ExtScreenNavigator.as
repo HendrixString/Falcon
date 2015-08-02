@@ -67,7 +67,7 @@ package com.hendrix.feathers.controls.core
       var item: ScreenNavigatorItem = new ScreenNavigatorItem(screen, events, props);
       
       addScreen($id, item);
-      
+
       return item;
     }
     

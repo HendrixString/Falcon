@@ -46,6 +46,11 @@ package com.hendrix.feathers.controls.flex
       super.feathersControl_addedToStageHandler(event);
             
       addEventListener(TouchEvent.TOUCH, touchHandler);
+      
+      if(isInitialized) {
+        Starling.juggler.add(_mc_skin);
+        _mc_skin.addEventListener(Event.COMPLETE, mc_onComplete);        
+      }
     }
     
     override protected function feathersControl_removedFromStageHandler(event:Event):void
@@ -75,9 +80,9 @@ package com.hendrix.feathers.controls.flex
       
       _mc_skin.addEventListener(Event.COMPLETE, mc_onComplete);
       
-      _mc_skin.stop();
-
       Starling.juggler.add(_mc_skin);
+
+      _mc_skin.stop();
     }       
     
     private function btnPlay_onTriggered(event:Event):void
