@@ -130,7 +130,8 @@ package com.hendrix.feathers.controls.flex
       
       if(touch.phase == TouchPhase.BEGAN) {
         _mc_skin.currentFrame = 0;
-        _mc_skin.loop = false;
+        _mc_skin.loop         = false;
+        
         _mc_skin.play();   
         trace("begin playing");
       }
