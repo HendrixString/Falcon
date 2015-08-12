@@ -56,16 +56,18 @@ package com.hendrix.feathers.controls.utils
     static public function dateDeltaSeconds(date:Date):uint
     {
       var sec:  uint = (date.time - (new Date()).time) / SECOND;
+      
       return sec;
     }
     
     /**
-     * the delta in seconds between now and a given date 
+     * the delta in years between now and a given date 
      * @param date - a future Date object
      */
     static public function dateDeltaYears(date:Date):Number
     {
-      var sec:  Number = Math.abs(date.time - (new Date()).time) / YEAR;
+      var sec_delta:  Number = Math.abs(date.time - (new Date()).time);
+      var sec:  Number = sec_delta / YEAR;
       
       return sec;
     }
@@ -128,6 +130,7 @@ package com.hendrix.feathers.controls.utils
     
     /**
      * my own implementation for date arithmatic
+     * 
      * @param _dateAnchor the base Date
      * @param days the days to add/subtract
      * 

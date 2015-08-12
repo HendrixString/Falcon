@@ -58,6 +58,8 @@ package com.hendrix.feathers.controls.flex
     public function FlexButton()
     {
       super();
+      
+      _isToggle = false;
     }
     
     /**
@@ -279,7 +281,7 @@ package com.hendrix.feathers.controls.flex
       _relativeCalcWidthParent  = null;
       _relativeCalcHeightParent = null;
     }
-    
+
     override protected function initialize():void
     {
       super.initialize();
@@ -296,7 +298,7 @@ package com.hendrix.feathers.controls.flex
         }
       }
     }
-    
+
     protected function setupSize():void
     {
       var arIcon:   Number;
@@ -392,7 +394,7 @@ package com.hendrix.feathers.controls.flex
       }     
       
     }
-    
+
     override protected function draw():void
     {
       var sizeInvalid:    Boolean = isInvalid(INVALIDATION_FLAG_SIZE);
@@ -407,7 +409,7 @@ package com.hendrix.feathers.controls.flex
       
       super.draw();     
     }
-    
+
     private function getValidAncestorHeight():DisplayObject
     {
       var validParent:  DisplayObject = parent;

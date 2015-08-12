@@ -78,7 +78,7 @@ package com.hendrix.feathers.controls.flex
     
     /**
      * source can be anything<br>
-     * bitmap class, bitmapdata, bitmap, GfxPackage path, local path 
+     * <code>Texture, bitmap class, bitmapdata, bitmap, GfxPackage path, local path</code> 
      */
     public function get source():Object { return _source; }
     public function set source(value:Object):void

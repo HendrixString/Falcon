@@ -113,7 +113,13 @@ package com.hendrix.feathers.controls.flex
         _textInitial  = value;
       }
       
-      super.text    = value;
+      if(value == null) {
+        super.text    = _textInitial;
+        
+        return;
+      }
+      
+      super.text      = value;
     }
     
     override public function get text():String
@@ -302,6 +308,7 @@ package com.hendrix.feathers.controls.flex
     public function set textInitial(value:String):void
     {
       _textInitial  = value;
+      
       super.text    = _textInitial;
     }
     
