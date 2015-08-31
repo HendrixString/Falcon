@@ -18,7 +18,7 @@ package com.hendrix.feathers.controls.utils
      * 
      * @param str     the string to trim
      * @param char    the character to trim
-     * @param policy  the trimming policy {}
+     * @param policy  the trimming policy chosen from <code>{TRIM_POLICY_LEFT, TRIM_POLICY_RIGHT, TRIM_POLICY_BIDI}</code>
      * 
      * @return the trimmed string
      * 
@@ -37,12 +37,12 @@ package com.hendrix.feathers.controls.utils
       if(policy==TRIM_POLICY_BIDI || policy==TRIM_POLICY_RIGHT) {
         
         for(index_end = str.length;; index_end--) {
-          var st: String    = str.charAt(index_end);
+          var st: String     = str.charAt(index_end);
           
           if(st == '') continue;
           
           if(st!=char) {
-            index_end += 1;
+            index_end       += 1;
             break;
           }
           
