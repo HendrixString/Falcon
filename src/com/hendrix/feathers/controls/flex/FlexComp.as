@@ -58,6 +58,8 @@ package com.hendrix.feathers.controls.flex
     private var _id:                        String          = null;
     
     protected var _backgroundSkin:					DisplayObject		=	null;
+    
+    protected var _breakParentSensitivityAfter: Number      = 5;
 
     /**
      * flex comp implementation. extend this class to use it.
@@ -127,7 +129,7 @@ package com.hendrix.feathers.controls.flex
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
       
-      var fixY:Number = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
+      var fixY:             Number        = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
       
       if(!parentHeightDop || !parentWidthDop)
         throw new Error("no parent or parent override found!!");
@@ -139,7 +141,6 @@ package com.hendrix.feathers.controls.flex
       if(parentHeightDop is IFeathersControl)
         if(!(parentHeightDop as IFeathersControl).isCreated)
           (parentHeightDop as IFeathersControl).validate();
-      
       
       var w:  Number                      = actualWidth;
       var h:  Number                      = actualHeight;
@@ -189,7 +190,7 @@ package com.hendrix.feathers.controls.flex
     
     public function applyAlignment():void
     {
-      var child:DisplayObject = null;
+      var child: DisplayObject = null;
       
       for(var ix:uint = 0; ix < numChildren; ix++)
       {
@@ -231,9 +232,11 @@ package com.hendrix.feathers.controls.flex
             child.y = 0;
             break;
           }
+            
         }
         
       }
+      
     }
     
     // layout
@@ -358,10 +361,14 @@ package com.hendrix.feathers.controls.flex
       return _isSensitiveToParent;
     }
     
-    public function set isSensitiveToParent(value:Boolean):void
+    public function setSensitiveToParent(count:uint):void
     {
-      _isSensitiveToParent = value;
+      _breakParentSensitivityAfter  = count;
+      _isSensitiveToParent          = count==0 ? false : true;
       
+      if(!_isSensitiveToParent)
+        return;
+              
       if(isCreated)
         internal_parent_observer();
     }
@@ -376,7 +383,8 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
-      internal_parent_observer();
+      if(_isSensitiveToParent)
+        internal_parent_observer();
       
       if(_backgroundSkin)
         addChildAt(_backgroundSkin, 0);
@@ -401,20 +409,26 @@ package com.hendrix.feathers.controls.flex
       validateBackground();
     }
     
-    protected function internal_parent_observer():void {
-      if(_isSensitiveToParent) {
-        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
-        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
-        
-        if(parentHeightDop == parentWidthDop) {
-        }
-        else {
-          if(parentHeightDop)
+    protected function internal_parent_observer(on: Boolean = true):void {
+      var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+      var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+      
+      if(parentHeightDop == parentWidthDop) {
+      }
+      else {
+        if(parentHeightDop) {
+          if(on)
             parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+          else
+            parentHeightDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
         }
-        
-        if(parentWidthDop)
+      }
+      
+      if(parentWidthDop) {
+        if(on)
           parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        else
+          parentWidthDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
       }
     }
     
@@ -424,10 +438,19 @@ package com.hendrix.feathers.controls.flex
       
       applyAlignment();
     }
-    
+
     private function onParentResized():void
     {
-      invalidate(INVALIDATION_FLAG_SIZE);
+      if(_breakParentSensitivityAfter <= 0) { 
+        internal_parent_observer(false);
+                
+        return;
+      }
+      
+      _breakParentSensitivityAfter -= 1;
+      
+      trace("onParentResized::" + _breakParentSensitivityAfter);
+      invalidate(INVALIDATION_FLAG_SIZE);      
     }
     
     private function isParentDependant():void

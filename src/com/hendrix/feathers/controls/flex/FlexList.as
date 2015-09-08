@@ -43,8 +43,9 @@ package com.hendrix.feathers.controls.flex
     private var _horizontalAlign:           String          = null;
     private var _verticalAlign:             String          = null;
     
-    private var _isSensitiveToParent:       Boolean         = false;
-    
+    private var _isSensitiveToParent:       Boolean         = true;
+    private var _breakParentSensitivityAfter: Number      = 5;
+
     private var _id:                        String          = null;
     
     /**
@@ -303,9 +304,16 @@ package com.hendrix.feathers.controls.flex
     }
     
     public function get isSensitiveToParent():Boolean { return _isSensitiveToParent; }
-    public function set isSensitiveToParent(value:Boolean):void
+    public function setSensitiveToParent(count:uint):void
     {
-      _isSensitiveToParent = value;
+      _breakParentSensitivityAfter  = count;
+      _isSensitiveToParent          = count==0 ? false : true;
+      
+      if(!_isSensitiveToParent)
+        return;
+      
+      if(isCreated)
+        internal_parent_observer();
     }
     
     public function get id():String { return _id; }
@@ -314,21 +322,35 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    protected function internal_parent_observer(on:Boolean = true):void {
+      var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+      var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+      
+      if(parentHeightDop == parentWidthDop) {
+      }
+      else {
+        if(parentHeightDop) {
+          if(on)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+          else
+            parentHeightDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+      }
+      
+      if(parentWidthDop) {
+        if(on)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        else
+          parentWidthDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+      }
+    }
+
     override protected function initialize():void
     {
       super.initialize();
       
-      if(_isSensitiveToParent) {
-        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
-        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
-        
-        if(parentHeightDop == parentWidthDop)
-          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        else {
-          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-          parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        }
-      }
+      if(_isSensitiveToParent)
+        internal_parent_observer();
     }
     
     override protected function draw():void
@@ -351,6 +373,9 @@ package com.hendrix.feathers.controls.flex
     
     private function onParentResized():void
     {
+      if(_breakParentSensitivityAfter-- == 0)
+        internal_parent_observer(false);
+            
       invalidate(INVALIDATION_FLAG_SIZE);
     }
     

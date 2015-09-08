@@ -47,6 +47,14 @@ package com.hendrix.feathers.controls.flex
     
     private var _isSensitiveToParent:       Boolean         = false;
     
+    public function setSensitiveToParent(count:uint):void
+    {
+      // TODO Auto Generated method stub
+      
+    }
+    
+    protected var _breakParentSensitivityAfter: Number      = 5;
+
     private var _id:                        String          = null;
     
     // invalidation flags   

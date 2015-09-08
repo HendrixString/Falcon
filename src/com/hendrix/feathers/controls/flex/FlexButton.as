@@ -272,7 +272,7 @@ package com.hendrix.feathers.controls.flex
     
     public function applyAlignment():void { }
     public function get isSensitiveToParent():                        Boolean { return false; }
-    public function set isSensitiveToParent(value:Boolean):           void {}
+    public function setSensitiveToParent(count:uint):void             {}
     
     override public function dispose():void
     {

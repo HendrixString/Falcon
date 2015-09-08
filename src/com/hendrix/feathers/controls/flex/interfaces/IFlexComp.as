@@ -114,7 +114,7 @@ package com.hendrix.feathers.controls.flex.interfaces
      * should the control be sensitive to his parent changes
      */
     function get isSensitiveToParent():                         Boolean;
-    function set isSensitiveToParent(value:Boolean):            void;
+    function setSensitiveToParent(count:uint):                  void;
     
     /**
      * layout actions
