@@ -63,7 +63,7 @@ package com.hendrix.feathers.controls.flex
     private var _verticalCenter:            Number                  = NaN;
     
     private var _isSensitiveToParent:       Boolean         = true;
-    protected var _breakParentSensitivityAfter: Number      = 5;
+    protected var _breakParentSensitivityAfter: Number      = 3;
 
     private var _id:                        String          = null;
 
@@ -533,12 +533,19 @@ package com.hendrix.feathers.controls.flex
         super.text = "";
     }
     
-    private function onParentResized():void
+    private function onParentResized(evt:Event):void
     {
-      if(_breakParentSensitivityAfter-- == 0)
-        internal_parent_observer(false);
+      if(_breakParentSensitivityAfter <= 0) { 
+        //internal_parent_observer(false);
+        evt.currentTarget.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+        
+        return;
+      }
       
-      invalidate(INVALIDATION_FLAG_SIZE);
+      _breakParentSensitivityAfter -= 1;
+      
+      trace("onParentResized::" + _breakParentSensitivityAfter);
+      invalidate(INVALIDATION_FLAG_SIZE);      
     }
 
     private function onChange(event:Event):void

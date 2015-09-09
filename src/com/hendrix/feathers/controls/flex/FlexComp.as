@@ -53,13 +53,13 @@ package com.hendrix.feathers.controls.flex
     private var _horizontalAlign:           String          = null;
     private var _verticalAlign:             String          = null;
     
-    private var _isSensitiveToParent:       Boolean         = true;
+    private var _isSensitiveToParent:       Boolean         = false;
     
     private var _id:                        String          = null;
     
     protected var _backgroundSkin:					DisplayObject		=	null;
     
-    protected var _breakParentSensitivityAfter: Number      = 5;
+    protected var _breakParentSensitivityAfter: Number      = 3;
 
     /**
      * flex comp implementation. extend this class to use it.
@@ -413,18 +413,14 @@ package com.hendrix.feathers.controls.flex
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
       
-      if(parentHeightDop == parentWidthDop) {
-      }
-      else {
-        if(parentHeightDop) {
-          if(on)
-            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-          else
-            parentHeightDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
-        }
+      if(parentHeightDop) {
+        if(on)
+          parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        else
+          parentHeightDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
       }
       
-      if(parentWidthDop) {
+      if(parentWidthDop && parentWidthDop!=parentHeightDop) {
         if(on)
           parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
         else
@@ -439,10 +435,11 @@ package com.hendrix.feathers.controls.flex
       applyAlignment();
     }
 
-    private function onParentResized():void
+    private function onParentResized(evt:Event):void
     {
       if(_breakParentSensitivityAfter <= 0) { 
-        internal_parent_observer(false);
+        //internal_parent_observer(false);
+        evt.currentTarget.removeEventListener(FeathersEventType.RESIZE, onParentResized);
                 
         return;
       }

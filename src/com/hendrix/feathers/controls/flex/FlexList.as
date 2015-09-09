@@ -10,6 +10,7 @@ package com.hendrix.feathers.controls.flex
   import feathers.layout.VerticalLayout;
   
   import starling.display.DisplayObject;
+  import starling.events.Event;
   
   /**
    * a Feather list that implements IFlexComp 
@@ -44,7 +45,7 @@ package com.hendrix.feathers.controls.flex
     private var _verticalAlign:             String          = null;
     
     private var _isSensitiveToParent:       Boolean         = true;
-    private var _breakParentSensitivityAfter: Number      = 5;
+    private var _breakParentSensitivityAfter: Number      = 3;
 
     private var _id:                        String          = null;
     
@@ -371,12 +372,19 @@ package com.hendrix.feathers.controls.flex
       
     }
     
-    private function onParentResized():void
+    private function onParentResized(evt:Event):void
     {
-      if(_breakParentSensitivityAfter-- == 0)
-        internal_parent_observer(false);
-            
-      invalidate(INVALIDATION_FLAG_SIZE);
+      if(_breakParentSensitivityAfter <= 0) { 
+        //internal_parent_observer(false);
+        evt.currentTarget.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+        
+        return;
+      }
+      
+      _breakParentSensitivityAfter -= 1;
+      
+      trace("onParentResized::" + _breakParentSensitivityAfter);
+      invalidate(INVALIDATION_FLAG_SIZE);      
     }
     
     private function isParentDependant():void

@@ -23,6 +23,7 @@ package com.hendrix.feathers.controls.flex
    * </ul>
    * </p> 
    * a common scenario is to have <code>this.mainContent = new Quad(1,1)</code>, a zero height main content
+   * 
    * @author Tomer Shalev
    */
   public class PullDrawer extends FlexComp
