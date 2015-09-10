@@ -12,16 +12,18 @@ package com.hendrix.feathers.controls.flex
   import starling.display.DisplayObject;
   
   /**
-   * <p>a pull drawer component,<br>
+   * <p>a pull drawer component</p>
+   * 
    * i.e: have a control that hides a drawer, and that drawer can be opened, it is oppsite
-   * from Feather's Drawers, that's why i had to implement a new one</p>
+   * from Feather's Drawers, that's why i had to implement a new one
+   * 
    * <ul>
-   * <li>set <code>this.mainContent, this.drawerContent, this.mainContentBackgroundSkin, this.drawerContentBackgroundSkin</code> to specify contents</li>
-   * <li>set <code>contentPercentWidth, drawerContentPercentWidth, horizontalAlign</code> to control layout if contents are not responsive/flex comps</li>
-   * <li>use <code>isDrawerOpen</code> to figure out drawer state</li>
-   * <li>use <code>this.toggleDrawer()</code> to open/close the drawer</li>
+   *  <li>set <code>this.mainContent, this.drawerContent, this.mainContentBackgroundSkin, this.drawerContentBackgroundSkin</code> to specify contents</li>
+   *  <li>set <code>contentPercentWidth, drawerContentPercentWidth, horizontalAlign</code> to control layout if contents are not responsive/flex comps</li>
+   *  <li>use <code>isDrawerOpen</code> to figure out drawer state</li>
+   *  <li>use <code>this.toggleDrawer()</code> to open/close the drawer</li>
    * </ul>
-   * </p> 
+   *  
    * a common scenario is to have <code>this.mainContent = new Quad(1,1)</code>, a zero height main content
    * 
    * @author Tomer Shalev

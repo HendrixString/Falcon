@@ -27,10 +27,14 @@ package com.hendrix.feathers.controls.flex
   import starling.textures.TextureSmoothing;
   
   /**
+   * <p>
    * a TLF label, supports RTL languages. promotes memory reusage and very optimal. borrows some
-   * source code from TLFSprite, but this is generally more performence (in place memory and 0 depth from it's container)
-   * <br><b>Notes:</b>
+   * source code from TLFSprite, but this is generally more performence (in place memory and 0 depth from it's container)</p>
+   * 
+   * <p><b>Notes:</b></p>
+   * 
    * <li>use <code>this.textLayoutFormat</code> to assign layout and fonts.</li>
+   * 
    * @author Tomer Shalev
    */
   public class TLFLabel extends Image

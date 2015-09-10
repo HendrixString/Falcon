@@ -12,6 +12,7 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * a Flex Quad
+   * 
    * @author Tomer Shalev
    */
   public class FlexQuad extends Quad implements IFlexComp

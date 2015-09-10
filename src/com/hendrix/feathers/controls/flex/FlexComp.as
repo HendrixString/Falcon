@@ -12,17 +12,18 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * flex comp implementation. extend this class to use it.
-   * <p>
+   * <p>flex comp implementation. extend this class to use it.
+   * </p>
    * <b>Notes:</b>
+   * 
    * <ul>
-   * <li>set <code>this.percentWidth/Height</code> to control sizing</li>
-   * <li>set <code>this.top/bottom/left/right</code> to control layout</li>
-   * <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
-   * <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
-   * <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
+   *  <li>set <code>this.percentWidth/Height</code> to control sizing</li>
+   *  <li>set <code>this.top/bottom/left/right</code> to control layout</li>
+   *  <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
+   *  <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
+   *  <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
    * </ul>
-   * </p> 
+   * 
    * @author Tomer Shalev
    */
   public class FlexComp extends FeathersControl implements IFlexComp
@@ -53,7 +54,7 @@ package com.hendrix.feathers.controls.flex
     private var _horizontalAlign:           String          = null;
     private var _verticalAlign:             String          = null;
     
-    private var _isSensitiveToParent:       Boolean         = false;
+    private var _isSensitiveToParent:       Boolean         = true;
     
     private var _id:                        String          = null;
     
@@ -64,15 +65,16 @@ package com.hendrix.feathers.controls.flex
     /**
      * flex comp implementation. extend this class to use it.
      * <p>
-     * <b>Notes:</b>
-     * <ul>
-     * <li>set <code>this.percentWidth/Height</code> to control sizing</li>
-     * <li>set <code>this.top/bottom/left/right</code> to control layout</li>
-     * <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
-     * <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
-     * <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
-     * </ul>
-     * </p> 
+     *  <b>Notes:</b>
+     *  <ul>
+     *    <li>set <code>this.percentWidth/Height</code> to control sizing</li>
+     *    <li>set <code>this.top/bottom/left/right</code> to control layout</li>
+     *    <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
+     *    <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
+     *    <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
+     *  </ul>
+     * </p>
+     * 
      * @author Tomer Shalev
      */
     public function FlexComp()

@@ -12,8 +12,10 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * a responsive flex button, resizes both default icon and font's size.
+   * 
    * <li>use <code>this.fontPercentHeight</code>
    * <li>use <code>this.iconPercentHeight</code>
+   * 
    * @author Tomer Shalev
    */
   public class FlexButton extends ToggleButton implements IFlexComp

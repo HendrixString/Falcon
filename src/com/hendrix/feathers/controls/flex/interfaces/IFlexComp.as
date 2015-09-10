@@ -4,6 +4,7 @@ package com.hendrix.feathers.controls.flex.interfaces
   
   /**
    * the basic Interface for FlexComp responsive component
+   * 
    * @author Tomer Shalev
    */
   public interface IFlexComp extends IId

@@ -8,6 +8,7 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * animated control 
+   * 
    * @author Tomer Shalev
    * 
    */

@@ -8,6 +8,7 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * a basic implementation of <code>IListItemRenderer</code> as a Flex control
+   * 
    * @author Tomer Shalev
    * 
    */

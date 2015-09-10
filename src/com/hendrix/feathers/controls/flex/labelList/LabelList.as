@@ -11,6 +11,7 @@ package com.hendrix.feathers.controls.flex.labelList
   
   /**
    * a vertical snapping list of labels, good for time/date picking 
+   * 
    * @author Tomer Shalev
    */
   public class LabelList extends SnapList

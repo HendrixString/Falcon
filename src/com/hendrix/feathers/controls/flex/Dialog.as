@@ -19,7 +19,8 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * a Dialog control <br>
+   * a Dialog control
+   * 
    * <li>use <code>this.dialogContent</code> to put a DisplayObject as the content of the dialog.
    * <li>use <code>this.textOK, this.textCANCEL, this.textHEADLINE</code> to alter the text.
    * <li>use <code>this.textCANCEL</code> to put a DisplayObject as the content of the dialog.
@@ -27,6 +28,7 @@ package com.hendrix.feathers.controls.flex
    * <li>use <code>this.embeddedFonts</code> to specify that the fonts are embedded or not.
    * <li>use <code>this.onAction</code> callback to listen to OK/CANCEL, callback will return ACTION_OK/ACTION_CANCEL respectively.
    * <li>use <code>this.show()/close()</code> to show/close the dialog.
+   * 
    * @author Tomer Shalev 
    * 
    */

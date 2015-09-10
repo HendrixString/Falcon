@@ -12,12 +12,13 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * <p>a Flex comp Image container</p>
+   * 
    * <ul>
-   * <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
-   * <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
-   * <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
-   * </ul>
-   * </p> 
+   *  <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
+   *  <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
+   *  <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
+   *  </ul>
+   * 
    * @author Tomer Shalev
    */
   public class FlexImage extends FlexComp

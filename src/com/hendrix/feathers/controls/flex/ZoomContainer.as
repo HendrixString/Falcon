@@ -20,6 +20,7 @@ package com.hendrix.feathers.controls.flex
   /**
    * a simple wrapper of a FeatherControl to make it zoomable/movable, rotatable.
    * simply extend any new class with this class to get an interactive sprite.
+   * 
    * @author Tomer Shalev and Starling code snippets from the forum
    */
   public class ZoomContainer extends FlexComp

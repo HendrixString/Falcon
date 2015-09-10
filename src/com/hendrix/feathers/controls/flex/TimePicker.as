@@ -12,14 +12,16 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * a Date Picker component, inspired by the Native Android version (pre Lolipop)<br>
-   * interface methods:
+   * <p>a Date Picker component, inspired by the Native Android version (pre Lolipop)</p>
+   * 
+   * <p><b>interface methods:</b></p>
+   * 
    * <li><code>getSelectedDay()
    * <li>getSelectedMonth()
    * <li>getSelectedYear()
    * <li>getSelectedDate()</code>
    * <li>use <code>this.date=somedate</code> to set a new base date
-   * </code>
+   * 
    * @author Tomer Shalev
    */
   public class TimePicker extends FlexComp

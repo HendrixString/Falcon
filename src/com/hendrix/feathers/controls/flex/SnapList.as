@@ -10,12 +10,13 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * a snapping list: a list that snaps to its closest item after scrolling animation is complete.
-   * <br>
+   * <p>a snapping list: a list that snaps to its closest item after scrolling animation is complete.</p>
+   * 
    * <li>supports both <code>HorizontalLayout</code> and <code>VerticalLayout</code>
    * <li><code>this.onSelectedIndex</code> is the callback for listening to the snapped index
    * <li><code>this.selectedIndex</code> is the index of the snapped index
-   * <li>use <code>this.scrollToItemWithIndex</code> to scroll to item with specified index 
+   * <li>use <code>this.scrollToItemWithIndex</code> to scroll to item with specified index
+   *  
    * @author Tomer Shalev
    */
   public class SnapList extends FlexList

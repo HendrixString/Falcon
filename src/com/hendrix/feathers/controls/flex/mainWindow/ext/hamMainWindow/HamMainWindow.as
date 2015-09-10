@@ -14,11 +14,15 @@ package com.hendrix.feathers.controls.flex.mainWindow.ext.hamMainWindow
   import starling.events.TouchPhase;
   
   /**
-   * a Hamburger window<br>
-   * <b>Notes</b>
+   * <p>a Hamburger window</p>
+   * 
+   * <b>Notes</b><br>
+   * 
    * <li>use <code>sideMenu</code> for adding a side menu, sizing will be automatic according to the ham animation</li>
    * <li>use <code>hamProperties</code> to inject properties for the animation</li>
-   * <br><b>TODO:</b> add support for LEFT TO RIGHT
+   * 
+   * <p><b>TODO:</b> add support for LEFT TO RIGHT
+   * 
    * @author Tomer Shalev
    */
   public class HamMainWindow extends AnimatedControl implements IMainWindow

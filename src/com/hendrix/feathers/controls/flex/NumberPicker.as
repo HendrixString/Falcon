@@ -12,13 +12,15 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * a Number Picker flex control
+   * <p>a Number Picker flex control</p>
+   * 
    * <li>use <code>this.buttonPlus</code> to set the button
    * <li>use <code>this.buttonMinus</code> to set the button
    * <li>use <code>this.currentNumber</code> to get/set number
    * <li>use <code>this.buttonPercentHeight</code> to get/set number
    * <li>use <code>this.currentNumberText</code> to get/set number from String
    * <li>use <code>this.maxRange</code> to get/set the range
+   * 
    * @author Tomer Shalev
    */
   public class NumberPicker extends FlexComp

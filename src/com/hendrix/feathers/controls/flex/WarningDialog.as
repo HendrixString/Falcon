@@ -16,12 +16,15 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * a warning popup comp, supports:<br>
+   * <p>a warning popup comp, supports:</p>
+   * 
    * <li>one/two action buttons
    * <li>action callbacks
    * <li>headline
-   * <li>warning text 
-   * use:<br>
+   * <li>warning text
+   *  
+   * <p><b>use:</b></p>
+   * 
    * <li><code>this.onAction</code> to set a callback function
    * <li><code>this.show()</code> to display
    * <li><code>this.textHeadline</code> to set headline text

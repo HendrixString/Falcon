@@ -12,24 +12,27 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * <p>a very lite Action Bar component, requires a data provider</p>
-   * <p><b>Example:</b><br>
-   *        <code>
-   *      this.dataProvier = Vector.Object([<br>
-   *        { id: "1", src: do1, align:"right"},<br>
-   *        { id: "2", src: do2, align:"center"},<br>
-   *        { id: "3", src: do3, align:"left"},<br>
-   *        { id: "4", src: do4, align:"left"}<br>
-   *      ]);</code><br>
+   * <p><b>Example:</b>
+   * 
+   *    <pre>
+   *      this.dataProvier = Vector.Object([
+   *        { id: "1", src: do1, align:"right"},
+   *        { id: "2", src: do2, align:"center"},
+   *        { id: "3", src: do3, align:"left"},
+   *        { id: "4", src: do4, align:"left"}
+   *      ]);</pre><br>
+   * 
    * <b>Notes:</b>
+   * 
    * <ul>
-   * <li>set <code>leftItemsPercentWidth/Height, rightItemsPercentWidth/Height, centerItemsPercentWidth/Height</code> to control layout</li>
-   * <li>set <code>percentHeight</code> to control height of componenet relative to it's parent, or <code>height</code> to control pixel wise</li>
-   * <li>set <code>bgSkinSource</code> to control background, it can be color, texture, class, bitmap etc..</li>
-   * <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
-   * <li><code>src</code> can be any <code>DisplayObject</code></li>
-   * <li>use <code>mrUpdateContent(id, src)</code> to update an exiting item</li>
+   *  <li>set <code>leftItemsPercentWidth/Height, rightItemsPercentWidth/Height, centerItemsPercentWidth/Height</code> to control layout</li>
+   *  <li>set <code>percentHeight</code> to control height of componenet relative to it's parent, or <code>height</code> to control pixel wise</li>
+   *  <li>set <code>bgSkinSource</code> to control background, it can be color, texture, class, bitmap etc..</li>
+   *  <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
+   *  <li><code>src</code> can be any <code>DisplayObject</code></li>
+   *  <li>use <code>mrUpdateContent(id, src)</code> to update an exiting item</li>
    * </ul>
-   * </p> 
+   * 
    * @author Tomer Shalev
    */
   public class ActionBar extends FlexComp

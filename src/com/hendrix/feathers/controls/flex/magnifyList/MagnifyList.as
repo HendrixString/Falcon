@@ -14,6 +14,7 @@ package com.hendrix.feathers.controls.flex.magnifyList
   
   /**
    * an item magnifying list.
+   * 
    * @author Tomer Shalev
    * 
    */

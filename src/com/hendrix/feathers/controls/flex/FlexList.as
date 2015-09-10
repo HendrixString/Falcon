@@ -13,7 +13,10 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * a Feather list that implements IFlexComp 
+   * a Feather list that implements <code>IFlexComp</code> 
+   * 
+   * @see com.hendrix.feathers.controls.flex.interfaces.IFlexComp
+   * 
    * @author Tomer Shalev
    */
   public class FlexList extends List implements IFlexComp

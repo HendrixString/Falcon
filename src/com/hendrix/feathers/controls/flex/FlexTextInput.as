@@ -15,10 +15,12 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * a flex TextInput, resizes font according to the height
+   * 
    * <li>use <code>this.textInitial</code> for text hinting 
    * <li>use <code>this.fontFamily</code>
    * <li>use <code>this.color</code>
    * <li>use <code>this.textAlign</code>
+   * 
    * @author Tomer Shalev
    */
   public class FlexTextInput extends TextInput implements IFlexComp
