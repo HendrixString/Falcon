@@ -6,6 +6,7 @@ package com.hendrix.feathers.controls.flex
   import starling.animation.Tween;
   import starling.core.Starling;
   import starling.display.Image;
+  import starling.display.Quad;
   import starling.textures.ConcreteTexture;
   import starling.textures.Texture;
   import starling.textures.TextureSmoothing;
@@ -41,6 +42,9 @@ package com.hendrix.feathers.controls.flex
     private var _forceDisposeConcreteTexture:           Boolean       = false;
     private var _flagFadeInLoadedImage:                 Boolean       = false;
     
+    private var _flagDebugMode:                         Boolean       = false;
+    private var _quad_debug:                            Quad;
+    
     /**
      * <p>a Flex comp Image container</p>
      * <ul>
@@ -54,6 +58,22 @@ package com.hendrix.feathers.controls.flex
     public function FlexImage()
     {
       super();
+    }
+    
+    /**
+     * 
+     * @return the original texture width 
+     */
+    public function get textureWidth():uint {
+      return _tex.width;
+    }
+    
+    /**
+     * 
+     * @return the original texture height 
+     */
+    public function get textureHeight():uint {
+      return _tex.height;
     }
     
     override public function dispose():void
@@ -77,6 +97,26 @@ package com.hendrix.feathers.controls.flex
       
     }
     
+    /**
+     * set debug mode of the comp. setting to <code>true</code> will show the background as black. 
+     * 
+     */
+    public function get flagDebugMode():Boolean { return _flagDebugMode; }
+    public function set flagDebugMode(value:Boolean):void
+    {
+      _flagDebugMode        = value;
+
+      _quad_debug           = (_quad_debug == null) ? new Quad(width, height, 0x00) : _quad_debug;
+
+      addChildAt(_quad_debug, 0);
+
+      if(isInitialized) {       
+        _quad_debug.width   = width;        
+        _quad_debug.height  = height;
+      }
+      
+    }
+
     /**
      * source can be anything<br>
      * <code>Texture, bitmap class, bitmapdata, bitmap, GfxPackage path, local path</code> 
@@ -132,7 +172,7 @@ package com.hendrix.feathers.controls.flex
     
     override protected function initialize():void
     {
-      super.initialize();
+      super.initialize();      
     }
     
     override protected function draw():void
@@ -148,6 +188,12 @@ package com.hendrix.feathers.controls.flex
       
       if(alignInvalid || sizeInvalid)
         applyAlignment();
+      
+      if(_quad_debug) {
+        _quad_debug.width           = width;
+        _quad_debug.height          = height;
+      }
+      
     }
     
     private function applyScaleMode():void

@@ -39,6 +39,7 @@ package com.hendrix.feathers.controls
      */
     public function CompsFactory()
     {
+      
       // placed here in order to load the TextFieldLibarary
       var btf:BidiTextField;
       var coll:IdCollection;

@@ -104,7 +104,7 @@ package com.hendrix.feathers.controls.flex.magnifyList
       var hLayout:  HorizontalLayout        = new HorizontalLayout();
       
       hLayout.useVirtualLayout              = false;
-      hLayout.manageVisibility              = true;
+      //hLayout.manageVisibility              = true;
       hLayout.hasVariableItemDimensions     = true;
       hLayout.horizontalAlign               = HorizontalLayout.HORIZONTAL_ALIGN_CENTER;
       

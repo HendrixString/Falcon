@@ -83,7 +83,7 @@ package com.hendrix.feathers.controls.flex.labelList
       
       var vLayout:  VerticalLayout          = new VerticalLayout();
       
-      vLayout.manageVisibility              = true;
+      //vLayout.manageVisibility              = true;
       vLayout.hasVariableItemDimensions     = false;
       vLayout.horizontalAlign               = HorizontalLayout.HORIZONTAL_ALIGN_CENTER;
       vLayout.useVirtualLayout              = true;
