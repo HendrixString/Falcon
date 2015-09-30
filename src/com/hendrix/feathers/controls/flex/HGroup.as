@@ -3,6 +3,7 @@ package com.hendrix.feathers.controls.flex
   import com.hendrix.feathers.controls.CompsFactory;
   import com.hendrix.feathers.controls.utils.TextUtils;
   
+  import flash.geom.Rectangle;
   import flash.text.TextFormat;
   
   import feathers.controls.Button;
@@ -249,7 +250,7 @@ package com.hendrix.feathers.controls.flex
       var calcH:    Number;
       
       _relativeCalcObject                           = relativeCalcWidthParent;
-      
+
       var calcGap:  Number                          = isNaN(_gap) ?  isNaN(_gapPercentWidth) ? 0 : _relativeCalcObject.width * _gapPercentWidth : _gap;
       
       if(isNaN(_paddingTop))
@@ -274,8 +275,8 @@ package com.hendrix.feathers.controls.flex
         if(dataInvalid || sizeInvalid || itemsMovedInvalid)
         {
           if(_dataProvider) {
-            calcW                                   = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)   ? doRef.width   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width : (_dataProvider[ix].percentWidth/100)*_dataProvider[ix].relativeCalcParent.width;
-            calcH                                   = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height) ? doRef.height  : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
+            calcW                                   = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)  ? doRef.width   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width : (_dataProvider[ix].percentWidth/100)*_dataProvider[ix].relativeCalcParent.width;
+            calcH                                   = isNaN(_dataProvider[ix].percentHeight) ?  (isNaN(_dataProvider[ix].height) ? doRef.height  : _dataProvider[ix].height) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
             
             if(calcW)
               doRef.width                           = calcW;
@@ -288,6 +289,29 @@ package com.hendrix.feathers.controls.flex
           if(doRef is IFeathersControl)
             (doRef as IFeathersControl).validate();
         }
+        
+      }
+      
+      // if height was not set, we have to set to it's children bounding box,
+      // because of vertical alignment considerations.
+      if(height==0) {
+        var bbox: Rectangle                         = computeContentBoundBox();
+        
+        var w:    Number                            = width;
+        var h:    Number                            = height;
+        
+        if(w==0)
+          w                                         = bbox.width;
+        
+        if(h==0)
+          h                                         = bbox.height;
+          
+        setSizeInternal(width, h, false);
+      }
+            
+      for(ix = 0; ix < numChildren - correct; ix++)
+      {
+        doRef                                       = getChildAt(ix + correct);
         
         doRef.x                                     = posx;
         
@@ -315,10 +339,10 @@ package com.hendrix.feathers.controls.flex
       
       posx                                          = posx - calcGap + _paddingLeft;
       
-      var align:Number                              = 0;
+      var align: Number                             = 0;
       
       if(_horizontalAlign == HorizontalLayout.HORIZONTAL_ALIGN_CENTER) {
-        align                                       = (width - posx)*0.5;
+        align                                       = (width - posx) * 0.5;
         
         for(ix = correct; ix < numChildren; ix++) {
           doRef                                     = getChildAt(ix);
@@ -334,12 +358,13 @@ package com.hendrix.feathers.controls.flex
         }
       }
       
+      // if width was not set, then we give the width that the children occupy
       if(width == 0) {
         explicitWidth                               = NaN;
         var c:  Number                              = isNaN(percentHeight) ? 0 : percentWidth*relativeCalcWidthParent.width;
-        var a:  Boolean                             = setSizeInternal(Math.max(posx,c), height, false);
+        var a:  Boolean                             = setSizeInternal(Math.max(posx, c), height, false);
       }
-      
+
       validateBackground();
       
       if(parent is IFeathersControl){

@@ -42,6 +42,8 @@ package com.hendrix.feathers.controls.flex
     
     private var _id:                        String        = null;
     
+    private var _data:                      Object        = null;
+    
     /**
      * font size in percentages based on the control height 
      */
@@ -271,6 +273,12 @@ package com.hendrix.feathers.controls.flex
     {
       _id = value;
     }
+    
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
     
     public function applyAlignment():void { }
     public function get isSensitiveToParent():                        Boolean { return false; }

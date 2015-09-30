@@ -64,10 +64,12 @@ package com.hendrix.feathers.controls.flex
     private var _horizontalCenter:          Number                  = NaN;
     private var _verticalCenter:            Number                  = NaN;
     
-    private var _isSensitiveToParent:       Boolean         = true;
-    protected var _breakParentSensitivityAfter: Number      = 3;
+    private var _isSensitiveToParent:       Boolean                 = true;
+    protected var _breakParentSensitivityAfter: Number              = 3;
 
-    private var _id:                        String          = null;
+    private var _id:                        String                  = null;
+
+    private var _data:                      Object                  = null;     
 
     private var _relativeCalcWidthParent:   DisplayObject           = null;
     private var _relativeCalcHeightParent:  DisplayObject           = null;
@@ -302,6 +304,12 @@ package com.hendrix.feathers.controls.flex
     {
       _id = value;
     }
+
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
 
     public function get textCurrent():String
     {

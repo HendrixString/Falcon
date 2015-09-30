@@ -48,10 +48,12 @@ package com.hendrix.feathers.controls.flex
     private var _verticalAlign:             String          = null;
     
     private var _isSensitiveToParent:       Boolean         = true;
-    private var _breakParentSensitivityAfter: Number      = 3;
+    private var _breakParentSensitivityAfter: Number        = 3;
 
     private var _id:                        String          = null;
     
+    private var _data:                      Object          = null;     
+
     /**
      * a Feather list that implements IFlexComp 
      * @author Tomer Shalev
@@ -326,6 +328,12 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
+
     protected function internal_parent_observer(on:Boolean = true):void {
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;

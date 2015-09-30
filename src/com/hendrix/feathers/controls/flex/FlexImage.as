@@ -18,6 +18,7 @@ package com.hendrix.feathers.controls.flex
    *  <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
    *  <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
    *  <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
+   *  <li>set <code>color</code> to tint the image</li>
    *  </ul>
    * 
    * @author Tomer Shalev
@@ -45,6 +46,8 @@ package com.hendrix.feathers.controls.flex
     private var _flagDebugMode:                         Boolean       = false;
     private var _quad_debug:                            Quad;
     
+    private var _color:                                 int           = -1;
+    
     /**
      * <p>a Flex comp Image container</p>
      * <ul>
@@ -60,6 +63,19 @@ package com.hendrix.feathers.controls.flex
       super();
     }
     
+    /**
+     * a color to tint the image with.
+     * 
+     */
+    public function get color():          int { return _color; }
+    public function set color(value:int): void
+    {
+      _color = value;
+      
+      if(_img)
+        _img.color = _color;
+    }
+
     /**
      * 
      * @return the original texture width 
@@ -297,6 +313,9 @@ package com.hendrix.feathers.controls.flex
       }
       else {
         _img            = new Image(_tex);
+        
+        if(_color >= 0)
+          _img.color    = _color;
         
         if(_flagFadeInLoadedImage) {
           _img.alpha    = 0.0;

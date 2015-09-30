@@ -2,6 +2,8 @@ package com.hendrix.feathers.controls.flex
 {
   import com.hendrix.feathers.controls.flex.interfaces.IFlexComp;
   
+  import flash.geom.Rectangle;
+  
   import feathers.core.FeathersControl;
   import feathers.core.IFeathersControl;
   import feathers.events.FeathersEventType;
@@ -53,6 +55,8 @@ package com.hendrix.feathers.controls.flex
     // align for children
     private var _horizontalAlign:           String          = null;
     private var _verticalAlign:             String          = null;
+    
+    private var _data:                      Object          = null;
     
     private var _isSensitiveToParent:       Boolean         = true;
     
@@ -241,6 +245,56 @@ package com.hendrix.feathers.controls.flex
       
     }
     
+    /**
+     * compute the content bounding box by it's children
+     * 
+     * @return <code>Rectangle</code> representing a bounding box.
+     * 
+     */
+    public function computeContentBoundBox(): Rectangle
+    {
+      var child: DisplayObject = null;
+      
+      var minX:   Number  = Number.POSITIVE_INFINITY;
+      var maxX:   Number  = Number.NEGATIVE_INFINITY;
+      var minY:   Number  = Number.POSITIVE_INFINITY;
+      var maxY:   Number  = Number.NEGATIVE_INFINITY;
+      
+      for(var ix: uint = 0; ix < numChildren; ix++)
+      {
+        child             = getChildAt(ix);
+        
+        minX              = Math.min(minX, child.x);
+        minY              = Math.min(minY, child.y);
+        maxX              = Math.max(maxX, child.x + child.width);
+        maxY              = Math.max(maxY, child.y + child.height);
+      }
+      
+      return new Rectangle(minX, minY, maxX, maxY);
+    }
+    
+    /**
+     * compute the content width bounding box by it's children
+     * 
+     * @return the width
+     * 
+     */
+    public function contentWidth(): Number
+    {
+      return computeContentBoundBox().width;
+    }
+    
+    /**
+     * compute the content width bounding box by it's children
+     * 
+     * @return the width
+     * 
+     */
+    public function contentHeight(): Number
+    {
+      return computeContentBoundBox().height;
+    }
+    
     // layout
     
     public function get percentWidth():                         Number  { return _percentWidth; }
@@ -381,6 +435,12 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }
+    public function set data(value:Object):void
+    {
+      _data = value;      
+    }
+
     override protected function initialize():void
     {
       super.initialize();
@@ -477,7 +537,7 @@ package com.hendrix.feathers.controls.flex
       
       return validParent;
     }
-    
+        
   }
   
 }

@@ -48,6 +48,8 @@ package com.hendrix.feathers.controls.flex
     
     private var _isSensitiveToParent:       Boolean         = false;
     
+    private var _data:                      Object          = null;     
+
     public function setSensitiveToParent(count:uint):void
     {
       // TODO Auto Generated method stub
@@ -292,6 +294,12 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
+
     override public function dispose():void
     {
       super.dispose();

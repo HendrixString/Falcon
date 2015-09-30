@@ -57,6 +57,8 @@ package com.hendrix.feathers.controls.flex
     
     private var _id:                        String        = null;     
     
+    private var _data:                      Object        = null;     
+
     private var _isSensitiveToParent:       Boolean         = true;
     protected var _breakParentSensitivityAfter: Number      = 5;
 
@@ -272,6 +274,12 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
+
     public function applyAlignment():void { }
     public function get isSensitiveToParent(): Boolean { return false; }
     public function setSensitiveToParent(count:uint):void

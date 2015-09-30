@@ -27,15 +27,36 @@ package com.hendrix.feathers.controls.flex
   import starling.textures.TextureSmoothing;
   
   /**
-   * <p>
-   * a TLF label, supports RTL languages. promotes memory reusage and very optimal. borrows some
-   * source code from TLFSprite, but this is generally more performence (in place memory and 0 depth from it's container)</p>
-   * 
-   * <p><b>Notes:</b></p>
-   * 
+   * a very very lite TLF label, supports RTL languages. promotes memory reusage and very optimal(in place memory and 0 depth from it's container).
+   * u can use both TLF or FTE. control optimization with the drawing canvas dimensions, then setting width and height will scale
+   * the canvas on GPU, so it is very optimal in that sence of level of control. a very lite component, use it when performance is
+   * critical as in a part of a List's Itemrenderer. otherwise, Feathers have a new BlockTextRenderer that uses FTE (less quality than TLF)
+   * <br><b>Notes:</b>
+   * <li>use <code>this.width</code> to change composition bounds dynamically and also to scale.</li>
    * <li>use <code>this.textLayoutFormat</code> to assign layout and fonts.</li>
+   * <li>use <code>this.autoResizeHeight/Width</code> to make the component bounds to resize itself to fit the text</li>
+   * <li>specify <code>maxCanvasWidth/Height</code> in constructor to control the canvas dims on which we draw text. later, use this.width/height
+   *  to scale that canvas on GPU. this gives a good level of control for memory consumption.
+   * </li>
+   * 
+   * <br><b>Best usage example:</b>
+   * 
+   * <listing version="3.0">
+   * _lbl = new TLFLabel(512, 512)
+   * _lbl.autoResizeHeight = true;
+   * _lbl.width = width
+   * 
+   * </listing
+   * 
+   * <br><b>TODO:</b>
+   * <li>make it implement IFlexComp</li>
+   * <li>make font size resize automatically to bounds like in FlexLabel</li>
+   * 
+   * @param maxCanvasWidth the canvas width on which TLF will draw text
+   * @param maxCanvasHeight the canvas height on which TLF will draw text
    * 
    * @author Tomer Shalev
+   * 
    */
   public class TLFLabel extends Image
   {
@@ -62,36 +83,6 @@ package com.hendrix.feathers.controls.flex
     
     private var _tex:                 Texture                               = null;
     
-    /**
-     * a very very lite TLF label, supports RTL languages. promotes memory reusage and very optimal(in place memory and 0 depth from it's container).
-     * u can use both TLF or FTE. control optimization with the drawing canvas dimensions, then setting width and height will scale
-     * the canvas on GPU, so it is very optimal in that sence of level of control. a very lite component, use it when performance is
-     * critical as in a part of a List's Itemrenderer. otherwise, Feathers have a new BlockTextRenderer that uses FTE (less quality than TLF)
-     * <br><b>Notes:</b>
-     * <li>use <code>this.width</code> to change composition bounds dynamically and also to scale.</li>
-     * <li>use <code>this.textLayoutFormat</code> to assign layout and fonts.</li>
-     * <li>use <code>this.autoResizeHeight/Width</code> to make the component bounds to resize itself to fit the text</li>
-     * <li>specify <code>maxCanvasWidth/Height</code> in constructor to control the canvas dims on which we draw text. later, use this.width/height
-     *  to scale that canvas on GPU. this gives a good level of control for memory consumption.
-     * </li>
-     * 
-     * <br><b>Best usage example:</b>
-     * 
-     * <listing version="3.0">
-     * _lbl = new TLFLabel(512, 512)
-     * _lbl.autoResizeHeight = true;
-     * _lbl.width = width
-     * 
-     * </listing
-     * 
-     * <br><b>TODO:</b>
-     * <li>make it implement IFlexComp</li>
-     * <li>make font size resize automatically to bounds like in FlexLabel</li>
-     * 
-     * @param maxCanvasWidth the canvas width on which TLF will draw text
-     * @param maxCanvasHeight the canvas height on which TLF will draw text
-     * 
-     */
     public function TLFLabel(maxCanvasWidth:uint = 256, maxCanvasHeight:uint = 256)
     {
       _TextLineFactory      = new TextFlowTextLineFactory();
