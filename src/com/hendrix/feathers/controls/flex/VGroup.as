@@ -275,6 +275,8 @@ package com.hendrix.feathers.controls.flex
     {     
       super.draw();
       
+      id;width;height;x;y
+      
       var sizeInvalid:        Boolean                 = isInvalid(INVALIDATION_FLAG_SIZE);
       var layoutInvalid:      Boolean                 = isInvalid(INVALIDATION_FLAG_LAYOUT);
       var dataInvalid:        Boolean                 = isInvalid(INVALIDATION_FLAG_DATA);
@@ -318,7 +320,7 @@ package com.hendrix.feathers.controls.flex
             calcH                                     = 0;
             
             calcW                                     = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)   ? 0   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width : (_dataProvider[ix].percentWidth/100)*_dataProvider[ix].relativeCalcParent.width;
-            calcH                                     = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height)   ? 0 : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
+            calcH                                     = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height) ? 0 : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
             
             if(calcW)
               doRef.width                             = calcW;

@@ -50,8 +50,20 @@ package com.hendrix.feathers.controls.flex
     private var _quadStrip1:  Quad      = null;
     private var _quadStrip2:  Quad      = null;
     
+    private var _textFormat:  TextFormat= null;
+    
     private var _tweenFade:   Tween     = null;
     
+    public function set btnNo(value:Button):void
+    {
+      _btnNo = value;
+    }
+
+    public function set btnYes(value:Button):void
+    {
+      _btnYes = value;
+    }
+
     /**
      * callback for user action 
      */
@@ -74,9 +86,9 @@ package com.hendrix.feathers.controls.flex
      */
     private var _textNo:      String;   
     
-    private var _dialogPercentWidth:Number = NaN;
-    private var _dialogPercentHeight:Number = NaN;
-    private var _fontSizePercent:Number = NaN;
+    private var _dialogPercentWidth:    Number = NaN;
+    private var _dialogPercentHeight:   Number = NaN;
+    private var _fontSizePercent:       Number = NaN;
     
 
     /**
@@ -113,6 +125,12 @@ package com.hendrix.feathers.controls.flex
       _tweenFade.fadeTo(0.7);
       
       Starling.juggler.add(_tweenFade);
+    }
+    
+    public function get textFormat():TextFormat { return _textFormat; }
+    public function set textFormat(value:TextFormat):void
+    {
+      _textFormat = value;
     }
     
     /**
@@ -166,8 +184,8 @@ package com.hendrix.feathers.controls.flex
     {
       _colorBg = value;
       
-      if(_quadBgDark) {
-        _quadBgDark.color = _colorBg;
+      if(_quadBg) {
+        _quadBg.color = _colorBg;
       }
     }
     
@@ -212,21 +230,33 @@ package com.hendrix.feathers.controls.flex
     {
       super.initialize();
       
-      var tf_btns:  TextFormat                  = new TextFormat("arial11", 22, 0x3C3C3C);
-      var tf_lbl:   TextFormat                  = new TextFormat("arial11", 22, 0x3C3C3C);
+      var tf_btns:  TextFormat                  = _textFormat ? _textFormat : new TextFormat("arial11", 22, 0x3C3C3C);
+      var tf_lbl:   TextFormat                  = _textFormat ? _textFormat : new TextFormat("arial11", 22, 0x3C3C3C);
       
-      _btnYes                                   = CompsFactory.newButton(0x7DD9FF,  null, btnYes_onTriggered, tf_btns,  _textYes);
-      _btnNo                                    = CompsFactory.newButton(0x7DD9FF,  null, btnNo_onTriggered,  tf_btns,  _textNo);
+      _btnYes                                   = _btnYes ? _btnYes : CompsFactory.newButton(0x7DD9FF,  null, btnYes_onTriggered, tf_btns,  _textYes);
+      _btnNo                                    = _btnNo  ? _btnNo  : CompsFactory.newButton(0x7DD9FF,  null, btnNo_onTriggered,  tf_btns,  _textNo);
+      
+      _btnYes.addEventListener(Event.TRIGGERED, btnYes_onTriggered);
+      _btnNo.addEventListener(Event.TRIGGERED,  btnNo_onTriggered);
+      
+      if(_btnYes.defaultLabelProperties.textFormat == null)
+        _btnYes.defaultLabelProperties.textFormat = tf_btns;
+      if(_btnNo.defaultLabelProperties.textFormat == null)
+        _btnNo.defaultLabelProperties.textFormat  = tf_btns;
+      
+      _btnYes.label                             = _textYes;
+      _btnNo.label                              = _textNo;
       
       _btnYes.defaultLabelProperties.embedFonts = true;
       _btnNo.defaultLabelProperties.embedFonts  = true;
+      
       _btnYes.horizontalAlign                   = Button.HORIZONTAL_ALIGN_CENTER;
       _btnNo.horizontalAlign                    = Button.HORIZONTAL_ALIGN_CENTER;
       
       _lblWarning                               = CompsFactory.newLabel(_textWarning, tf_lbl, true, true, TextAlign.CENTER); 
       
-      _quadBg                                   = new Quad(1, 1, 0xffffff);
-      _quadBgDark                               = new Quad(1, 1, _colorBg);
+      _quadBg                                   = new Quad(1, 1, _colorBg);
+      _quadBgDark                               = new Quad(1, 1, 0x00);
       
       _quadBgDark.alpha                         = 0.4;
       
@@ -291,6 +321,8 @@ package com.hendrix.feathers.controls.flex
       _btnYes.defaultLabelProperties.textFormat = null;
       _btnYes.defaultLabelProperties.textFormat = tf;
       
+      //_btnNo.height = 0;
+      //_btnYes.height = 0;
       _btnNo.validate();
       _btnYes.validate();
       
@@ -325,7 +357,7 @@ package com.hendrix.feathers.controls.flex
       
       if(_textHeadline) 
       {
-        var tf_lbl:   TextFormat                = new TextFormat("arial11", 22, 0x3C3C3C);
+        var tf_lbl:   TextFormat                = _textFormat ? _textFormat : new TextFormat("arial11", 22, 0x3C3C3C);
         _lblHeadLine                            = CompsFactory.newLabel(_textHeadline, tf_lbl, false, true, TextAlign.CENTER); 
         _lblHeadLine.textRendererProperties.textFormat.size = isNaN(_fontSizePercent) ? width * 0.05 : height * _fontSizePercent / 100;;
         

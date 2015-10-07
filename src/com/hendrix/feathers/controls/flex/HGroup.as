@@ -275,8 +275,8 @@ package com.hendrix.feathers.controls.flex
         if(dataInvalid || sizeInvalid || itemsMovedInvalid)
         {
           if(_dataProvider) {
-            calcW                                   = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)  ? doRef.width   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width : (_dataProvider[ix].percentWidth/100)*_dataProvider[ix].relativeCalcParent.width;
-            calcH                                   = isNaN(_dataProvider[ix].percentHeight) ?  (isNaN(_dataProvider[ix].height) ? doRef.height  : _dataProvider[ix].height) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
+            calcW                                   = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)  ? doRef.width   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width   : (_dataProvider[ix].percentWidth/100)  * _dataProvider[ix].relativeCalcParent.width;
+            calcH                                   = isNaN(_dataProvider[ix].percentHeight) ?  (isNaN(_dataProvider[ix].height) ? doRef.height  : _dataProvider[ix].height) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100) * _dataProvider[ix].relativeCalcParent.height;
             
             if(calcW)
               doRef.width                           = calcW;

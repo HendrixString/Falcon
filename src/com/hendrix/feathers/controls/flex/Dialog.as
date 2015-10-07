@@ -53,6 +53,8 @@ package com.hendrix.feathers.controls.flex
     
     private var _dialogContent: DisplayObject   = null;
     private var _container:     FlexComp        = null;
+    private var _contentPercentWidth:Number     = 0.95;
+    private var _contentPercentHeight:Number     = 0.95;
     
     /**
      * a Dialog control <br>

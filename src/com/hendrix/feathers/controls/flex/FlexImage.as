@@ -45,7 +45,7 @@ package com.hendrix.feathers.controls.flex
     
     private var _flagDebugMode:                         Boolean       = false;
     private var _quad_debug:                            Quad;
-    
+        
     private var _color:                                 int           = -1;
     
     /**
@@ -62,7 +62,7 @@ package com.hendrix.feathers.controls.flex
     {
       super();
     }
-    
+
     /**
      * a color to tint the image with.
      * 
@@ -224,7 +224,7 @@ package com.hendrix.feathers.controls.flex
       var ar:   Number;
       var arW:  Number;
       var arH:  Number;
-      
+
       switch(_scaleMode)
       {
         case SCALEMODE_STRECTH:

@@ -4,6 +4,7 @@ package com.hendrix.feathers.controls.flex
   
   import flash.geom.Rectangle;
   
+  import feathers.controls.Button;
   import feathers.core.FeathersControl;
   import feathers.core.IFeathersControl;
   import feathers.events.FeathersEventType;
@@ -65,6 +66,9 @@ package com.hendrix.feathers.controls.flex
     protected var _backgroundSkin:					DisplayObject		=	null;
     
     protected var _breakParentSensitivityAfter: Number      = 3;
+    
+    protected var _onTriggered:             Function        = null;
+    protected var _button_trigger:          Button          = null;
 
     /**
      * flex comp implementation. extend this class to use it.
@@ -86,6 +90,22 @@ package com.hendrix.feathers.controls.flex
       super();
     }
     
+    /**
+     *  
+     * listen to trigger events on theis control 
+     */
+    public function get onTriggered():Function { return _onTriggered; }
+    public function set onTriggered(value:Function):void
+    {
+      _onTriggered = value;
+      
+      if(_onTriggered) {
+        _button_trigger = _button_trigger ? _button_trigger : new Button();
+        
+        _button_trigger.addEventListener(Event.TRIGGERED, btn_onTriggered);
+      }
+    }
+        
     public function get backgroundSkin():DisplayObject { return _backgroundSkin; }
     public function set backgroundSkin(value:DisplayObject):void
     {
@@ -119,6 +139,8 @@ package com.hendrix.feathers.controls.flex
       
       _relativeCalcWidthParent  = null;
       _relativeCalcHeightParent = null;
+      
+      _button_trigger           = null;
       
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
@@ -469,6 +491,7 @@ package com.hendrix.feathers.controls.flex
       }
       
       validateBackground();
+      layoutButton();
     }
     
     protected function internal_parent_observer(on: Boolean = true):void {
@@ -490,6 +513,21 @@ package com.hendrix.feathers.controls.flex
       }
     }
     
+    private function layoutButton():void {
+      if(_button_trigger == null)
+        return;
+      
+      addChild(_button_trigger);
+      
+      _button_trigger.width   = width;
+      _button_trigger.height  = height;
+    }
+    
+    private function btn_onTriggered(event:Event):void
+    {
+      _onTriggered(event);      
+    }
+
     private function onCreationComplete(evt:Event):void
     {
       removeEventListener(FeathersEventType.CREATION_COMPLETE, onCreationComplete);
