@@ -17,10 +17,10 @@ package com.hendrix.feathers.controls.core.sql.sqlSerialData
 		private var _TABLE_NAME:					String;
 		
 		// Contacts Table Columns names
-		private static const KEY_ID:		String 					= "id";
-		private static const KEY_DATA:	String 					= "data";
+    protected static const KEY_ID:		String 					= "id";
+    protected static const KEY_DATA:	String 					= "data";
 
-		private var _connection:				SQLConnection		=	null;
+		protected var _connection:				SQLConnection		=	null;
 		
 		private var _dbName:						String 					= null;
 		private var _dbPath:						File 						= null;

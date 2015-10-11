@@ -361,7 +361,7 @@ package com.hendrix.feathers.controls.flex
       // if width was not set, then we give the width that the children occupy
       if(width == 0) {
         explicitWidth                               = NaN;
-        var c:  Number                              = isNaN(percentHeight) ? 0 : percentWidth*relativeCalcWidthParent.width;
+        var c:  Number                              = isNaN(percentWidth) ? 0 : percentWidth*relativeCalcWidthParent.width;
         var a:  Boolean                             = setSizeInternal(Math.max(posx, c), height, false);
       }
 

@@ -16,10 +16,15 @@ package com.hendrix.feathers.controls.flex
    * 
    * <ul>
    *  <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
+   *  <li>with <code>SCALEMODE_LETTERBOX</code> works even if one dimension is specified</li>
    *  <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
    *  <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
    *  <li>set <code>color</code> to tint the image</li>
-   *  </ul>
+   * </ul>
+   * 
+   * <p/>
+   * <b>TODO:</b>
+   * <li>add alignment tools with <code>horizontalAlign/verticalAlign</code>
    * 
    * @author Tomer Shalev
    */
@@ -48,16 +53,6 @@ package com.hendrix.feathers.controls.flex
         
     private var _color:                                 int           = -1;
     
-    /**
-     * <p>a Flex comp Image container</p>
-     * <ul>
-     * <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
-     * <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
-     * <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
-     * </ul>
-     * </p> 
-     * @author Tomer Shalev
-     */
     public function FlexImage()
     {
       super();
@@ -240,7 +235,7 @@ package com.hendrix.feathers.controls.flex
           ar                                = Math.min(arW, arH); 
           if(ar == 0)
             ar                              = Math.max(arW, arH);
-          imgW                              = _img.texture.width * ar;
+          imgW                              = _img.texture.width  * ar;
           imgH                              = _img.texture.height * ar;
           break;
         }
@@ -292,6 +287,9 @@ package com.hendrix.feathers.controls.flex
       
       _img.width                            = imgW;
       _img.height                           = imgH;
+      
+      _img.x                                =(width  - _img.width)  * 0.5;
+      _img.y                                =(height - _img.height) * 0.5;
       
       if(width == 0)
         width                               = imgW;
