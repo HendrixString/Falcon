@@ -2,12 +2,57 @@ package com.hendrix.feathers.controls.utils
 {
   public class TextUtils
   {
+    static public const TRIM_POLICY_LEFT: String = "TRIM_POLICY_LEFT";
+    static public const TRIM_POLICY_RIGHT:String = "TRIM_POLICY_RIGHT";
+    static public const TRIM_POLICY_BIDI: String = "TRIM_POLICY_BIDI";
+    
     static public var currentDate:Date = new Date();
     static private var _stringAux:String = new String("aux");
     
     public function TextUtils()
     {
     }
+    
+    /**
+     * trim a string with repeated character from any direction  
+     * 
+     * @param str     the string to trim
+     * @param char    the character to trim
+     * @param policy  the trimming policy chosen from <code>{TRIM_POLICY_LEFT, TRIM_POLICY_RIGHT, TRIM_POLICY_BIDI}</code>
+     * 
+     * @return the trimmed string
+     * 
+     */
+    public static function trim(str:String, char:String = " ", policy: String = TRIM_POLICY_BIDI): String {
+      var index_start:  uint = 0;
+      var index_end:    uint = str.length;          
+      
+      if(policy==TRIM_POLICY_BIDI || policy==TRIM_POLICY_LEFT) {
+        for(index_start = 0;; index_start++) {
+          if(str.charAt(index_start) != char)
+            break;
+        }
+      }
+      
+      if(policy==TRIM_POLICY_BIDI || policy==TRIM_POLICY_RIGHT) {
+        
+        for(index_end = str.length;; index_end--) {
+          var st: String     = str.charAt(index_end);
+          
+          if(st == '') continue;
+          
+          if(st!=char) {
+            index_end       += 1;
+            break;
+          }
+          
+        }
+        
+      }
+      
+      return str.substring(index_start, index_end);
+    }
+
     
     /**
      * detects hebrew and if so reverses the text. use it only for one line. 

@@ -6,18 +6,26 @@ package com.hendrix.feathers.controls.flex
   import starling.animation.Tween;
   import starling.core.Starling;
   import starling.display.Image;
+  import starling.display.Quad;
   import starling.textures.ConcreteTexture;
   import starling.textures.Texture;
   import starling.textures.TextureSmoothing;
   
   /**
    * <p>a Flex comp Image container</p>
+   * 
    * <ul>
-   * <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
-   * <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
-   * <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
+   *  <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
+   *  <li>with <code>SCALEMODE_LETTERBOX</code> works even if one dimension is specified</li>
+   *  <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
+   *  <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
+   *  <li>set <code>color</code> to tint the image</li>
    * </ul>
-   * </p> 
+   * 
+   * <p/>
+   * <b>TODO:</b>
+   * <li>add alignment tools with <code>horizontalAlign/verticalAlign</code>
+   * 
    * @author Tomer Shalev
    */
   public class FlexImage extends FlexComp
@@ -40,19 +48,43 @@ package com.hendrix.feathers.controls.flex
     private var _forceDisposeConcreteTexture:           Boolean       = false;
     private var _flagFadeInLoadedImage:                 Boolean       = false;
     
-    /**
-     * <p>a Flex comp Image container</p>
-     * <ul>
-     * <li>set <code>scaleMode</code> to <code>SCALEMODE_STRECTH, SCALEMODE_LETTERBOX, SCALEMODE_ZOOM, SCALEMODE_NONE</code></li>
-     * <li>set <code>_forceDisposeConcreteTexture</code> to control disposal of concrete textures</li>
-     * <li>set <code>source</code> to MrGfxManager package paths ala "packA::map", or disk path "../assets/a.png"</li>
-     * </ul>
-     * </p> 
-     * @author Tomer Shalev
-     */
+    private var _flagDebugMode:                         Boolean       = false;
+    private var _quad_debug:                            Quad;
+        
+    private var _color:                                 int           = -1;
+    
     public function FlexImage()
     {
       super();
+    }
+
+    /**
+     * a color to tint the image with.
+     * 
+     */
+    public function get color():          int { return _color; }
+    public function set color(value:int): void
+    {
+      _color = value;
+      
+      if(_img)
+        _img.color = _color;
+    }
+
+    /**
+     * 
+     * @return the original texture width 
+     */
+    public function get textureWidth():uint {
+      return _tex.width;
+    }
+    
+    /**
+     * 
+     * @return the original texture height 
+     */
+    public function get textureHeight():uint {
+      return _tex.height;
     }
     
     override public function dispose():void
@@ -76,6 +108,26 @@ package com.hendrix.feathers.controls.flex
       
     }
     
+    /**
+     * set debug mode of the comp. setting to <code>true</code> will show the background as black. 
+     * 
+     */
+    public function get flagDebugMode():Boolean { return _flagDebugMode; }
+    public function set flagDebugMode(value:Boolean):void
+    {
+      _flagDebugMode        = value;
+
+      _quad_debug           = (_quad_debug == null) ? new Quad(width, height, 0x00) : _quad_debug;
+
+      addChildAt(_quad_debug, 0);
+
+      if(isInitialized) {       
+        _quad_debug.width   = width;        
+        _quad_debug.height  = height;
+      }
+      
+    }
+
     /**
      * source can be anything<br>
      * <code>Texture, bitmap class, bitmapdata, bitmap, GfxPackage path, local path</code> 
@@ -131,7 +183,7 @@ package com.hendrix.feathers.controls.flex
     
     override protected function initialize():void
     {
-      super.initialize();
+      super.initialize();      
     }
     
     override protected function draw():void
@@ -147,6 +199,12 @@ package com.hendrix.feathers.controls.flex
       
       if(alignInvalid || sizeInvalid)
         applyAlignment();
+      
+      if(_quad_debug) {
+        _quad_debug.width           = width;
+        _quad_debug.height          = height;
+      }
+      
     }
     
     private function applyScaleMode():void
@@ -161,7 +219,7 @@ package com.hendrix.feathers.controls.flex
       var ar:   Number;
       var arW:  Number;
       var arH:  Number;
-      
+
       switch(_scaleMode)
       {
         case SCALEMODE_STRECTH:
@@ -177,7 +235,7 @@ package com.hendrix.feathers.controls.flex
           ar                                = Math.min(arW, arH); 
           if(ar == 0)
             ar                              = Math.max(arW, arH);
-          imgW                              = _img.texture.width * ar;
+          imgW                              = _img.texture.width  * ar;
           imgH                              = _img.texture.height * ar;
           break;
         }
@@ -230,6 +288,9 @@ package com.hendrix.feathers.controls.flex
       _img.width                            = imgW;
       _img.height                           = imgH;
       
+      _img.x                                =(width  - _img.width)  * 0.5;
+      _img.y                                =(height - _img.height) * 0.5;
+      
       if(width == 0)
         width                               = imgW;
       
@@ -250,6 +311,9 @@ package com.hendrix.feathers.controls.flex
       }
       else {
         _img            = new Image(_tex);
+        
+        if(_color >= 0)
+          _img.color    = _color;
         
         if(_flagFadeInLoadedImage) {
           _img.alpha    = 0.0;

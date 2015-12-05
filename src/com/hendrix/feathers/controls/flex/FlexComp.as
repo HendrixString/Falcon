@@ -2,6 +2,9 @@ package com.hendrix.feathers.controls.flex
 {
   import com.hendrix.feathers.controls.flex.interfaces.IFlexComp;
   
+  import flash.geom.Rectangle;
+  
+  import feathers.controls.Button;
   import feathers.core.FeathersControl;
   import feathers.core.IFeathersControl;
   import feathers.events.FeathersEventType;
@@ -12,17 +15,18 @@ package com.hendrix.feathers.controls.flex
   import starling.events.Event;
   
   /**
-   * flex comp implementation. extend this class to use it.
-   * <p>
+   * <p>flex comp implementation. extend this class to use it.
+   * </p>
    * <b>Notes:</b>
+   * 
    * <ul>
-   * <li>set <code>this.percentWidth/Height</code> to control sizing</li>
-   * <li>set <code>this.top/bottom/left/right</code> to control layout</li>
-   * <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
-   * <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
-   * <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
+   *  <li>set <code>this.percentWidth/Height</code> to control sizing</li>
+   *  <li>set <code>this.top/bottom/left/right</code> to control layout</li>
+   *  <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
+   *  <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
+   *  <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
    * </ul>
-   * </p> 
+   * 
    * @author Tomer Shalev
    */
   public class FlexComp extends FeathersControl implements IFlexComp
@@ -53,24 +57,32 @@ package com.hendrix.feathers.controls.flex
     private var _horizontalAlign:           String          = null;
     private var _verticalAlign:             String          = null;
     
+    private var _data:                      Object          = null;
+    
     private var _isSensitiveToParent:       Boolean         = true;
     
     private var _id:                        String          = null;
     
     protected var _backgroundSkin:					DisplayObject		=	null;
+    
+    protected var _breakParentSensitivityAfter: Number      = 3;
+    
+    protected var _onTriggered:             Function        = null;
+    protected var _button_trigger:          Button          = null;
 
     /**
      * flex comp implementation. extend this class to use it.
      * <p>
-     * <b>Notes:</b>
-     * <ul>
-     * <li>set <code>this.percentWidth/Height</code> to control sizing</li>
-     * <li>set <code>this.top/bottom/left/right</code> to control layout</li>
-     * <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
-     * <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
-     * <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
-     * </ul>
-     * </p> 
+     *  <b>Notes:</b>
+     *  <ul>
+     *    <li>set <code>this.percentWidth/Height</code> to control sizing</li>
+     *    <li>set <code>this.top/bottom/left/right</code> to control layout</li>
+     *    <li>set <code>this.horizontalCenter, this.verticalCenter</code> to control position</li>
+     *    <li>set <code>this.relativeCalcWidthParent, this.relativeCalcHeightParent</code> override parent for <code>percentWidth/Height</code> calculations</li>
+     *    <li>set <code>onSelected</code> to listen to items being clicked, it will return an <code>id</code> string</li>
+     *  </ul>
+     * </p>
+     * 
      * @author Tomer Shalev
      */
     public function FlexComp()
@@ -78,6 +90,22 @@ package com.hendrix.feathers.controls.flex
       super();
     }
     
+    /**
+     *  
+     * listen to trigger events on theis control 
+     */
+    public function get onTriggered():Function { return _onTriggered; }
+    public function set onTriggered(value:Function):void
+    {
+      _onTriggered = value;
+      
+      if(_onTriggered) {
+        _button_trigger = _button_trigger ? _button_trigger : new Button();
+        
+        _button_trigger.addEventListener(Event.TRIGGERED, btn_onTriggered);
+      }
+    }
+        
     public function get backgroundSkin():DisplayObject { return _backgroundSkin; }
     public function set backgroundSkin(value:DisplayObject):void
     {
@@ -112,6 +140,8 @@ package com.hendrix.feathers.controls.flex
       _relativeCalcWidthParent  = null;
       _relativeCalcHeightParent = null;
       
+      _button_trigger           = null;
+      
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
       
@@ -127,7 +157,7 @@ package com.hendrix.feathers.controls.flex
       var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
       var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
       
-      var fixY:Number = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
+      var fixY:             Number        = (parentHeightDop == parent) ? 0 : parentHeightDop.y;
       
       if(!parentHeightDop || !parentWidthDop)
         throw new Error("no parent or parent override found!!");
@@ -139,7 +169,6 @@ package com.hendrix.feathers.controls.flex
       if(parentHeightDop is IFeathersControl)
         if(!(parentHeightDop as IFeathersControl).isCreated)
           (parentHeightDop as IFeathersControl).validate();
-      
       
       var w:  Number                      = actualWidth;
       var h:  Number                      = actualHeight;
@@ -189,7 +218,7 @@ package com.hendrix.feathers.controls.flex
     
     public function applyAlignment():void
     {
-      var child:DisplayObject = null;
+      var child: DisplayObject = null;
       
       for(var ix:uint = 0; ix < numChildren; ix++)
       {
@@ -231,9 +260,61 @@ package com.hendrix.feathers.controls.flex
             child.y = 0;
             break;
           }
+            
         }
         
       }
+      
+    }
+    
+    /**
+     * compute the content bounding box by it's children
+     * 
+     * @return <code>Rectangle</code> representing a bounding box.
+     * 
+     */
+    public function computeContentBoundBox(): Rectangle
+    {
+      var child: DisplayObject = null;
+      
+      var minX:   Number  = Number.POSITIVE_INFINITY;
+      var maxX:   Number  = Number.NEGATIVE_INFINITY;
+      var minY:   Number  = Number.POSITIVE_INFINITY;
+      var maxY:   Number  = Number.NEGATIVE_INFINITY;
+      
+      for(var ix: uint = 0; ix < numChildren; ix++)
+      {
+        child             = getChildAt(ix);
+        
+        minX              = Math.min(minX, child.x);
+        minY              = Math.min(minY, child.y);
+        maxX              = Math.max(maxX, child.x + child.width);
+        maxY              = Math.max(maxY, child.y + child.height);
+      }
+      
+      return new Rectangle(minX, minY, maxX, maxY);
+    }
+    
+    /**
+     * compute the content width bounding box by it's children
+     * 
+     * @return the width
+     * 
+     */
+    public function contentWidth(): Number
+    {
+      return computeContentBoundBox().width;
+    }
+    
+    /**
+     * compute the content width bounding box by it's children
+     * 
+     * @return the width
+     * 
+     */
+    public function contentHeight(): Number
+    {
+      return computeContentBoundBox().height;
     }
     
     // layout
@@ -358,10 +439,14 @@ package com.hendrix.feathers.controls.flex
       return _isSensitiveToParent;
     }
     
-    public function set isSensitiveToParent(value:Boolean):void
+    public function setSensitiveToParent(count:uint):void
     {
-      _isSensitiveToParent = value;
+      _breakParentSensitivityAfter  = count;
+      _isSensitiveToParent          = count==0 ? false : true;
       
+      if(!_isSensitiveToParent)
+        return;
+              
       if(isCreated)
         internal_parent_observer();
     }
@@ -372,11 +457,18 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }
+    public function set data(value:Object):void
+    {
+      _data = value;      
+    }
+
     override protected function initialize():void
     {
       super.initialize();
       
-      internal_parent_observer();
+      if(_isSensitiveToParent)
+        internal_parent_observer();
       
       if(_backgroundSkin)
         addChildAt(_backgroundSkin, 0);
@@ -399,35 +491,63 @@ package com.hendrix.feathers.controls.flex
       }
       
       validateBackground();
+      layoutButton();
     }
     
-    protected function internal_parent_observer():void {
-      if(_isSensitiveToParent) {
-        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
-        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
-        
-        if(parentHeightDop == parentWidthDop) {
-        }
-        else {
-          if(parentHeightDop)
-            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        }
-        
-        if(parentWidthDop)
+    protected function internal_parent_observer(on: Boolean = true):void {
+      var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+      var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+      
+      if(parentHeightDop) {
+        if(on)
+          parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        else
+          parentHeightDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+      }
+      
+      if(parentWidthDop && parentWidthDop!=parentHeightDop) {
+        if(on)
           parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        else
+          parentWidthDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
       }
     }
     
+    private function layoutButton():void {
+      if(_button_trigger == null)
+        return;
+      
+      addChild(_button_trigger);
+      
+      _button_trigger.width   = width;
+      _button_trigger.height  = height;
+    }
+    
+    private function btn_onTriggered(event:Event):void
+    {
+      _onTriggered(event);      
+    }
+
     private function onCreationComplete(evt:Event):void
     {
       removeEventListener(FeathersEventType.CREATION_COMPLETE, onCreationComplete);
       
       applyAlignment();
     }
-    
-    private function onParentResized():void
+
+    private function onParentResized(evt:Event):void
     {
-      invalidate(INVALIDATION_FLAG_SIZE);
+      if(_breakParentSensitivityAfter <= 0) { 
+        //internal_parent_observer(false);
+        evt.currentTarget.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+                
+        return;
+      }
+      
+      _breakParentSensitivityAfter -= 1;
+      
+      trace("onParentResized::" + _breakParentSensitivityAfter);
+      invalidate(INVALIDATION_FLAG_SIZE);      
     }
     
     private function isParentDependant():void
@@ -455,7 +575,7 @@ package com.hendrix.feathers.controls.flex
       
       return validParent;
     }
-    
+        
   }
   
 }

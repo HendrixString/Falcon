@@ -8,6 +8,7 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * a basic implementation of <code>IListItemRenderer</code> as a Flex control
+   * 
    * @author Tomer Shalev
    * 
    */
@@ -31,11 +32,11 @@ package com.hendrix.feathers.controls.flex
     /**
      * @inheritDoc 
      */
-    public function get data():                     Object  { return this._data;  }
+    public override function get data():                     Object  { return this._data;  }
     /**
      * @inheritDoc 
      */
-    public function set data(value:Object):         void
+    public override function set data(value:Object):         void
     {
       if(this._data == value)
       {

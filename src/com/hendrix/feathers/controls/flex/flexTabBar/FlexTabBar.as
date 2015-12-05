@@ -11,19 +11,21 @@ package com.hendrix.feathers.controls.flex.flexTabBar
   
   /**
    * <p>a very lite Tab Bar component, requires a data provider</p>
-   * @param $dataProvider the data provider object
+   * 
    * <p><b>Example:</b><br>
-   *        <code>
-   *      _dataProvier = Vector.Object([<br>
-   *        { id: "1", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn},<br>
-   *        { id: "2", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn},<br>
-   *        { id: "3", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn},<br>
-   *        { id: "4", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn}<br>
-   *      ]);</code><br>
-   * <b>Notes:</b>
+   *        <pre>
+   *      _dataProvier = Vector.Object([
+   *        { id: "1", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn},
+   *        { id: "2", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn},
+   *        { id: "3", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn},
+   *        { id: "4", textureUp: _bm_btn_contact_up, textureDown: _bm_btn_contact_dwn}
+   *      ]);</pre>
+   * 
+   * <p><b>Notes:</b></p>
+   * 
    * <code>textureDown, textureUp</code> can be anything: texture id from the GFXManager, class, bitmapdata, or a texture<br>
-   * use bgSkin setter to set a background skin source
-   * </p> 
+   * use bgSkin setter to set a background skin source.
+   * 
    * @author Tomer Shalev
    */
   public class FlexTabBar extends FeathersControl

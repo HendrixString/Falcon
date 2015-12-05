@@ -18,15 +18,22 @@ package com.hendrix.feathers.controls.utils.serialize
 			return Base64.encodeByteArray(ba);
 		}
 		
-		static public function objectToString(obj:Object):String
-		{
-			_byteArray.position 	= 0;
-			_byteArray.length 		= 0;
-			_byteArray.writeObject(obj);
-
-			return Base64.encodeByteArray(_byteArray);
-		}
-		
+    static public function objectToString(obj:Object):String
+    {
+      return Base64.encodeByteArray(objectToByteArray(obj));
+    }
+    
+    static public function objectToByteArray(obj:Object, $ba: ByteArray = null):ByteArray
+    {
+      var ba: ByteArray = $ba ? $ba : new ByteArray();
+      
+      ba.position 	    = 0;
+      
+      ba.writeObject(obj);
+      
+      return ba;
+    }
+    
 		static public function stringToObject(data:String):Object
 		{
 			var ba:	ByteArray = Base64.decodeToByteArray(data);

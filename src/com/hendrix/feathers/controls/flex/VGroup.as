@@ -17,26 +17,32 @@ package com.hendrix.feathers.controls.flex
   /**
    * a very lite Verical Group like Flex, but used only with a dataprovider<br>
    * <p><b>Example:</b><br>
+   * 
    * use <code>this.dataProvider</code> for layout sruff, the reason we use it is that because non of feather or starling and Feathers<br>
    * comps come with these basic and useful layout/sizing properties for comps that are not FlexComps<br>
    * if your children are responsive/flexcomps, just use addChild.
-   * <code>
-   *      this.dataProvier = Vector.Object([<br>
-   *        { id: "1", src: dop1, percentWidth: 95, percentHeight: NaN, width:NaN, height:1, relativeCalcParent:this},<br>
-   *        { id: "2", src: dop1, percentWidth: 100, percentHeight: 11, width:NaN, height:NaN, relativeCalcParent:this},<br>
-   *        { id: "3", src: dop3, percentWidth: 95, percentHeight: NaN, width:NaN, height:1, relativeCalcParent:this},<br>
-   *      ]);</code><br>
+   * <pre>
+   *      this.dataProvier = Vector.Object([
+   *        { id: "1", src: dop1, percentWidth: 95, percentHeight: NaN, width:NaN, height:1, relativeCalcParent:this},
+   *        { id: "2", src: dop1, percentWidth: 100, percentHeight: 11, width:NaN, height:NaN, relativeCalcParent:this},
+   *        { id: "3", src: dop3, percentWidth: 95, percentHeight: NaN, width:NaN, height:1, relativeCalcParent:this}
+   *      ]);</pre><br>
+   * 
    * <b>Notes:</b>
+   * 
    * <ul>
-   * <li> use <code>this.relativeCalcObject</code> to modify the component on which relative percent height calculations are based upon.
-   * <li> use <code>this.horizontalAlign, padding, gap, gapPercentHeight</code> to control layout.
-   * <li> use <code>this.backgroundSkin</code> have a background skin that stretches.
-   * <li> can only be used with a data provider for now.
+   *  <li> use <code>this.relativeCalcObject</code> to modify the component on which relative percent height calculations are based upon.
+   *  <li> use <code>this.horizontalAlign, padding, gap, gapPercentHeight</code> to control layout.
+   *  <li> use <code>this.backgroundSkin</code> have a background skin that stretches.
+   *  <li> can only be used with a data provider for now.
    * </ul>
+   * 
    * <b>TODO:</b>
+   * 
    * <ul>
-   * <li> interface for updating data.
+   *  <li> interface for updating data.
    * </ul>
+   * 
    * @author Tomer Shalev
    * 
    */
@@ -269,6 +275,8 @@ package com.hendrix.feathers.controls.flex
     {     
       super.draw();
       
+      id;width;height;x;y
+      
       var sizeInvalid:        Boolean                 = isInvalid(INVALIDATION_FLAG_SIZE);
       var layoutInvalid:      Boolean                 = isInvalid(INVALIDATION_FLAG_LAYOUT);
       var dataInvalid:        Boolean                 = isInvalid(INVALIDATION_FLAG_DATA);
@@ -312,7 +320,7 @@ package com.hendrix.feathers.controls.flex
             calcH                                     = 0;
             
             calcW                                     = isNaN(_dataProvider[ix].percentWidth)  ?  (isNaN(_dataProvider[ix].width)   ? 0   : _dataProvider[ix].width)  : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentWidth/100)*width : (_dataProvider[ix].percentWidth/100)*_dataProvider[ix].relativeCalcParent.width;
-            calcH                                     = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height)   ? 0 : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
+            calcH                                     = isNaN(_dataProvider[ix].percentHeight) ?  ((isNaN(_dataProvider[ix].height) ? 0 : _dataProvider[ix].height)) : !(_dataProvider[ix].hasOwnProperty("relativeCalcParent")) ? (_dataProvider[ix].percentHeight/100)*height : (_dataProvider[ix].percentHeight/100)*_dataProvider[ix].relativeCalcParent.height;
             
             if(calcW)
               doRef.width                             = calcW;

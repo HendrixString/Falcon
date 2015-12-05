@@ -24,7 +24,6 @@ package com.hendrix.feathers.controls.core.sql.sqlSerialData
 				arr[ix].data = Serialize.stringToObject(arr[ix].data);
 			}
 			
-			
 			return arr;
 		}
 	}

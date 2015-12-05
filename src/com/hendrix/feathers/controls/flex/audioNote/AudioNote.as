@@ -39,6 +39,7 @@ package com.hendrix.feathers.controls.flex.audioNote
   
   /**
    * Audio recording control
+   * 
    * @author Alan Givati
    * 
    */

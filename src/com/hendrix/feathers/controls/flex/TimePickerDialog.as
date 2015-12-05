@@ -5,9 +5,10 @@ package com.hendrix.feathers.controls.flex
   import flash.text.TextFormat;
   
   /**
-   * Time picker dialog 
+   * <p>Time picker dialog</p> 
    * 
-   * a Dialog control <br>
+   * <p><b>guide</b></p>
+   * 
    * <li>use <code>this.textOK, this.textCANCEL, this.textHEADLINE</code> to alter the text.
    * <li>use <code>this.textCANCEL</code> to put a DisplayObject as the content of the dialog.
    * <li>use <code>this.tf_buttons, tf_headline</code> to control textFormat of buttons and headline respectively.

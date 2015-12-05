@@ -40,11 +40,13 @@ package com.hendrix.feathers.controls.flex.dynTextInput
   
   /**
    * A class for displaying a dynamic text, font size wise inside a fixed <b>Feathers</b> <code>TextInput</code>
+   * 
    * @param $fontSize font size
    * @param $fontColor font color
    * @param $fontFamily font family
    * @param $textAlign text align
    * @param $textEditorType stageText or textField, right now only "stagetext is supported"
+   * 
    * @author Tomer Shalev
    */
   public class DynamicTextInput extends TextInput

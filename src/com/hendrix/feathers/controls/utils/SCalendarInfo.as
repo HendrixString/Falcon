@@ -55,7 +55,7 @@ package com.hendrix.feathers.controls.utils
      */
     static public function dateDeltaSeconds(date:Date):uint
     {
-      var sec:  uint = (date.time - (new Date()).time) / SECOND;
+      var sec:  uint = Math.abs(date.time - (new Date()).time) / SECOND;
       
       return sec;
     }

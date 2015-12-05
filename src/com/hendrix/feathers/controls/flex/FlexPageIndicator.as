@@ -5,18 +5,22 @@ package com.hendrix.feathers.controls.flex
   import feathers.events.FeathersEventType;
   
   import starling.display.DisplayObject;
-  import starling.events.Event;
   
   /**
    * <p>a small extension for <code>PageIndicator</code> enabling the <code>gap</code> to be determined automatically with a max limit.
    * Extended only because <code>selectedSymbol</code> is protected.</p> 
+   * 
    * <b>Notes</b>
+   * 
    * <li>use <code>maxSymbolWidth</code> for determining the max width for a symbol</li>
    * <li>use <code>maxGap</code> for determining the max Gap between symbols</li>
    * <li>use <code>typicalSymbol</code> for indicating a symbol, and thus make <code>arTypicalSymbol</code> available for sizing inside the symbol factories</li>
    * <li>use <code>arTypicalSymbol</code> if <code>typicalSymbol</code> was setup already to get the aspect ratio</li>
+   * 
    * <br><b>TODO:</b><br>
+   * 
    * currently only supports horizontal direction, extends to vertical.
+   * 
    * @author Tomer Shalev
    */
   public class FlexPageIndicator extends PageIndicator

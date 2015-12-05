@@ -1,12 +1,15 @@
 package com.hendrix.feathers.controls.flex.interfaces
 {
+  import com.hendrix.collection.common.interfaces.IData;
+  
   import starling.display.DisplayObject;
   
   /**
    * the basic Interface for FlexComp responsive component
+   * 
    * @author Tomer Shalev
    */
-  public interface IFlexComp extends IId
+  public interface IFlexComp extends IId, IData
   {
     /**
      * the width percentage of the control based on it's parent( or relativeCalcWidthParent) 
@@ -114,7 +117,7 @@ package com.hendrix.feathers.controls.flex.interfaces
      * should the control be sensitive to his parent changes
      */
     function get isSensitiveToParent():                         Boolean;
-    function set isSensitiveToParent(value:Boolean):            void;
+    function setSensitiveToParent(count:uint):                  void;
     
     /**
      * layout actions

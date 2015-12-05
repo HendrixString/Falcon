@@ -12,8 +12,10 @@ package com.hendrix.feathers.controls.flex
   
   /**
    * a responsive flex button, resizes both default icon and font's size.
+   * 
    * <li>use <code>this.fontPercentHeight</code>
    * <li>use <code>this.iconPercentHeight</code>
+   * 
    * @author Tomer Shalev
    */
   public class FlexButton extends ToggleButton implements IFlexComp
@@ -39,6 +41,8 @@ package com.hendrix.feathers.controls.flex
     private var _relativeCalcHeightParent:  DisplayObject = null;
     
     private var _id:                        String        = null;
+    
+    private var _data:                      Object        = null;
     
     /**
      * font size in percentages based on the control height 
@@ -270,9 +274,15 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
+    
     public function applyAlignment():void { }
     public function get isSensitiveToParent():                        Boolean { return false; }
-    public function set isSensitiveToParent(value:Boolean):           void {}
+    public function setSensitiveToParent(count:uint):void             {}
     
     override public function dispose():void
     {

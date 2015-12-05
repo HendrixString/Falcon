@@ -11,6 +11,7 @@ package com.hendrix.feathers.controls.flex.mainWindow
   /**
    * base class for a Feather appication main Window container with navigator.
    * extends this for more layouts. for example with action bar and a tab bar.
+   * 
    * @author Tomer Shalev
    */
   public class MainWindow extends FlexComp implements IMainWindow

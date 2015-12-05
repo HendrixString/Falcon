@@ -17,10 +17,10 @@ package com.hendrix.feathers.controls.core.sql.sqlSerialData
 		private var _TABLE_NAME:					String;
 		
 		// Contacts Table Columns names
-		private static const KEY_ID:		String 					= "id";
-		private static const KEY_DATA:	String 					= "data";
+    protected static const KEY_ID:		String 					= "id";
+    protected static const KEY_DATA:	String 					= "data";
 
-		private var _connection:				SQLConnection		=	null;
+		protected var _connection:				SQLConnection		=	null;
 		
 		private var _dbName:						String 					= null;
 		private var _dbPath:						File 						= null;
@@ -100,9 +100,11 @@ package com.hendrix.feathers.controls.core.sql.sqlSerialData
 		/**
 		 * Select data from a window of identifiers. useful when ids are timestamps.
 		 * requires QA.
+     * 
 		 * @param idFrom starting id
 		 * @param idTo last id
 		 * @param callback a callback
+     * 
 		 * @return Array result, or null and Array into callback
 		 */
 		public function getDataBetween(idFrom:String, idTo:String, callback:Function = null):Array
@@ -153,9 +155,8 @@ package com.hendrix.feathers.controls.core.sql.sqlSerialData
 		 * add new data, or update an older one with the correct conflict algorithm
 		 * @param id the id of the data
 		 * @param data the data
-		 * @param conflictAlgorithm for example <code>SQLiteDatabase.CONFLICT_REPLACE</code>
 		 */
-		public function addData(id: String, data:Object, conflictAlgorithm:int):void
+		public function addData(id: String, data:Object):void
 		{
 			if(_connection.connected == false)
 				return ;

@@ -57,7 +57,10 @@ package com.hendrix.feathers.controls.flex
     
     private var _id:                        String        = null;     
     
-    private var _isSensitiveToParent:       Boolean         = false;
+    private var _data:                      Object        = null;     
+
+    private var _isSensitiveToParent:       Boolean         = true;
+    protected var _breakParentSensitivityAfter: Number      = 5;
 
     /**
      * resizes font size according to width/height. right now only supports single line labels.<br>
@@ -271,40 +274,68 @@ package com.hendrix.feathers.controls.flex
       _id = value;
     }
     
+    public function get data():Object { return _data; }    
+    public function set data(value:Object):void
+    {
+      _data = value;
+    }    
+
     public function applyAlignment():void { }
     public function get isSensitiveToParent(): Boolean { return false; }
-    public function set isSensitiveToParent(value:Boolean): void { }
+    public function setSensitiveToParent(count:uint):void
+    {
+      _breakParentSensitivityAfter  = count;
+      _isSensitiveToParent          = count==0 ? false : true;
+      
+      if(!_isSensitiveToParent)
+        return;
+      
+      if(isCreated)
+        internal_parent_observer();
+    }
     
+    protected function internal_parent_observer(on:Boolean = true):void {
+      var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestorWidth() as DisplayObject;
+      var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestorHeight() as DisplayObject;
+      
+      if(parentHeightDop == parentWidthDop) {
+      }
+      else {
+        if(parentHeightDop) {
+          if(on)
+            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+          else
+            parentHeightDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+        }
+      }
+      
+      if(parentWidthDop) {
+        if(on)
+          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
+        else
+          parentWidthDop.removeEventListener(FeathersEventType.RESIZE, onParentResized);
+      }
+    }
+    
+    private function onParentResized():void
+    {
+      if(_breakParentSensitivityAfter-- == 0)
+        internal_parent_observer(false);
+      
+      invalidate(INVALIDATION_FLAG_SIZE);      
+    }
+
     override protected function initialize():void
     {
       super.initialize();
       
-      if(_isSensitiveToParent) {
-        var parentWidthDop:   DisplayObject = _relativeCalcWidthParent  ? _relativeCalcWidthParent  as DisplayObject : getValidAncestor() as DisplayObject;
-        var parentHeightDop:  DisplayObject = _relativeCalcHeightParent ? _relativeCalcHeightParent as DisplayObject : getValidAncestor() as DisplayObject;
-        
-        if(parentHeightDop == parentWidthDop) {
-        }
-        else {
-          if(parentHeightDop)
-            parentHeightDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        }
-        
-        if(parentWidthDop)
-          parentWidthDop.addEventListener(FeathersEventType.RESIZE, onParentResized);
-        
-      }
+      if(_isSensitiveToParent)
+        internal_parent_observer();
 
       if(_bg)
         addChildAt(_bg, 0);
     }
     
-    private function onParentResized():void
-    {
-      invalidate(INVALIDATION_FLAG_SIZE);
-    }
-    
-
     override protected function draw():void
     {
       var sizeInvalid:    Boolean = isInvalid(INVALIDATION_FLAG_SIZE);
@@ -422,6 +453,29 @@ package com.hendrix.feathers.controls.flex
       if(!isNaN(_right))
         x                                 = parentWidthDop.width - (w + _right);
     }
+  
+    private function getValidAncestorHeight():DisplayObject
+    {
+      var validParent:  DisplayObject = parent;
+      
+      while(validParent && !validParent.height) {
+        validParent                   = validParent.parent;
+      }
+      
+      return validParent;
+    }
     
+    private function getValidAncestorWidth():DisplayObject
+    {
+      var validParent:  DisplayObject = parent;
+      
+      while(validParent && !validParent.width) {
+        validParent                   = validParent.parent;
+      }
+      
+      return validParent;
+    }
+
   }
+  
 }

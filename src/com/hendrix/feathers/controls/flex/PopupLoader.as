@@ -10,12 +10,14 @@ package com.hendrix.feathers.controls.flex
   import starling.textures.Texture;
   
   /**
-   * a generic popup with singleline label, and possibly an animation with dark background 
+   * <p>a generic popup with singleline label, and possibly an animation with dark background</p> 
+   * 
    * <li>use <code>this.close()</code> to close the popup
    * <li>use <code>this.textureLoadingAnimation</code> to set the Texture of the loading rotating animation 
    * <li>use <code>this.backgroundSkin</code> to set the skin of the background
    * <li>use <code>this.text</code> to set the text of the label 
    * <li>use <code>this.textFormat</code> to set the textFormat of the label 
+   * 
    * @author Tomer Shalev
    */
   public class PopupLoader extends FlexComp
