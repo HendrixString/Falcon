@@ -1,5 +1,6 @@
 package com.hendrix.feathers.controls.utils.serialize
 {
+	import flash.net.registerClassAlias;
 	import flash.utils.ByteArray;
 
 	public class Serialize

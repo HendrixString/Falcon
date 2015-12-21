@@ -99,29 +99,65 @@ package com.hendrix.feathers.controls
      */
     static public function newButton($downSkin:Object = null, $upSkin:Object = null, $handler:Function = null,
                                      $textFormat:* = null, $label:String  = null,  $isToggle:Boolean = false, 
-                                     $icon:Object = null, $flexButon:Boolean = false, $hAlign:String = Button.HORIZONTAL_ALIGN_RIGHT, embedFonts:Boolean = false): ToggleButton
+                                     $icon:Object = null, $flexButon:Boolean = false, $hAlign:String = Button.HORIZONTAL_ALIGN_RIGHT, 
+                                     embedFonts:Boolean = false, useSkinsAsIcons:Boolean = false): ToggleButton
     {
       var button: ToggleButton                    = $flexButon ? new FlexButton() : new ToggleButton();
       
-      if($upSkin is Quad)
-        button.upSkin = $upSkin as DisplayObject;
-      else if($upSkin is uint)
-        button.upSkin                             = new Quad(1, 1, uint($upSkin));
-      else if($upSkin is String)
-        button.upSkin                             = newImage($upSkin);
-      else if($upSkin is DisplayObject)
-        button.upSkin                             = $upSkin as DisplayObject;
+      if($upSkin is Quad) {
+        if(useSkinsAsIcons)
+          button.upIcon = $upSkin as DisplayObject;
+        else
+          button.upSkin = $upSkin as DisplayObject;
+      }
+      else if($upSkin is uint) {
+        if(useSkinsAsIcons)
+          button.upIcon                             = new Quad(1, 1, uint($upSkin));
+        else
+          button.upSkin                             = new Quad(1, 1, uint($upSkin));
+      }
+      else if($upSkin is String) {
+        if(useSkinsAsIcons)
+          button.upIcon                             = newImage($upSkin);
+        else
+          button.upSkin                             = newImage($upSkin);
+      }
+      else if($upSkin is DisplayObject) {
+        if(useSkinsAsIcons)
+          button.upIcon                             = $upSkin as DisplayObject;
+        else
+          button.upSkin                             = $upSkin as DisplayObject;
+      }
       
-      button.defaultSkin                          = button.upSkin;
-      
-      if($downSkin is Quad)
-        button.downSkin                           = $downSkin as DisplayObject;
-      else if($downSkin is uint)
-        button.downSkin                           = new Quad(1, 1, uint($downSkin));
-      else if($downSkin is String)
-        button.downSkin                             = newImage($downSkin);
-      else if($downSkin is DisplayObject)
-        button.downSkin                             = $downSkin as DisplayObject;
+      if(useSkinsAsIcons)
+        button.defaultIcon                          = button.upIcon;
+      else
+        button.defaultSkin                          = button.upSkin;
+
+      if($downSkin is Quad) {
+        if(useSkinsAsIcons)
+          button.downIcon                           = $downSkin as DisplayObject;
+        else
+          button.downSkin                           = $downSkin as DisplayObject;
+      }
+      else if($downSkin is uint) {
+        if(useSkinsAsIcons)
+          button.downIcon                           = new Quad(1, 1, uint($downSkin));
+        else
+          button.downSkin                           = new Quad(1, 1, uint($downSkin));
+      }
+      else if($downSkin is String) {
+        if(useSkinsAsIcons)
+          button.downIcon                             = newImage($downSkin);
+        else
+          button.downSkin                             = newImage($downSkin);
+      }
+      else if($downSkin is DisplayObject) {
+        if(useSkinsAsIcons)
+          button.downIcon                             = $downSkin as DisplayObject;
+        else
+          button.downSkin                             = $downSkin as DisplayObject;
+      }
 
       if($isToggle) {
         button.isToggle                           = $isToggle;

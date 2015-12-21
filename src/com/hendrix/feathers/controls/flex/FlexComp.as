@@ -173,10 +173,10 @@ package com.hendrix.feathers.controls.flex
       var w:  Number                      = actualWidth;
       var h:  Number                      = actualHeight;
       
-      if(!isNaN(_percentWidth))
+      if(!isNaN(_percentWidth) && !width)
         w                                 = _percentWidth * parentWidthDop.width;
       
-      if(!isNaN(_percentHeight))
+      if(!isNaN(_percentHeight) && !height)
         h                                 = _percentHeight * parentHeightDop.height;
       
       if(!isNaN(_horizontalCenter))
@@ -213,7 +213,7 @@ package com.hendrix.feathers.controls.flex
       //height = h
       if(width != w || height!=h)
         var a:Boolean = setSizeInternal(w, h, false);
-      trace();//
+      //trace();//
     }   
     
     public function applyAlignment():void

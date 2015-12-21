@@ -5,6 +5,7 @@ package com.hendrix.feathers.controls.flex
   import flash.text.TextFormat;
   
   import feathers.controls.Label;
+  import feathers.controls.text.TextFieldTextRenderer;
   import feathers.events.FeathersEventType;
   
   import starling.display.DisplayObject;
@@ -363,8 +364,11 @@ package com.hendrix.feathers.controls.flex
     {
       var sizeInvalid:  Boolean             = isInvalid(INVALIDATION_FLAG_SIZE);
       var textInvalid:  Boolean             = isInvalid(INVALIDATION_FLAG_DATA);
-      
+
       var tf: TextFormat                    = textRendererProperties.textFormat as TextFormat;
+      
+      if(textRenderer)
+        tf = (textRenderer as TextFieldTextRenderer).textFormat;
       
       if(tf) {
         
@@ -381,6 +385,11 @@ package com.hendrix.feathers.controls.flex
         
         textRendererProperties.textFormat   = null;
         textRendererProperties.textFormat   = tff;
+        
+        if(textRenderer) {
+          (textRenderer as TextFieldTextRenderer).textFormat = null;
+          (textRenderer as TextFieldTextRenderer).textFormat = tff;
+        }
         
         // this will force the Label to compute it's area based on font size and text's bounds
         explicitWidth                       = width;
