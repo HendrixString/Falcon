@@ -40,6 +40,9 @@ package com.hendrix.feathers.controls.flex
     private var _relativeCalcWidthParent:   DisplayObject = null;
     private var _relativeCalcHeightParent:  DisplayObject = null;
     
+    private var _cubicOnWidth:              Boolean       = false;
+    private var _cubicOnHeight:             Boolean       = false;
+    
     private var _id:                        String        = null;
     
     private var _data:                      Object        = null;
@@ -125,8 +128,8 @@ package com.hendrix.feathers.controls.flex
         trace();
       }
       
-      width                               = w;
-      height                              = h;
+      width                               = cubicOnHeight ? h : w;
+      height                              = cubicOnWidth  ? w : h;
       
       var a:Boolean                       = setSizeInternal(w, h, false);
       
@@ -137,6 +140,24 @@ package com.hendrix.feathers.controls.flex
         explicitHeight = h;
       }
       
+    }
+    
+    /**
+     * 
+     * make the component cubic height-wise
+     */
+    public function get cubicOnHeight():Boolean{return _cubicOnHeight;}
+    public function set cubicOnHeight(value:Boolean):void{
+      _cubicOnHeight = value;
+    }
+    
+    /**
+     * 
+     * make the component cubic width-wise
+     */
+    public function get cubicOnWidth():Boolean{return _cubicOnWidth;}
+    public function set cubicOnWidth(value:Boolean):void{
+      _cubicOnWidth = value;
     }
     
     /**
@@ -438,7 +459,7 @@ package com.hendrix.feathers.controls.flex
       while(!validParent.width) {
         validParent                   = validParent.parent;
       }
-      
+            
       return validParent;
     }
     
