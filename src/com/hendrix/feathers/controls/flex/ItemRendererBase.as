@@ -98,6 +98,18 @@ package com.hendrix.feathers.controls.flex
       this.dispatchEventWith(Event.CHANGE);
     }
     
+    public function get factoryID():String
+    {
+      // TODO Auto Generated method stub
+      return null;
+    }
+    
+    public function set factoryID(value:String):void
+    {
+      // TODO Auto Generated method stub
+      
+    }
+    
   }
   
 }
