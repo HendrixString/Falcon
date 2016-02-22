@@ -37,7 +37,7 @@ properties:
 ##### Examples
 1. a drawer with two number pickers. the layout is done automatically. saves ton of
 layout code that usually goes into `draw()` method
-```
+```actionscript
 override protected function initialize():void
 {
   var hgTimer:    HGroup                            = new HGroup();
