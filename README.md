@@ -89,7 +89,7 @@ override protected function initialize():void
 2. loading packages.
 for complete usage learning of the `GfxManager`, consult it's own repository, or the source
 
-```
+```actionscript
 private function loadGfxPacks():void
 {
   gfxManager                                     = GfxManager.instance;
@@ -128,7 +128,7 @@ private function onGfxLoaded($obj:Object = null):void
 
 3. Splash Screen. based on flash Sprite and not on Stage3D, since it is inited before stage3d
 
-```
+```actionscript
 public function startSplash(flashSpriteParent:flash.display.DisplayObjectContainer):void
 {
   _appSplash              = new BitmapLayersComposer(flashSpriteParent);
